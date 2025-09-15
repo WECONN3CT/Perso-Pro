@@ -304,6 +304,108 @@ a:hover {
   text-align: center;
 }
 
+/* ================================
+   Hero Search Filter
+   ================================ */
+.hero-search {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(12px, 3vh, 24px);
+  transform: translateX(-50%);
+  width: min(100%, 1100px);
+  background: var(--color-white);
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  padding: 12px;
+}
+
+.hero-search-group {
+  display: flex;
+  gap: 8px;
+  padding: 6px;
+}
+
+.chip {
+  padding: 10px 16px;
+  border-radius: 14px;
+  border: 2px solid var(--color-medium-gray);
+  background: var(--color-white);
+  font-weight: 600;
+  cursor: pointer;
+}
+.chip-active,
+.chip:hover {
+  border-color: var(--color-orange);
+  background: rgba(230,126,34,0.12);
+}
+
+.hero-search-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1px 2fr 1px auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 6px 4px;
+}
+
+.hero-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--color-medium-gray);
+  opacity: 0.6;
+}
+
+.hero-field label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-dark-gray);
+  margin-bottom: 6px;
+}
+
+.hero-field select,
+.hero-field input[type="text"] {
+  width: 100%;
+  border: 2px solid var(--color-medium-gray);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 1rem;
+}
+
+.more-btn {
+  padding: 10px 14px;
+  border: 2px solid var(--color-medium-gray);
+  background: var(--color-white);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.hero-submit {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--color-orange);
+  color: var(--color-white);
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.hero-more {
+  padding: 10px 6px 6px;
+}
+
+.hero-more-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .hero-search { width: calc(100% - 24px); }
+  .hero-search-row { grid-template-columns: 1fr; }
+  .hero-divider { display: none; }
+  .hero-submit { width: 100%; }
+}
+
 .hero-title {
   color: var(--color-white);
   font-size: clamp(2rem, 4.5vw, 3.25rem);

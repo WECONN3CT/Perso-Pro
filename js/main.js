@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Lazy Loading Images
     initLazyLoading();
+
+    // Hero Search interactions
+    initHeroSearch();
 });
 
 // ===================================
@@ -325,6 +328,45 @@ function debounce(func, wait) {
 function formatPrice(price, type = 'Kauf') {
     const formatted = price.toLocaleString('de-DE');
     return type === 'Miete' ? `${formatted} €/Monat` : `${formatted} €`;
+}
+
+// ===================================
+// Hero Search
+// ===================================
+
+function initHeroSearch() {
+    const chipButtons = document.querySelectorAll('.hero-search .chip');
+    const typeInput = document.getElementById('heroType');
+    chipButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            chipButtons.forEach(b => b.classList.remove('chip-active'));
+            btn.classList.add('chip-active');
+            if (typeInput) typeInput.value = btn.dataset.type || '';
+        });
+    });
+}
+
+function toggleHeroMore(button) {
+    const container = document.querySelector('.hero-more');
+    if (!container) return;
+    const isHidden = container.hasAttribute('hidden');
+    if (isHidden) {
+        container.removeAttribute('hidden');
+        button.setAttribute('aria-expanded', 'true');
+    } else {
+        container.setAttribute('hidden', '');
+        button.setAttribute('aria-expanded', 'false');
+    }
+}
+
+function handleHeroSearch(e) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const params = new URLSearchParams(new FormData(form));
+    // Weiterleitung zur Immobilien-Seite mit Query-Parametern
+    const url = `immobilien.html?${params.toString()}#properties`;
+    window.location.href = url;
+    return false;
 }
 
 // ===================================
