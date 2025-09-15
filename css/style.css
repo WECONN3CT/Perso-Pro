@@ -271,8 +271,8 @@ a:hover {
   width: calc(100% - 24px);
   margin: 0 12px;
   height: auto;
-  aspect-ratio: 20 / 9;
-  min-height: 480px;
+  aspect-ratio: 1 / 1; /* Höhe = Breite */
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -342,8 +342,8 @@ a:hover {
   .hero-media {
     width: calc(100% - 16px);
     margin: 0 8px;
-    aspect-ratio: 16 / 9;
-    min-height: 260px;
+    aspect-ratio: 1 / 1; /* Höhe = Breite */
+    min-height: 0;
   }
 }
 
