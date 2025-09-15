@@ -259,10 +259,14 @@ a:hover {
 
 .hero-media {
   position: relative;
-  border-radius: var(--radius-xl);
+  border-radius: 24px;
   overflow: hidden;
   box-shadow: var(--shadow-xl);
-  height: clamp(260px, 42vh, 460px);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 21 / 9;
+  min-height: 360px;
+  max-height: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -329,7 +333,11 @@ a:hover {
 
 @media (max-width: 768px) {
   .hero-section { padding: 2.5rem 0; }
-  .hero-media { height: clamp(220px, 38vh, 340px); }
+  .hero-media {
+    aspect-ratio: 16 / 9;
+    min-height: 220px;
+    max-height: 320px;
+  }
 }
 
 /* ===================================
