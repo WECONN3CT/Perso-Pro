@@ -251,7 +251,7 @@ a:hover {
 
 .hero-section {
   background: var(--color-light-gray);
-  padding: 3rem 0;
+  padding: 1.25rem 0;
   position: relative;
 }
 
@@ -268,10 +268,11 @@ a:hover {
   border-radius: 24px;
   overflow: hidden;
   box-shadow: var(--shadow-xl);
-  width: 100%;
+  width: calc(100% - 24px);
+  margin: 0 12px;
   height: auto;
-  aspect-ratio: 21 / 9;
-  min-height: 360px;
+  aspect-ratio: 20 / 9;
+  min-height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -337,10 +338,12 @@ a:hover {
 }
 
 @media (max-width: 768px) {
-  .hero-section { padding: 2.5rem 0; }
+  .hero-section { padding: 1rem 0; }
   .hero-media {
+    width: calc(100% - 16px);
+    margin: 0 8px;
     aspect-ratio: 16 / 9;
-    min-height: 220px;
+    min-height: 260px;
   }
 }
 
