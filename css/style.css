@@ -310,7 +310,7 @@ a:hover {
 .hero-search {
   position: absolute;
   left: 50%;
-  bottom: clamp(24px, 6vh, 64px);
+  bottom: clamp(64px, 12vh, 160px);
   transform: translateX(-50%);
   width: min(100%, 1200px);
   background: var(--color-white);
