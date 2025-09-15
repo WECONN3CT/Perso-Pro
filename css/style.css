@@ -696,7 +696,7 @@ a:hover {
   display: grid;
   grid-template-columns: 1fr 1.2fr; /* links sticky Bild, rechts Liste */
   gap: var(--spacing-3xl);
-  align-items: start;
+  align-items: stretch; /* wichtig: linke Spalte erhält volle Section-Höhe, damit sticky am Ende löst */
 }
 
 .services-sticky-left { position: relative; }
@@ -704,6 +704,7 @@ a:hover {
 .sticky-media {
   position: sticky;
   top: calc(72px + var(--spacing-xl));
+  align-self: start; /* verhindert Stretching durch Grid */
 }
 
 .services-sticky-right { min-height: 100%; }
@@ -715,7 +716,7 @@ a:hover {
 
 @media (max-width: 1024px) {
   .services-sticky { grid-template-columns: 1fr; }
-  .sticky-media { position: static; top: auto; margin-bottom: var(--spacing-2xl); }
+  .sticky-media { position: static; top: auto; margin-bottom: var(--spacing-2xl); align-self: auto; }
 }
 
 /* ===================================
