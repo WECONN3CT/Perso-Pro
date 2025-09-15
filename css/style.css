@@ -867,7 +867,7 @@ a:hover {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-3xl);
-  align-items: center;
+  align-items: start; /* Bild-Top an Titel-Top ausrichten */
 }
 
 .about-content {
@@ -915,6 +915,7 @@ a:hover {
   width: 100%;
   height: auto;
   display: block;
+  object-fit: cover;
 }
 
 /* ===================================
