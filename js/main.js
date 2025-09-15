@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Hero Search interactions
     initHeroSearch();
+
+    // Reveal animations for services sticky list
+    initServicesReveal();
 });
 
 // ===================================
@@ -465,4 +468,23 @@ function initPropertiesCarousel() {
     nextBtn && nextBtn.addEventListener('click', () => {
         track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
     });
+}
+
+// ===================================
+// Services Reveal
+// ===================================
+
+function initServicesReveal() {
+    const revealItems = document.querySelectorAll('.services-list .reveal');
+    if (!revealItems.length) return;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+
+    revealItems.forEach(el => observer.observe(el));
 }
