@@ -290,7 +290,7 @@ a:hover {
 .hero-media-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(21,43,66,0.35) 0%, rgba(21,43,66,0.55) 100%);
+  background: linear-gradient(180deg, rgba(21,43,66,0.25) 0%, rgba(21,43,66,0.35) 100%);
   z-index: 1;
 }
 
@@ -310,7 +310,7 @@ a:hover {
 .hero-search {
   position: absolute;
   left: 50%;
-  bottom: clamp(12px, 3vh, 24px);
+  bottom: clamp(24px, 6vh, 64px);
   transform: translateX(-50%);
   width: min(100%, 1200px);
   background: var(--color-white);
@@ -319,6 +319,7 @@ a:hover {
   padding: 8px 10px;
   display: flex;
   align-items: center;
+  z-index: 3;
 }
 
 .hero-search-group {
