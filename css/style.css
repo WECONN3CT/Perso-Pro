@@ -275,7 +275,7 @@ a:hover {
   aspect-ratio: 2100 / 1100;
   min-height: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -300,6 +300,7 @@ a:hover {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 var(--spacing-xl);
+  padding-top: clamp(32px, 12vh, 140px);
   text-align: center;
 }
 
