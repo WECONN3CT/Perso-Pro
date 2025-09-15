@@ -251,7 +251,7 @@ a:hover {
 
 .hero-section {
   background: var(--color-light-gray);
-  padding: 4rem 0;
+  padding: 3rem 0;
   position: relative;
 }
 
@@ -262,7 +262,7 @@ a:hover {
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-xl);
-  height: clamp(320px, 55vh, 560px);
+  height: clamp(260px, 42vh, 460px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -328,8 +328,8 @@ a:hover {
 }
 
 @media (max-width: 768px) {
-  .hero-section { padding: 3rem 0; }
-  .hero-media { height: clamp(260px, 48vh, 420px); }
+  .hero-section { padding: 2.5rem 0; }
+  .hero-media { height: clamp(220px, 38vh, 340px); }
 }
 
 /* ===================================
