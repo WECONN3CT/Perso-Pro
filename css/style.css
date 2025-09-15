@@ -409,6 +409,67 @@ a:hover {
   .hero-submit { width: 100%; }
 }
 
+/* ================================
+   Intro (Stadthagen)
+   ================================ */
+.section-intro {
+  background: var(--color-light-gray);
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-3xl);
+  align-items: start;
+}
+
+.intro-copy { text-align: left; }
+
+.intro-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: var(--spacing-xl);
+}
+
+.intro-text p {
+  font-size: 1.125rem;
+  line-height: 1.9;
+  color: var(--color-charcoal);
+}
+
+.intro-awards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+}
+
+.award-card {
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-medium-gray);
+  background: var(--color-white);
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.award-card.gold { background: linear-gradient(180deg, #f0d58a 0%, #d7b970 100%); color: #1E1E1E; }
+.award-card.white { background: var(--color-white); }
+.award-card.small { padding: var(--spacing-md); }
+
+.award-top { font-weight: 800; font-size: 1.75rem; letter-spacing: 1px; }
+.award-info { font-size: 0.9rem; display: flex; flex-direction: column; gap: 2px; margin-top: 6px; }
+.award-title { font-weight: 800; font-size: 1.25rem; line-height: 1.2; }
+.award-year { margin-top: 6px; font-weight: 700; color: var(--color-dark-gray); }
+.award-brand { font-weight: 800; letter-spacing: 0.5px; }
+.award-stars { color: #E67E22; font-size: 1rem; margin: 4px 0; }
+.award-note { font-size: 0.9rem; color: var(--color-charcoal); }
+
+@media (max-width: 1024px) {
+  .intro-grid { grid-template-columns: 1fr; }
+  .intro-awards { grid-template-columns: repeat(2, 1fr); }
+}
+
 .hero-title {
   color: var(--color-white);
   font-size: clamp(2rem, 4.5vw, 3.25rem);
