@@ -1067,6 +1067,19 @@ a:hover {
   font-size: 0.875rem;
 }
 
+.footer-powered {
+  margin-top: 0.5rem;
+}
+
+.footer-powered a {
+  color: var(--color-light-orange);
+  font-weight: 700;
+}
+
+.footer-powered a:hover {
+  color: var(--color-orange);
+}
+
 /* ===================================
    Forms
    =================================== */
