@@ -269,7 +269,7 @@ a:hover {
   border-radius: 24px;
   overflow: hidden;
   box-shadow: var(--shadow-xl);
-  width: min(100%, 2100px);
+  width: min(2100px, calc(100% - 32px));
   margin: 0 auto;
   height: auto;
   aspect-ratio: 2100 / 1022;
