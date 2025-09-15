@@ -702,6 +702,53 @@ a:hover {
   margin-bottom: var(--spacing-2xl);
 }
 
+/* Carousel layout for featured properties */
+.properties-carousel {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.carousel-track {
+  overflow: hidden;
+}
+
+.carousel-track .properties-grid,
+#featuredProperties.properties-grid { /* ensure grid styles inside track */
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(320px, 1fr);
+  grid-template-columns: unset;
+  gap: 1.25rem;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  padding: 0.25rem;
+  scroll-behavior: smooth;
+}
+
+.carousel-track .property-card { scroll-snap-align: start; }
+
+.carousel-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn:hover { background: rgba(0,0,0,0.75); }
+
+@media (max-width: 768px) {
+  .carousel-btn { display: none; }
+}
+
 .property-card {
   background: var(--color-white);
   border-radius: var(--radius-xl);

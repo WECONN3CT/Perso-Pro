@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load Featured Properties on Homepage
     if (document.getElementById('featuredProperties')) {
         loadFeaturedProperties();
+        initPropertiesCarousel();
     }
     
     // Form Validation
@@ -437,3 +438,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.service-card, .property-card, .about-preview');
     animatedElements.forEach(el => scrollObserver.observe(el));
 });
+
+// ===================================
+// Properties Carousel
+// ===================================
+
+function initPropertiesCarousel() {
+    const track = document.querySelector('.carousel-track #featuredProperties');
+    if (!track) return;
+
+    const prevBtn = document.querySelector('.properties-carousel .prev');
+    const nextBtn = document.querySelector('.properties-carousel .next');
+
+    const scrollAmount = () => {
+        const firstCard = track.querySelector('.property-card');
+        if (!firstCard) return 0;
+        const style = window.getComputedStyle(firstCard);
+        const cardWidth = firstCard.getBoundingClientRect().width;
+        const gap = parseFloat(window.getComputedStyle(track).gap || '16');
+        return cardWidth + gap;
+    };
+
+    prevBtn && prevBtn.addEventListener('click', () => {
+        track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+    });
+    nextBtn && nextBtn.addEventListener('click', () => {
+        track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+    });
+}
