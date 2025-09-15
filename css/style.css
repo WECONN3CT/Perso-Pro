@@ -694,19 +694,19 @@ a:hover {
 /* Sticky Services Layout */
 .services-sticky {
   display: grid;
-  grid-template-columns: 1.1fr 1.2fr;
+  grid-template-columns: 1.2fr 1fr; /* links Liste, rechts sticky Bild */
   gap: var(--spacing-3xl);
   align-items: start;
 }
 
-.services-sticky-left { position: relative; }
+.services-sticky-right { position: relative; }
 
 .sticky-media {
   position: sticky;
   top: calc(72px + var(--spacing-xl));
 }
 
-.services-sticky-right { min-height: 100%; }
+.services-sticky-left { min-height: 100%; }
 .services-list { display: grid; gap: var(--spacing-xl); }
 
 /* Reveal Animation */
