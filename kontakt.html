@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kontaktieren Sie Barut Immobilien in München - Wir beraten Sie gerne persönlich zu Ihren Immobilienangelegenheiten">
+    <meta name="keywords" content="Kontakt, Barut Immobilien, München, Beratung, Immobilienmakler">
+    <title>Kontakt - Barut Immobilien München</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Additional styles for contact page */
+        .contact-header {
+            background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-light-navy) 100%);
+            padding: 3rem 0;
+            color: var(--color-white);
+            text-align: center;
+        }
+        
+        .contact-header h1 {
+            color: var(--color-white);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-form {
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            border: 1px solid var(--color-medium-gray);
+        }
+        
+        .contact-form h2 {
+            color: var(--color-navy);
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+        
+        .contact-info {
+            padding: 2rem;
+        }
+        
+        .contact-info h3 {
+            color: var(--color-navy);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--color-orange);
+            color: var(--color-white);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .contact-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .contact-details h4 {
+            color: var(--color-navy);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-details p,
+        .contact-details a {
+            color: var(--color-dark-gray);
+            text-decoration: none;
+        }
+        
+        .contact-details a:hover {
+            color: var(--color-orange);
+        }
+        
+        .opening-hours {
+            background: var(--color-light-gray);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .opening-hours h4 {
+            color: var(--color-navy);
+            margin-bottom: 1rem;
+        }
+        
+        .hours-list {
+            list-style: none;
+        }
+        
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--color-medium-gray);
+        }
+        
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .map-section {
+            margin-top: 4rem;
+            padding: 2rem 0;
+        }
+        
+        .map-container {
+            background: var(--color-light-gray);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            height: 500px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .map-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .quick-contact {
+            background: var(--color-light-gray);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .quick-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .quick-contact-card {
+            background: var(--color-white);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .quick-contact-card svg {
+            width: 48px;
+            height: 48px;
+            color: var(--color-orange);
+            margin-bottom: 1rem;
+        }
+        
+        .quick-contact-card h4 {
+            color: var(--color-navy);
+            margin-bottom: 0.5rem;
+        }
+        
+        .quick-contact-card a {
+            color: var(--color-dark-gray);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .quick-contact-card a:hover {
+            color: var(--color-orange);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navigation">
+                <div class="nav-brand">
+                    <a href="index.html" class="logo">
+                        <h1>BARUT<span>IMMOBILIEN</span></h1>
+                    </a>
+                </div>
+                <button class="nav-toggle" aria-label="Navigation öffnen">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="immobilien.html" class="nav-link">Immobilien</a></li>
+                    <li><a href="ueber-uns.html" class="nav-link">Über uns</a></li>
+                    <li><a href="kontakt.html" class="nav-link active">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contact Header -->
+    <section class="contact-header">
+        <div class="container">
+            <h1>Kontakt</h1>
+            <p>Wir sind für Sie da - persönlich, telefonisch oder digital</p>
+        </div>
+    </section>
+
+    <!-- Quick Contact -->
+    <section class="quick-contact">
+        <div class="container">
+            <h2 class="section-title">Schnellkontakt</h2>
+            <div class="quick-contact-grid">
+                <div class="quick-contact-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <h4>Telefon</h4>
+                    <a href="tel:+498912345677">+49 89 123 456 77</a>
+                </div>
+                <div class="quick-contact-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <h4>E-Mail</h4>
+                    <a href="mailto:info@barut-immobilien.de">info@barut-immobilien.de</a>
+                </div>
+                <div class="quick-contact-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <h4>Adresse</h4>
+                    <p>Maximilianstraße 123<br>80539 München</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-form">
+                    <h2>Schreiben Sie uns</h2>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="firstName">Vorname *</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="lastName">Nachname *</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="email">E-Mail *</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="phone">Telefon</label>
+                                <input type="tel" id="phone" name="phone" class="form-input">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row full">
+                            <div class="form-group">
+                                <label class="form-label" for="subject">Betreff *</label>
+                                <input type="text" id="subject" name="subject" class="form-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row full">
+                            <div class="form-group">
+                                <label class="form-label" for="propertyType">Immobilientyp</label>
+                                <select id="propertyType" name="propertyType" class="form-input">
+                                    <option value="">Bitte wählen</option>
+                                    <option value="wohnung">Wohnung</option>
+                                    <option value="haus">Haus</option>
+                                    <option value="gewerbe">Gewerbeimmobilie</option>
+                                    <option value="grundstueck">Grundstück</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row full">
+                            <div class="form-group">
+                                <label class="form-label" for="message">Ihre Nachricht *</label>
+                                <textarea id="message" name="message" class="form-textarea" rows="6" required></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row full">
+                            <div class="form-group">
+                                <label style="display: flex; align-items: start; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="privacy" required style="margin-top: 2px;">
+                                    <span style="font-size: 0.875rem; color: var(--color-dark-gray);">
+                                        Ich habe die <a href="datenschutz.html" target="_blank" style="color: var(--color-orange);">Datenschutzerklärung</a> gelesen und akzeptiere sie. *
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Nachricht senden</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Direkter Kontakt</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Büro</h4>
+                            <p>Maximilianstraße 123<br>80539 München</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Telefon</h4>
+                            <p><a href="tel:+498912345677">+49 89 123 456 77</a></p>
+                            <p><a href="tel:+491701234567">+49 170 123 45 67</a> (Mobil)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>E-Mail</h4>
+                            <p><a href="mailto:info@barut-immobilien.de">info@barut-immobilien.de</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="opening-hours">
+                        <h4>Öffnungszeiten</h4>
+                        <ul class="hours-list">
+                            <li>
+                                <span>Montag - Freitag</span>
+                                <span>9:00 - 18:00 Uhr</span>
+                            </li>
+                            <li>
+                                <span>Samstag</span>
+                                <span>10:00 - 14:00 Uhr</span>
+                            </li>
+                            <li>
+                                <span>Sonntag</span>
+                                <span>Geschlossen</span>
+                            </li>
+                        </ul>
+                        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--color-dark-gray);">
+                            Termine außerhalb der Öffnungszeiten nach Vereinbarung möglich.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Map Section -->
+            <div class="map-section">
+                <h2 class="section-title">So finden Sie uns</h2>
+                <div class="map-container">
+                    <iframe 
+                        class="map-iframe"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2662.147686580529!2d11.585515676922607!3d48.14307645124877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479e758cd4c5557b%3A0x6d9e8b0f5f1d8f0!2sMaximilianstra%C3%9Fe%20123%2C%2080539%20M%C3%BCnchen!5e0!3m2!1sde!2sde!4v1641234567890!5m2!1sde!2sde"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="text-center" style="margin-top: 2rem;">
+                    <p style="color: var(--color-dark-gray); margin-bottom: 1rem;">
+                        <strong>Anfahrt mit öffentlichen Verkehrsmitteln:</strong><br>
+                        U-Bahn: U4/U5 Lehel (5 Min. Fußweg)<br>
+                        Tram: Linie 19 Nationaltheater (2 Min. Fußweg)
+                    </p>
+                    <p style="color: var(--color-dark-gray);">
+                        <strong>Parkmöglichkeiten:</strong><br>
+                        Öffentliche Parkplätze in der Maximilianstraße<br>
+                        Parkhaus Kammerspiele (3 Min. Fußweg)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">Barut Immobilien</h3>
+                    <p class="footer-text">Ihr vertrauensvoller Partner für Immobilien in München und Umgebung.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.44-.645 1.44-1.44-.644-1.44-1.44-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-subtitle">Schnelllinks</h4>
+                    <ul class="footer-links">
+                        <li><a href="immobilien.html">Immobilien</a></li>
+                        <li><a href="ueber-uns.html">Über uns</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-subtitle">Kontakt</h4>
+                    <address class="footer-address">
+                        <p>Maximilianstraße 123<br>80539 München</p>
+                        <p><a href="tel:+498912345677">+49 89 123 456 77</a></p>
+                        <p><a href="mailto:info@barut-immobilien.de">info@barut-immobilien.de</a></p>
+                    </address>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-subtitle">Öffnungszeiten</h4>
+                    <ul class="footer-hours">
+                        <li>Mo-Fr: 9:00 - 18:00 Uhr</li>
+                        <li>Sa: 10:00 - 14:00 Uhr</li>
+                        <li>(nach Vereinbarung)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Barut Immobilien. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

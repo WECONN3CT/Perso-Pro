@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Über Barut Immobilien - Ihr erfahrener Immobilienmakler in München mit über 15 Jahren Expertise">
+    <meta name="keywords" content="Barut Immobilien, Immobilienmakler München, Team, Erfahrung, Expertise">
+    <title>Über uns - Barut Immobilien München</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Additional styles for about page */
+        .about-header {
+            background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-light-navy) 100%);
+            padding: 3rem 0;
+            color: var(--color-white);
+            text-align: center;
+        }
+        
+        .about-header h1 {
+            color: var(--color-white);
+            margin-bottom: 1rem;
+        }
+        
+        .company-story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .story-content h2 {
+            color: var(--color-navy);
+            margin-bottom: 1.5rem;
+        }
+        
+        .story-content p {
+            color: var(--color-dark-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--color-orange);
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .value-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .value-title {
+            color: var(--color-navy);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .team-section {
+            background: var(--color-light-gray);
+            padding: 4rem 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .team-member {
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-default);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .team-member-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--color-light-gray) 0%, var(--color-medium-gray) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-dark-gray);
+        }
+        
+        .team-member-info {
+            padding: 1.5rem;
+        }
+        
+        .team-member-name {
+            color: var(--color-navy);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-member-role {
+            color: var(--color-orange);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .team-member-description {
+            color: var(--color-dark-gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .team-member-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .team-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-dark-gray);
+            text-decoration: none;
+            transition: var(--transition-default);
+        }
+        
+        .team-contact-item:hover {
+            color: var(--color-orange);
+        }
+        
+        .team-contact-item svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .certificates {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .certificate {
+            text-align: center;
+        }
+        
+        .certificate-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--color-light-gray);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .company-story {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navigation">
+                <div class="nav-brand">
+                    <a href="index.html" class="logo">
+                        <h1>BARUT<span>IMMOBILIEN</span></h1>
+                    </a>
+                </div>
+                <button class="nav-toggle" aria-label="Navigation öffnen">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="immobilien.html" class="nav-link">Immobilien</a></li>
+                    <li><a href="ueber-uns.html" class="nav-link active">Über uns</a></li>
+                    <li><a href="kontakt.html" class="nav-link">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Header -->
+    <section class="about-header">
+        <div class="container">
+            <h1>Über Barut Immobilien</h1>
+            <p>Ihr verlässlicher Partner für Immobilien in München seit 2008</p>
+        </div>
+    </section>
+
+    <!-- Company Story -->
+    <section class="section">
+        <div class="container">
+            <div class="company-story">
+                <div class="story-content">
+                    <h2>Unsere Geschichte</h2>
+                    <p>Seit über 15 Jahren ist Barut Immobilien Ihr vertrauensvoller Partner für alle Immobilienangelegenheiten in München und Umgebung. Was als kleine Maklerfirma begann, hat sich zu einem der führenden Immobilienunternehmen der Region entwickelt.</p>
+                    <p>Gegründet 2008 von Mehmet Barut, haben wir uns durch persönliche Betreuung, fundierte Marktkenntnis und absolute Zuverlässigkeit einen exzellenten Ruf erarbeitet. Über 500 erfolgreich vermittelte Immobilien und eine Kundenzufriedenheit von 98% sprechen für sich.</p>
+                    <p>Unser Team besteht aus erfahrenen Immobilienexperten, die sich kontinuierlich weiterbilden und mit den neuesten Marktentwicklungen vertraut sind. Wir kennen den Münchner Immobilienmarkt wie unsere Westentasche und nutzen dieses Wissen zu Ihrem Vorteil.</p>
+                </div>
+                <div class="story-image">
+                    <img src="images/team/office.jpg" alt="Barut Immobilien Büro" style="width: 100%; border-radius: 12px; box-shadow: var(--shadow-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="section section-alternate">
+        <div class="container">
+            <h2 class="section-title">Unsere Werte</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="M9 12l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="value-title">Vertrauen</h3>
+                    <p>Vertrauen ist die Basis unserer Arbeit. Wir behandeln Ihre Immobilie mit der gleichen Sorgfalt wie unsere eigene.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 6v6l4 2"></path>
+                        </svg>
+                    </div>
+                    <h3 class="value-title">Zuverlässigkeit</h3>
+                    <p>Pünktlichkeit und Verbindlichkeit sind für uns selbstverständlich. Auf uns können Sie sich verlassen.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="value-title">Kompetenz</h3>
+                    <p>Fundiertes Fachwissen und jahrelange Erfahrung machen uns zu Ihrem kompetenten Partner.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="value-title">Persönlichkeit</h3>
+                    <p>Jeder Kunde ist einzigartig. Wir bieten individuelle Lösungen und persönliche Betreuung.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">Unser Team</h2>
+            <p class="text-center" style="max-width: 600px; margin: 0 auto 3rem; color: var(--color-dark-gray);">
+                Lernen Sie die Menschen kennen, die sich mit Leidenschaft und Expertise für Ihre Immobilienangelegenheiten einsetzen.
+            </p>
+            <div class="team-grid">
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mehmet Barut</h3>
+                        <p class="team-member-role">Geschäftsführer & Gründer</p>
+                        <p class="team-member-description">
+                            Immobilienmakler seit 2008 mit Spezialisierung auf Wohnimmobilien. Herr Barut verfügt über umfassende Marktkenntnisse und ein großes Netzwerk in München.
+                        </p>
+                        <div class="team-member-contact">
+                            <a href="tel:+498912345678" class="team-contact-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                                +49 89 123 456 78
+                            </a>
+                            <a href="mailto:m.barut@barut-immobilien.de" class="team-contact-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                m.barut@barut-immobilien.de
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Sarah Müller</h3>
+                        <p class="team-member-role">Immobilienmaklerin</p>
+                        <p class="team-member-description">
+                            Spezialistin für Mietobjekte mit hervorragenden Kenntnissen des Münchner Mietmarkts. Frau Müller betreut Sie kompetent bei allen Fragen rund um die Vermietung.
+                        </p>
+                        <div class="team-member-contact">
+                            <a href="tel:+498912345679" class="team-contact-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                                +49 89 123 456 79
+                            </a>
+                            <a href="mailto:s.mueller@barut-immobilien.de" class="team-contact-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                s.mueller@barut-immobilien.de
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="team-member">
+                    <div class="team-member-image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Thomas Wagner</h3>
+                        <p class="team-member-role">Gewerbeimmobilien-Experte</p>
+                        <p class="team-member-description">
+                            Experte für Gewerbeimmobilien mit langjähriger Erfahrung in der Vermittlung von Büro- und Ladenflächen. Herr Wagner ist Ihr Ansprechpartner für gewerbliche Objekte.
+                        </p>
+                        <div class="team-member-contact">
+                            <a href="tel:+498912345680" class="team-contact-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                                +49 89 123 456 80
+                            </a>
+                            <a href="mailto:t.wagner@barut-immobilien.de" class="team-contact-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                t.wagner@barut-immobilien.de
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Zertifizierungen & Mitgliedschaften</h2>
+            <div class="certificates">
+                <div class="certificate">
+                    <div class="certificate-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2">
+                            <circle cx="12" cy="8" r="7"></circle>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                        </svg>
+                    </div>
+                    <h4>IVD Mitglied</h4>
+                    <p>Immobilienverband Deutschland</p>
+                </div>
+                <div class="certificate">
+                    <div class="certificate-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="M9 12l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <h4>TÜV Zertifiziert</h4>
+                    <p>Geprüfte Qualität</p>
+                </div>
+                <div class="certificate">
+                    <div class="certificate-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                        </svg>
+                    </div>
+                    <h4>Ausgezeichnet</h4>
+                    <p>98% Kundenzufriedenheit</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="section section-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Lernen Sie uns persönlich kennen</h2>
+                <p class="cta-subtitle">Vereinbaren Sie noch heute einen unverbindlichen Beratungstermin</p>
+                <div class="cta-buttons">
+                    <a href="kontakt.html" class="btn btn-primary">Termin vereinbaren</a>
+                    <a href="tel:+498912345677" class="btn btn-secondary">+49 89 123 456 77</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">Barut Immobilien</h3>
+                    <p class="footer-text">Ihr vertrauensvoller Partner für Immobilien in München und Umgebung.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.44-.645 1.44-1.44-.644-1.44-1.44-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-subtitle">Schnelllinks</h4>
+                    <ul class="footer-links">
+                        <li><a href="immobilien.html">Immobilien</a></li>
+                        <li><a href="ueber-uns.html">Über uns</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-subtitle">Kontakt</h4>
+                    <address class="footer-address">
+                        <p>Maximilianstraße 123<br>80539 München</p>
+                        <p><a href="tel:+498912345677">+49 89 123 456 77</a></p>
+                        <p><a href="mailto:info@barut-immobilien.de">info@barut-immobilien.de</a></p>
+                    </address>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-subtitle">Öffnungszeiten</h4>
+                    <ul class="footer-hours">
+                        <li>Mo-Fr: 9:00 - 18:00 Uhr</li>
+                        <li>Sa: 10:00 - 14:00 Uhr</li>
+                        <li>(nach Vereinbarung)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Barut Immobilien. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
