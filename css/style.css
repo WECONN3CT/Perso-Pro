@@ -953,6 +953,18 @@ a:hover {
   flex-wrap: wrap;
 }
 
+/* CTA phone button: orange border and text */
+.section-cta .cta-buttons .btn-secondary {
+  border-color: var(--color-orange);
+  color: var(--color-orange);
+}
+
+.section-cta .cta-buttons .btn-secondary:hover {
+  background: var(--color-orange);
+  color: var(--color-white);
+  border-color: var(--color-orange);
+}
+
 /* ===================================
    Footer
    =================================== */
