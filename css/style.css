@@ -526,6 +526,18 @@ a:hover {
 
 @media (max-width: 768px) {
   .hero-section { padding: 1rem 0; }
+  /* Mobile fine-tuning for hero content */
+  .hero-section > .container { padding: 0 12px; }
+  .hero-content { padding-top: clamp(24px, 10vh, 90px); }
+  .hero-title { font-size: clamp(1.8rem, 7.2vw, 2.4rem); letter-spacing: -0.015em; }
+  .hero-title::after { width: 72px; margin: 0.75rem auto 1rem; }
+  .hero-subtitle { font-size: clamp(0.95rem, 2.8vw, 1.1rem); margin-bottom: 1.25rem; }
+  .btn-hero { width: 100%; max-width: 280px; padding: 0.85rem 1.25rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(1.6rem, 8.5vw, 2rem); }
+  .hero-title::after { width: 64px; }
 }
 
 /* Floors über Container Queries, ohne das 2100/1022-Verhältnis zu brechen */
