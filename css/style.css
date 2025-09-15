@@ -707,6 +707,12 @@ a:hover {
   align-self: start; /* verhindert Stretching durch Grid */
 }
 
+.sticky-media img {
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  display: block;
+}
+
 .services-sticky-right { min-height: 100%; }
 .services-list { display: grid; gap: var(--spacing-xl); }
 
