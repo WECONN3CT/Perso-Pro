@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Reveal animations for services sticky list
     initServicesReveal();
+
+    // Stats counter animation
+    initStatsCounters();
 });
 
 // ===================================
@@ -487,4 +490,55 @@ function initServicesReveal() {
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
 
     revealItems.forEach(el => observer.observe(el));
+}
+
+// ===================================
+// Stats Counters (About Section)
+// ===================================
+
+function initStatsCounters() {
+    const counters = document.querySelectorAll('.about-stats .stat-number');
+    if (!counters.length) return;
+
+    // Prepare counters
+    counters.forEach(el => {
+        const text = (el.textContent || '').trim();
+        const match = text.match(/^(\d+[\.,]?\d*)(.*)$/);
+        if (!match) return;
+        const numeric = parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
+        const suffix = match[2] || '';
+        el.dataset.target = String(numeric);
+        el.dataset.suffix = suffix;
+        el.textContent = `0${suffix}`;
+    });
+
+    const animate = (el, to, suffix, duration = 1200) => {
+        const start = performance.now();
+        const from = 0;
+        const step = now => {
+            const progress = Math.min(1, (now - start) / duration);
+            // ease-out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const value = Math.round(from + (to - from) * eased);
+            el.textContent = `${value.toLocaleString('de-DE')}${suffix}`;
+            if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                if (el.dataset.counted === 'true') return;
+                el.dataset.counted = 'true';
+                const to = parseFloat(el.dataset.target || '0');
+                const suffix = el.dataset.suffix || '';
+                animate(el, to, suffix);
+                obs.unobserve(el);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    counters.forEach(el => observer.observe(el));
 }
