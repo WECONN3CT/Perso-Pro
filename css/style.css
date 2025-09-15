@@ -250,65 +250,86 @@ a:hover {
    =================================== */
 
 .hero-section {
-  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-light-navy) 100%);
-  padding: 5rem 0;
-  text-align: center;
+  background: var(--color-light-gray);
+  padding: 4rem 0;
   position: relative;
-  min-height: 500px;
+}
+
+.hero-overlay { display: none; }
+
+.hero-media {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  height: clamp(320px, 55vh, 560px);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.hero-overlay {
+.hero-video {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(30, 58, 95, 0.8);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(21,43,66,0.35) 0%, rgba(21,43,66,0.55) 100%);
   z-index: 1;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 var(--spacing-xl);
+  text-align: center;
 }
 
 .hero-title {
   color: var(--color-white);
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
 }
 
 .hero-subtitle {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.25rem;
-  font-weight: 400;
-  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
 }
 
 .btn-hero {
   background: var(--color-orange);
   color: var(--color-white);
-  padding: 1rem 2rem;
+  padding: 0.9rem 1.5rem;
   border-radius: var(--radius-md);
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   border: none;
   cursor: pointer;
   transition: var(--transition-default);
+  box-shadow: 0 8px 25px rgba(230, 126, 34, 0.35);
 }
 
 .btn-hero:hover {
   background: var(--color-dark-orange);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(230, 126, 34, 0.3);
+  box-shadow: 0 10px 28px rgba(230, 126, 34, 0.45);
+}
+
+@media (max-width: 768px) {
+  .hero-section { padding: 3rem 0; }
+  .hero-media { height: clamp(260px, 48vh, 420px); }
 }
 
 /* ===================================
