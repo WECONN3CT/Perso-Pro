@@ -328,6 +328,8 @@ a:hover {
   padding: 4px 12px 4px 6px;
   border-right: 1px solid var(--color-medium-gray);
   margin-right: 12px;
+  flex-wrap: wrap;
+  row-gap: 6px;
 }
 
 .chip {
@@ -407,6 +409,14 @@ a:hover {
   .hero-search-row { grid-template-columns: 1fr; }
   .hero-divider { display: none; }
   .hero-submit { width: 100%; }
+}
+
+/* Mobile optimizations for search block */
+@media (max-width: 768px) {
+  .hero-search { bottom: calc(12px + env(safe-area-inset-bottom)); padding: 8px; }
+  .chip { font-size: 0.9rem; padding: 6px 10px; }
+  .hero-field select,
+  .hero-field input[type="text"] { height: 40px; font-size: 0.95rem; }
 }
 
 /* ================================

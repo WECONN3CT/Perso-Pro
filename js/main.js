@@ -344,6 +344,14 @@ function formatPrice(price, type = 'Kauf') {
 function initHeroSearch() {
     const chipButtons = document.querySelectorAll('.hero-search .chip');
     const typeInput = document.getElementById('heroType');
+    // Prevent container scroll issues on iOS when inputs are focused
+    const search = document.querySelector('.hero-search');
+    if (search) {
+        search.addEventListener('touchmove', (e) => {
+            // allow internal scroll of selects/inputs, prevent body scroll hijack
+            e.stopPropagation();
+        }, { passive: true });
+    }
     chipButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             chipButtons.forEach(b => b.classList.remove('chip-active'));
