@@ -464,19 +464,20 @@ function initPropertiesCarousel() {
     const prevBtn = document.querySelector('.properties-carousel .prev');
     const nextBtn = document.querySelector('.properties-carousel .next');
 
-    const pageWidth = () => {
-        // Scroll by width of 4 columns based on grid-auto-columns
-        const gap = parseFloat(getComputedStyle(track).getPropertyValue('--carousel-gap') || getComputedStyle(track).gap || '16');
+    const stepWidth = () => {
+        // Scroll by width of 1 column (+gap) so es slidet Karte für Karte
+        const styles = getComputedStyle(track);
+        const gap = parseFloat(styles.getPropertyValue('--carousel-gap') || styles.gap || '16');
         const colWidth = (track.clientWidth - gap * 3) / 4;
-        return colWidth * 4 + gap * 3;
+        return colWidth + gap;
     };
 
     prevBtn && prevBtn.addEventListener('click', () => {
-        track.scrollBy({ left: -pageWidth(), behavior: 'smooth' });
+        track.scrollBy({ left: -stepWidth(), behavior: 'smooth' });
         updateButtons();
     });
     nextBtn && nextBtn.addEventListener('click', () => {
-        track.scrollBy({ left: pageWidth(), behavior: 'smooth' });
+        track.scrollBy({ left: stepWidth(), behavior: 'smooth' });
         updateButtons();
     });
 
@@ -493,6 +494,13 @@ function initPropertiesCarousel() {
     });
 
     updateButtons();
+
+    // Resize handling to keep stepWidth in sync
+    window.addEventListener('resize', () => {
+        // force re-eval by reading stepWidth
+        stepWidth();
+        updateButtons();
+    });
 }
 
 // ===================================
