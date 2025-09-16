@@ -836,14 +836,10 @@ a:hover {
 .carousel-track .properties-grid,
 #featuredProperties.properties-grid { /* ensure grid styles inside track */
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(320px, 1fr);
-  grid-template-columns: unset;
+  grid-template-columns: repeat(4, minmax(280px, 1fr));
   gap: 1.25rem;
-  scroll-snap-type: x mandatory;
-  overflow-x: auto;
-  padding: 0.25rem;
-  scroll-behavior: smooth;
+  overflow: visible;
+  padding: 0.25rem 0;
 }
 
 .carousel-track .property-card { scroll-snap-align: start; }
@@ -865,6 +861,7 @@ a:hover {
 
 @media (max-width: 768px) {
   .carousel-btn { display: none; }
+  #featuredProperties.properties-grid { grid-template-columns: repeat(1, minmax(260px, 1fr)); }
 }
 
 .property-card {
