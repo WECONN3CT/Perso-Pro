@@ -50,64 +50,7 @@
                     <p class="hero-subtitle">Mit unserer Expertise und unserem persönlichen Engagement unterstützen wir Sie dabei, Ihr Team optimal zu besetzen und Ihre Ziele in der Gastronomie zu erreichen.</p>
                     <button class="btn btn-hero">Kostenlose Beratung</button>
                 </div>
-                <!-- Hero Search Filter -->
-                <form class="hero-search" action="immobilien.html#properties" method="get" onsubmit="return handleHeroSearch(event)">
-                    <div class="hero-search-group">
-                        <button type="button" class="chip chip-active" data-type="">Alle</button>
-                        <button type="button" class="chip" data-type="Kauf">Kaufen</button>
-                        <button type="button" class="chip" data-type="Miete">Mieten</button>
-                        <input type="hidden" name="type" id="heroType" value="">
-                    </div>
-                    <div class="hero-search-row">
-                        <div class="hero-field select">
-                            <label>Immobilientyp</label>
-                            <select name="kind" id="heroKind">
-                                <option value="">Alle</option>
-                                <option value="wohnung">Wohnung</option>
-                                <option value="haus">Haus</option>
-                                <option value="gewerbe">Gewerbe</option>
-                            </select>
-                        </div>
-                        <div class="hero-divider"></div>
-                        <div class="hero-field text">
-                            <label for="heroQuery">Ort aussuchen oder Objekt ID eingeben</label>
-                            <input type="text" id="heroQuery" name="q" placeholder="z. B. Schwabing oder #12">
-                        </div>
-                        <div class="hero-divider"></div>
-                        <div class="hero-field more">
-                            <button type="button" class="more-btn" aria-expanded="false" onclick="toggleHeroMore(this)">
-                                <span class="icon">⚙</span> weitere Filter
-                            </button>
-                        </div>
-                        <button type="submit" class="hero-submit" aria-label="Suchen">
-                            🔍
-                        </button>
-                    </div>
-                    <div class="hero-more" hidden>
-                        <div class="hero-more-grid">
-                            <div>
-                                <label>Preis bis</label>
-                                <select name="max">
-                                    <option value="">Alle Preise</option>
-                                    <option value="500000">bis 500.000 €</option>
-                                    <option value="750000">bis 750.000 €</option>
-                                    <option value="1000000">bis 1.000.000 €</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Zimmer</label>
-                                <select name="rooms">
-                                    <option value="">Alle</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5+</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                
             </div>
         </div>
     </section>
