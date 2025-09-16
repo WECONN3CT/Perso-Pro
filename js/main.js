@@ -122,8 +122,8 @@ async function loadFeaturedProperties() {
         const featuredContainer = document.getElementById('featuredProperties');
         if (!featuredContainer) return;
         
-        // Display first 3 properties as featured
-        const featuredProperties = data.properties.slice(0, 3);
+        // Display first 8 properties as featured (carousel shows 4 per page)
+        const featuredProperties = data.properties.slice(0, 8);
         
         featuredContainer.innerHTML = featuredProperties.map(property => `
             <article class="property-card">
@@ -473,11 +473,20 @@ function initPropertiesCarousel() {
         return cardWidth + gap;
     };
 
+    const pageWidth = () => {
+        // Scroll by width of 4 cards (or available width)
+        const cards = track.querySelectorAll('.property-card');
+        if (cards.length === 0) return track.clientWidth;
+        const first = cards[0].getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(track).gap || '16');
+        return first * 4 + gap * 3;
+    };
+
     prevBtn && prevBtn.addEventListener('click', () => {
-        track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+        track.scrollBy({ left: -pageWidth(), behavior: 'smooth' });
     });
     nextBtn && nextBtn.addEventListener('click', () => {
-        track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+        track.scrollBy({ left: pageWidth(), behavior: 'smooth' });
     });
 }
 
