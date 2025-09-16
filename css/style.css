@@ -732,6 +732,49 @@ a:hover {
   text-decoration: underline;
 }
 
+/* CTA Service Card */
+.service-cta {
+  background: linear-gradient(180deg, rgba(230,126,34,0.95) 0%, rgba(230,126,34,0.88) 100%);
+  color: #fff;
+  border: 2px solid var(--color-orange);
+  text-align: left;
+  padding: 1.5rem;
+  transform: translateY(0);
+}
+
+.service-cta:hover {
+  box-shadow: 0 12px 30px rgba(230,126,34,0.5), 0 0 0 4px rgba(230,126,34,0.25) inset;
+}
+
+.service-cta-title {
+  color: #fff;
+  font-size: 1.35rem;
+}
+
+.service-cta-sub {
+  color: rgba(255,255,255,0.9);
+}
+
+.service-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fff;
+  color: var(--color-orange);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: 0.25rem;
+}
+
+.service-cta-btn:hover {
+  box-shadow: 0 8px 24px rgba(255,255,255,0.35);
+}
+
+/* etwas dünner als die anderen Karten */
+.services-list .service-cta { padding: 1.25rem 1.25rem; }
+
 /* Sticky Services Layout */
 .services-sticky {
   display: grid;
