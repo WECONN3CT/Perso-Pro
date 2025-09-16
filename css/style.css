@@ -10,10 +10,10 @@
   --color-dark-navy: #152B42;
   --color-light-navy: #2A4A6B;
   
-  /* Secondary Colors */
-  --color-orange: #E67E22;
-  --color-light-orange: #F39C12;
-  --color-dark-orange: #D35400;
+  /* Secondary Colors (Turquoise theme) */
+  --color-orange: #14B8A6; /* primary turquoise */
+  --color-light-orange: #2DD4BF; /* light turquoise */
+  --color-dark-orange: #0D9488; /* dark turquoise */
   
   /* Neutral Colors */
   --color-white: #FFFFFF;
@@ -343,7 +343,7 @@ a:hover {
 .chip-active,
 .chip:hover {
   border-color: var(--color-orange);
-  background: rgba(230,126,34,0.12);
+  background: rgba(20,184,166,0.12);
 }
 
 .hero-search-row {
@@ -525,13 +525,13 @@ a:hover {
   border: none;
   cursor: pointer;
   transition: var(--transition-default);
-  box-shadow: 0 8px 25px rgba(230, 126, 34, 0.35);
+  box-shadow: 0 8px 25px rgba(20, 184, 166, 0.35);
 }
 
 .btn-hero:hover {
   background: var(--color-dark-orange);
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(230, 126, 34, 0.45);
+  box-shadow: 0 10px 28px rgba(20, 184, 166, 0.45);
 }
 
 @media (max-width: 768px) {
@@ -596,7 +596,7 @@ a:hover {
   background: var(--color-dark-orange);
   color: var(--color-white);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(230, 126, 34, 0.3);
+  box-shadow: 0 6px 20px rgba(20, 184, 166, 0.3);
 }
 
 .btn-primary:focus {
@@ -734,7 +734,7 @@ a:hover {
 
 /* CTA Service Card */
 .service-cta {
-  background: linear-gradient(180deg, rgba(230,126,34,0.95) 0%, rgba(230,126,34,0.88) 100%);
+  background: linear-gradient(180deg, rgba(20,184,166,0.95) 0%, rgba(20,184,166,0.88) 100%);
   color: #fff;
   border: 2px solid var(--color-orange);
   text-align: left;
@@ -743,7 +743,7 @@ a:hover {
 }
 
 .service-cta:hover {
-  box-shadow: 0 12px 30px rgba(230,126,34,0.5), 0 0 0 4px rgba(230,126,34,0.25) inset;
+  box-shadow: 0 12px 30px rgba(20,184,166,0.5), 0 0 0 4px rgba(20,184,166,0.25) inset;
 }
 
 .service-cta-title {
