@@ -464,22 +464,11 @@ function initPropertiesCarousel() {
     const prevBtn = document.querySelector('.properties-carousel .prev');
     const nextBtn = document.querySelector('.properties-carousel .next');
 
-    const scrollAmount = () => {
-        const firstCard = track.querySelector('.property-card');
-        if (!firstCard) return 0;
-        const style = window.getComputedStyle(firstCard);
-        const cardWidth = firstCard.getBoundingClientRect().width;
-        const gap = parseFloat(window.getComputedStyle(track).gap || '16');
-        return cardWidth + gap;
-    };
-
     const pageWidth = () => {
-        // Scroll by width of 4 cards (or available width)
-        const cards = track.querySelectorAll('.property-card');
-        if (cards.length === 0) return track.clientWidth;
-        const first = cards[0].getBoundingClientRect().width;
-        const gap = parseFloat(getComputedStyle(track).gap || '16');
-        return first * 4 + gap * 3;
+        // Scroll by width of 4 columns based on grid-auto-columns
+        const gap = parseFloat(getComputedStyle(track).getPropertyValue('--carousel-gap') || getComputedStyle(track).gap || '16');
+        const colWidth = (track.clientWidth - gap * 3) / 4;
+        return colWidth * 4 + gap * 3;
     };
 
     prevBtn && prevBtn.addEventListener('click', () => {
