@@ -609,10 +609,15 @@ a:hover {
 }
 
 .btn-primary:hover {
-  background: var(--color-dark-orange);
+  /* kein Abdunkeln – stattdessen Glow/Effekt */
+  background: linear-gradient(135deg, var(--color-light-orange) 0%, var(--color-orange) 100%);
   color: var(--color-white);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(20, 184, 166, 0.3);
+  /* Leuchtring um den Button-Rand */
+  box-shadow: 
+    0 0 0 2px rgba(45, 212, 191, 0.85), /* scharfer Rand-Glow */
+    0 0 0 8px rgba(45, 212, 191, 0.25),  /* weicher äußerer Glow */
+    0 10px 28px rgba(20, 184, 166, 0.45); /* tiefer Schatten */
 }
 
 .btn-primary:focus {
@@ -785,7 +790,7 @@ a:hover {
 }
 
 .service-cta-btn:hover {
-  box-shadow: 0 8px 24px rgba(255,255,255,0.35);
+  box-shadow: 0 0 0 2px rgba(45,212,191,0.85), 0 0 0 8px rgba(45,212,191,0.25), 0 8px 24px rgba(255,255,255,0.35);
 }
 
 /* etwas dünner als die anderen Karten */
