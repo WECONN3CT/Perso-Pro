@@ -274,9 +274,9 @@ a:hover {
   height: auto;
   aspect-ratio: 2100 / 1100;
   min-height: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
 }
 
 .hero-video {
@@ -303,6 +303,19 @@ a:hover {
   padding: 0 var(--spacing-xl);
   padding-top: clamp(32px, 12vh, 140px);
   text-align: left;
+}
+
+.hero-actions { display: flex; gap: 1rem; margin-top: 1rem; }
+
+.hero-side-image {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  align-self: end;
+  justify-self: center;
+  max-width: 620px;
+  filter: drop-shadow(0 12px 30px rgba(0,0,0,0.15));
 }
 
 /* ================================
@@ -539,7 +552,9 @@ a:hover {
   .hero-section { padding: 1rem 0; }
   /* Mobile fine-tuning for hero content */
   .hero-section > .container { padding: 0 12px; }
+  .hero-media { display: block; }
   .hero-content { padding-top: clamp(24px, 10vh, 90px); margin-left: 12px; text-align: left; }
+  .hero-side-image { display: none; }
   .hero-title { font-size: clamp(1.8rem, 7.2vw, 2.4rem); letter-spacing: -0.015em; }
   .hero-title::after { width: 72px; margin: 0.75rem 0 1rem; }
   .hero-subtitle { font-size: clamp(0.95rem, 2.8vw, 1.1rem); margin-bottom: 1.25rem; }
