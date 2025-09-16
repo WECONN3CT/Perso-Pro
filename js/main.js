@@ -501,6 +501,18 @@ function initPropertiesCarousel() {
         stepWidth();
         updateButtons();
     });
+
+    // Beobachte DOM-Änderungen im Track (nachdem Karten geladen wurden)
+    const mo = new MutationObserver(() => {
+        requestAnimationFrame(updateButtons);
+    });
+    mo.observe(track, { childList: true, subtree: true });
+
+    // Beobachte Größenänderungen des Track-Inhalts
+    if (window.ResizeObserver) {
+        const ro = new ResizeObserver(() => requestAnimationFrame(updateButtons));
+        ro.observe(track);
+    }
 }
 
 // ===================================
