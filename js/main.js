@@ -473,10 +473,26 @@ function initPropertiesCarousel() {
 
     prevBtn && prevBtn.addEventListener('click', () => {
         track.scrollBy({ left: -pageWidth(), behavior: 'smooth' });
+        updateButtons();
     });
     nextBtn && nextBtn.addEventListener('click', () => {
         track.scrollBy({ left: pageWidth(), behavior: 'smooth' });
+        updateButtons();
     });
+
+    function updateButtons() {
+        if (!prevBtn || !nextBtn) return;
+        const maxScroll = track.scrollWidth - track.clientWidth - 1;
+        prevBtn.classList.toggle('disabled', track.scrollLeft <= 1);
+        nextBtn.classList.toggle('disabled', track.scrollLeft >= maxScroll);
+    }
+
+    track.addEventListener('scroll', () => {
+        // debounce via rAF
+        requestAnimationFrame(updateButtons);
+    });
+
+    updateButtons();
 }
 
 // ===================================

@@ -831,7 +831,10 @@ a:hover {
 
 .carousel-track {
   overflow: hidden;
+  -ms-overflow-style: none; /* IE/Edge Scrollbar aus */
+  scrollbar-width: none;    /* Firefox Scrollbar aus */
 }
+.carousel-track::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
 .carousel-track .properties-grid,
 #featuredProperties.properties-grid { /* horizontale Slideshow mit 4 sichtbaren Karten */
@@ -863,6 +866,7 @@ a:hover {
 }
 
 .carousel-btn:hover { background: rgba(0,0,0,0.75); }
+.carousel-btn.disabled { opacity: .4; cursor: default; pointer-events: none; }
 
 @media (max-width: 768px) {
   .carousel-btn { display: none; }
