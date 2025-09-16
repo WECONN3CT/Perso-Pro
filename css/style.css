@@ -875,6 +875,7 @@ a:hover {
 
 /* Make property cards equal height inside grid */
 #featuredProperties .property-card { height: 100%; display: flex; flex-direction: column; scroll-snap-align: start; }
+#featuredProperties .property-card .property-content { flex: 1 1 auto; }
 
 .property-card {
   background: var(--color-white);
@@ -900,6 +901,10 @@ a:hover {
 
 .property-content {
   padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  flex: 1 1 auto;
 }
 
 .property-price {
@@ -937,6 +942,9 @@ a:hover {
   border-top: 1px solid var(--color-medium-gray);
 }
 
+/* Einheitliche Innenabstände in Karten */
+#featuredProperties .property-content > * { margin: 0; }
+
 .property-feature {
   display: flex;
   align-items: center;
@@ -949,6 +957,7 @@ a:hover {
   color: var(--color-orange);
   font-weight: 500;
   text-decoration: none;
+  margin-top: auto; /* an das Kartenende schieben, damit alle gleich hoch wirken */
 }
 
 .property-link:hover {
