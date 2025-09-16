@@ -301,7 +301,7 @@ a:hover {
   margin: 0;
   margin-left: var(--spacing-xl);
   padding: 0 var(--spacing-xl);
-  padding-top: clamp(12px, 6vh, 64px);
+  padding-top: clamp(24px, 8vh, 96px);
   text-align: left;
 }
 
@@ -553,7 +553,7 @@ a:hover {
   /* Mobile fine-tuning for hero content */
   .hero-section > .container { padding: 0 12px; }
   .hero-media { display: block; }
-  .hero-content { padding-top: clamp(12px, 6vh, 56px); margin-left: 12px; text-align: left; }
+  .hero-content { padding-top: clamp(20px, 8vh, 72px); margin-left: 12px; text-align: left; }
   .hero-side-image { display: none; }
   .hero-title { font-size: clamp(1.8rem, 7.2vw, 2.4rem); letter-spacing: -0.015em; }
   .hero-title::after { width: 72px; margin: 0.75rem 0 1rem; }
