@@ -138,58 +138,49 @@
     <section class="properties-header">
         <div class="container">
             <h1>Unsere Leistungen</h1>
-            <p>Finden Sie Ihr Traumobjekt in München und Umgebung</p>
+            <p>Personal für Küche, Service, Theke und Events – kurzfristig verfügbar</p>
         </div>
     </section>
 
-    <!-- Filter Section -->
+    <!-- Filter Section (repurposed: Einsatzplanung) -->
     <section class="filter-section">
         <div class="container">
             <div class="filter-container">
                 <div class="filter-group">
-                    <label class="form-label" for="typeFilter">Art</label>
+                    <label class="form-label" for="typeFilter">Rolle</label>
                     <select id="typeFilter" class="filter-select">
-                        <option value="">Alle Arten</option>
-                        <option value="Kauf">Kauf</option>
-                        <option value="Miete">Miete</option>
+                        <option value="">Alle Rollen</option>
+                        <option value="kueche">Küchenhilfe / Spülkraft</option>
+                        <option value="service">Service / Runner</option>
+                        <option value="theke">Barista / Theke</option>
+                        <option value="event">Event-Support</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="form-label" for="locationFilter">Standort</label>
+                    <label class="form-label" for="locationFilter">Einsatzort</label>
                     <select id="locationFilter" class="filter-select">
-                        <option value="">Alle Standorte</option>
-                        <option value="München Schwabing">Schwabing</option>
-                        <option value="München Maxvorstadt">Maxvorstadt</option>
-                        <option value="München Bogenhausen">Bogenhausen</option>
-                        <option value="München Sendling">Sendling</option>
-                        <option value="München Lehel">Lehel</option>
-                        <option value="München Pasing">Pasing</option>
-                        <option value="München Giesing">Giesing</option>
-                        <option value="München Innenstadt">Innenstadt</option>
-                        <option value="München Altstadt">Altstadt</option>
+                        <option value="">Alle Einsatzorte</option>
+                        <option value="muenchen">München</option>
+                        <option value="umland">Umland</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="form-label" for="priceFilter">Preis bis</label>
+                    <label class="form-label" for="priceFilter">Stundenlohn bis</label>
                     <select id="priceFilter" class="filter-select">
-                        <option value="">Alle Preise</option>
-                        <option value="500000">bis 500.000 €</option>
-                        <option value="750000">bis 750.000 €</option>
-                        <option value="1000000">bis 1.000.000 €</option>
-                        <option value="1500000">bis 1.500.000 €</option>
-                        <option value="2000000">bis 2.000.000 €</option>
-                        <option value="99999999">über 2.000.000 €</option>
+                        <option value="">Alle</option>
+                        <option value="14">bis 14 €</option>
+                        <option value="18">bis 18 €</option>
+                        <option value="22">bis 22 €</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="form-label" for="roomsFilter">Zimmer</label>
+                    <label class="form-label" for="roomsFilter">Schicht</label>
                     <select id="roomsFilter" class="filter-select">
                         <option value="">Alle</option>
-                        <option value="1">1 Zimmer</option>
-                        <option value="2">2 Zimmer</option>
-                        <option value="3">3 Zimmer</option>
-                        <option value="4">4 Zimmer</option>
-                        <option value="5">5+ Zimmer</option>
+                        <option value="frueh">Früh</option>
+                        <option value="spaet">Spät</option>
+                        <option value="nacht">Nacht</option>
+                        <option value="wochenende">Wochenende</option>
                     </select>
                 </div>
                 <div class="filter-group">
@@ -199,16 +190,15 @@
         </div>
     </section>
 
-    <!-- Properties List -->
+    <!-- Properties List (repurposed: Ergebnisse) -->
     <section class="section">
         <div class="container">
             <div class="results-info">
-                <span class="results-count" id="resultsCount">Lade Immobilien...</span>
+                <span class="results-count" id="resultsCount">Verfügbare Profile werden geladen...</span>
                 <select class="sort-select" id="sortSelect">
-                    <option value="price-asc">Preis aufsteigend</option>
-                    <option value="price-desc">Preis absteigend</option>
-                    <option value="size-desc">Größe absteigend</option>
-                    <option value="rooms-desc">Zimmer absteigend</option>
+                    <option value="wage-asc">Stundenlohn aufsteigend</option>
+                    <option value="wage-desc">Stundenlohn absteigend</option>
+                    <option value="experience-desc">Erfahrung absteigend</option>
                 </select>
             </div>
             
@@ -232,10 +222,10 @@
     <section class="section section-cta">
         <div class="container">
             <div class="cta-content">
-                <h2 class="cta-title">Nicht das Richtige gefunden?</h2>
-                <p class="cta-subtitle">Wir helfen Ihnen gerne bei der Suche nach Ihrer Traumimmobilie</p>
+                <h2 class="cta-title">Personalbedarf? Wir sind kurzfristig einsatzbereit.</h2>
+                <p class="cta-subtitle">Fragen Sie jetzt unverbindlich Personal für Küche, Service, Theke oder Event an.</p>
                 <div class="cta-buttons">
-                    <a href="kontakt.html" class="btn btn-primary">Suchauftrag erstellen</a>
+                    <a href="kontakt.html" class="btn btn-primary">Personal anfragen</a>
                     <a href="tel:+498912345677" class="btn btn-secondary">Direkt anrufen</a>
                 </div>
             </div>
@@ -247,8 +237,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3 class="footer-title">Barut Immobilien</h3>
-                    <p class="footer-text">Ihr vertrauensvoller Partner für Immobilien in München und Umgebung.</p>
+                    <h3 class="footer-title">PersoPro</h3>
+                    <p class="footer-text">Ihr verlässlicher Partner für Personal in Gastronomie, Unternehmen und Events.</p>
                     <div class="footer-social">
                         <a href="#" aria-label="Facebook">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -295,7 +285,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Barut Immobilien. Alle Rechte vorbehalten.</p>
+                <p>&copy; 2025 PersoPro. Alle Rechte vorbehalten.</p>
                 <p class="footer-powered">Powered by <a href="https://www.weconn3ct.app/" target="_blank" rel="noopener">WECONN3CT</a></p>
             </div>
         </div>
