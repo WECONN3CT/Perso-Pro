@@ -52,6 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
         'images/leistungen/barista.png'
     ];
     const imageForIndex = (idx) => imageMap[Math.max(0, Math.min(imageMap.length - 1, idx))];
+
+    // Bilder vorab laden/decodieren, um Mikroruckler zu vermeiden
+    const preloaded = new Set();
+    function preload(src) {
+        if (preloaded.has(src)) return;
+        const i = new Image();
+        i.src = src;
+        if (i.decode) {
+            i.decode().catch(() => {});
+        }
+        preloaded.add(src);
+    }
+    imageMap.forEach(preload);
     function updateServicesImage(idx) {
         if (!imgA || !imgB) return;
         const nextSrc = imageForIndex(idx);
@@ -85,51 +98,63 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     // Smooth, progress-basierte Bildüberblendung beim Scrollen
     const stickyMedia = document.querySelector('.sticky-media');
-    list.addEventListener('scroll', () => {
+    // rAF-Throttling für butterweiche Updates
+    let rafId = null;
+    let lastLeft = 0;
+    const EPS = 0.002;
+    function updateOnRaf() {
+        rafId = null;
         if (!imgA || !imgB) return;
-        // progress zwischen 0..1 bezogen auf aktuellen Slide
-        const progressRaw = (list.scrollLeft / slideWidth);
+        const progressRaw = (lastLeft / slideWidth) || 0;
         const base = Math.floor(progressRaw);
-        const t = Math.min(1, Math.max(0, progressRaw - base));
-        const nextIndex = Math.min(imageMap.length - 1, base + 1);
-        // set sources falls nötig
-        const baseSrc = imageForIndex(base);
-        const nextSrc = imageForIndex(nextIndex);
-        const front = activeIsA ? imgA : imgB;
-        const back  = activeIsA ? imgB : imgA;
-        if (front.src.indexOf(baseSrc) === -1) front.src = baseSrc;
-        if (back.src.indexOf(nextSrc) === -1) back.src = nextSrc;
-        // scrubbing mode -> transitions aus
-        stickyMedia && stickyMedia.classList.add('scrubbing');
-        // weicher Crossfade anhand von t
-        front.style.opacity = String(1 - t);
-        back.style.opacity = String(t);
-        const scaleFrom = 1.04, scaleTo = 1.0;
+        let t = Math.min(1, Math.max(0, progressRaw - base));
+        // sanftes Easing schon während der Bewegung
         const ease = (x) => 1 - Math.pow(1 - x, 2); // easeOutQuad
         const eased = ease(t);
-        back.style.transform = `scale(${(scaleFrom + (scaleTo - scaleFrom) * eased).toFixed(4)})`;
-        front.style.transform = `scale(${(scaleTo + (scaleFrom - scaleTo) * eased).toFixed(4)})`;
+        const nextIndex = Math.min(imageMap.length - 1, base + 1);
+        const baseSrc = imageForIndex(base);
+        const nextSrc = imageForIndex(nextIndex);
+        preload(nextSrc);
+        const front = activeIsA ? imgA : imgB;
+        const back  = activeIsA ? imgB : imgA;
+        // Nur aktualisieren, wenn sich etwas tatsächlich sichtbar ändert
+        if (front.src.indexOf(baseSrc) === -1) front.src = baseSrc;
+        if (back.src.indexOf(nextSrc) === -1) back.src = nextSrc;
+        stickyMedia && stickyMedia.classList.add('scrubbing');
+        const currentOpacity = parseFloat(front.style.opacity || '1');
+        if (Math.abs((1 - eased) - currentOpacity) > EPS) {
+            front.style.opacity = String(1 - eased);
+            back.style.opacity  = String(eased);
+            const scaleFrom = 1.04, scaleTo = 1.0;
+            back.style.transform  = `scale(${(scaleFrom + (scaleTo - scaleFrom) * eased).toFixed(4)})`;
+            front.style.transform = `scale(${(scaleTo + (scaleFrom - scaleTo) * eased).toFixed(4)})`;
+        }
 
         clearTimeout(scrollEndTimer);
         scrollEndTimer = setTimeout(() => {
-            // am Ende des Scroll-Gestures sauber auf nächsten Zustand einrasten
-            lockedIndex = Math.round(list.scrollLeft / slideWidth);
-            // Klassen für finalen Zustand setzen
+            lockedIndex = Math.round(lastLeft / slideWidth);
             const wantSrc = imageForIndex(lockedIndex);
             const current = activeIsA ? imgA : imgB;
             const next = activeIsA ? imgB : imgA;
+            preload(wantSrc);
             current.src = wantSrc;
             current.classList.add('is-active');
             next.classList.remove('is-active');
-            // Opacity/Transform zurücksetzen, transitions wieder an
             current.style.opacity = '';
             next.style.opacity = '';
             current.style.transform = '';
             next.style.transform = '';
             stickyMedia && stickyMedia.classList.remove('scrubbing');
-            activeIsA = true; // setze A als aktives Layer nach Abschluss
-        }, 80);
-    });
+            activeIsA = (current === imgA);
+        }, 60);
+    }
+
+    list.addEventListener('scroll', () => {
+        lastLeft = list.scrollLeft;
+        if (rafId == null) {
+            rafId = requestAnimationFrame(updateOnRaf);
+        }
+    }, { passive: true });
 
     // Kein Wheel-Override mehr: native horizontale Scroll-/Snap-Physik sorgt für flüssiges Verhalten
 
