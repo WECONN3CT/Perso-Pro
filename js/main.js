@@ -65,16 +65,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.matchMedia('(hover: hover) and (pointer: fine)').matches === false) return;
         const isHorizontalIntent = Math.abs(e.deltaX) > Math.abs(e.deltaY);
         if (!isHorizontalIntent) return; // vertikales Scrollen: durchreichen
-        e.preventDefault();
-        if (isScrolling) return; // horizontales Scrollen: snappen
+        // Bei horizontalem Intent: weiches Scrollen zur Zielposition, aber ohne abruptes Stoppen
+        if (isScrolling) return;
         isScrolling = true;
         const delta = e.deltaX;
         const direction = delta > 0 ? 1 : -1;
         const cards = list.querySelectorAll('.service-card');
         updateSlideWidth();
         const nextIndex = clamp(lockedIndex + direction, 0, cards.length - 1);
-        goTo(nextIndex);
-        setTimeout(() => { isScrolling = false; }, 420);
+        // weicher Übergang: addiere einen kleinen Impuls, lasse native Inertia arbeiten, danach snappe sanft
+        const target = nextIndex * slideWidth;
+        list.scrollTo({ left: target, behavior: 'smooth' });
+        setTimeout(() => { isScrolling = false; }, 300);
     }, { passive: false });
 
     // Keyboard navigation (links/rechts)
