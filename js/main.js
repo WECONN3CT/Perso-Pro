@@ -41,20 +41,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const list = document.querySelector('.services-list');
     if (!list) return;
     let isScrolling = false;
+    const clamp = (val, min, max) => Math.min(max, Math.max(min, val));
+
     list.addEventListener('wheel', (e) => {
         // apply only on non-touch large screens
         if (window.matchMedia('(hover: hover) and (pointer: fine)').matches === false) return;
         e.preventDefault();
         if (isScrolling) return;
         isScrolling = true;
-        const direction = e.deltaY > 0 ? 1 : -1;
-        const cards = Array.from(list.querySelectorAll('.service-card'));
-        const viewportLeft = list.getBoundingClientRect().left;
-        const current = cards.findIndex(card => Math.abs(card.getBoundingClientRect().left - viewportLeft) < 24);
-        const nextIndex = Math.min(cards.length - 1, Math.max(0, (current === -1 ? 0 : current) + direction));
-        cards[nextIndex] && cards[nextIndex].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        const direction = delta > 0 ? 1 : -1;
+        const cards = list.querySelectorAll('.service-card');
+        const slideWidth = list.clientWidth; // eine Karte = 100% der rechten Spalte
+        const currentIndex = Math.round(list.scrollLeft / slideWidth);
+        const nextIndex = clamp(currentIndex + direction, 0, cards.length - 1);
+        list.scrollTo({ left: nextIndex * slideWidth, behavior: 'smooth' });
         setTimeout(() => { isScrolling = false; }, 420);
     }, { passive: false });
+
+    // Keyboard navigation (links/rechts)
+    list.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        const cards = list.querySelectorAll('.service-card');
+        const slideWidth = list.clientWidth;
+        const currentIndex = Math.round(list.scrollLeft / slideWidth);
+        const nextIndex = e.key === 'ArrowRight' ? clamp(currentIndex + 1, 0, cards.length - 1)
+                                                 : clamp(currentIndex - 1, 0, cards.length - 1);
+        list.scrollTo({ left: nextIndex * slideWidth, behavior: 'smooth' });
+    });
 });
 
 // ===================================
