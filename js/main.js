@@ -42,9 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!list) return;
     let isScrolling = false;
     const clamp = (val, min, max) => Math.min(max, Math.max(min, val));
-    // Bild-Elemente und Mapping VOR erster Verwendung definieren
-    const imgA = document.getElementById('servicesImageA');
-    const imgB = document.getElementById('servicesImageB');
+    // Bild-Element und Mapping definieren
+    const imgSingle = document.getElementById('servicesImage');
     const imageMap = [
         'images/leistungen/kuechenhilfe.png',
         'images/leistungen/servierer.png',
@@ -52,14 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     const imageForIndex = (idx) => imageMap[Math.max(0, Math.min(imageMap.length - 1, idx))];
     function updateServicesImage(idx) {
-        if (!imgA || !imgB) return;
-        const active = imgA.classList.contains('is-active') ? imgA : imgB;
-        const next = active === imgA ? imgB : imgA;
+        if (!imgSingle) return;
         const nextSrc = imageForIndex(idx);
-        if (active.getAttribute('src') === nextSrc) return;
-        next.setAttribute('src', nextSrc);
-        next.classList.add('is-active');
-        active.classList.remove('is-active');
+        if (imgSingle.getAttribute('src') === nextSrc) return;
+        imgSingle.setAttribute('src', nextSrc);
     }
     let slideWidth = 0;
     const updateSlideWidth = () => { slideWidth = list.clientWidth; };
@@ -67,16 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updateSlideWidth);
     window.addEventListener('load', () => { updateSlideWidth(); });
     let lockedIndex = 0;
-    // Crossfade state for left image
-    let baseImageIndex = 0;
-    let nextImageIndex = 1;
-    if (imgA && imgB) {
-        imgA.src = imageForIndex(baseImageIndex);
-        imgB.src = imageForIndex(nextImageIndex);
-        imgA.classList.add('is-active');
-        imgB.classList.remove('is-active');
-        imgA.style.opacity = '1';
-        imgB.style.opacity = '0';
+    // Initiales Bild sicherstellen
+    if (imgSingle && !imgSingle.getAttribute('src')) {
+        imgSingle.src = imageForIndex(0);
     }
     let scrollEndTimer;
     const goTo = (index) => {
