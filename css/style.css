@@ -1083,7 +1083,7 @@ a:hover {
   height: var(--services-viewport);
   overflow-x: auto;
   overflow-y: hidden;
-  scroll-snap-type: x proximity; /* natürlicheres Scroll-Gefühl, snappt nur in der Nähe */
+  scroll-snap-type: x mandatory; /* verlässlich auf vollen Slide einrasten */
   scroll-behavior: smooth;
   overscroll-behavior-x: contain;
   overscroll-behavior-y: auto; /* vertikale Scrollkette zum Body zulassen */

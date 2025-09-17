@@ -60,27 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 120);
     });
 
-    const WHEEL_THRESHOLD = 40; // Minimale horizontale Intensität für einen Slide
-    list.addEventListener('wheel', (e) => {
-        // apply only on non-touch large screens
-        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches === false) return;
-        const isHorizontalIntent = Math.abs(e.deltaX) > Math.abs(e.deltaY);
-        if (!isHorizontalIntent) return; // vertikales Scrollen: durchreichen
-        // nur größere horizontale Gesten berücksichtigen
-        if (Math.abs(e.deltaX) < WHEEL_THRESHOLD) return;
-        // Bei horizontalem Intent: weiches Scrollen zur Zielposition, aber nur EIN Slide pro Gesten-Sequenz
-        if (isScrolling) { e.preventDefault(); return; }
-        e.preventDefault();
-        isScrolling = true;
-        const delta = e.deltaX;
-        const direction = delta > 0 ? 1 : -1;
-        const cards = list.querySelectorAll('.service-card');
-        updateSlideWidth();
-        const nextIndex = clamp(lockedIndex + direction, 0, cards.length - 1);
-        // weicher Übergang: addiere einen kleinen Impuls, lasse native Inertia arbeiten, danach snappe sanft
-        const target = nextIndex * slideWidth;
-        list.scrollTo({ left: target, behavior: 'smooth' });
-    }, { passive: false });
+    // Kein Wheel-Override mehr: native horizontale Scroll-/Snap-Physik sorgt für flüssiges Verhalten
 
     // Keyboard navigation (links/rechts)
     list.addEventListener('keydown', (e) => {
@@ -94,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Touch swipe (links/rechts)
     let startX = 0, startY = 0, touching = false;
-    const SWIPE_THRESHOLD = 30;
+    const SWIPE_THRESHOLD = 50; // etwas höher für stabileres Gefühl
     list.addEventListener('touchstart', (e) => {
         if (!e.touches || e.touches.length !== 1) return;
         const t = e.touches[0];
