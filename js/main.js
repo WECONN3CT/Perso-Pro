@@ -102,7 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     // Bildwechsel links passend zur Karte
-    const servicesImage = document.getElementById('servicesImage');
+    const imgA = document.getElementById('servicesImageA');
+    const imgB = document.getElementById('servicesImageB');
     const imageForIndex = (idx) => {
         switch (idx) {
             case 0: return 'images/leistungen/küchenhilfe.png';
@@ -112,14 +113,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     function updateServicesImage(idx) {
-        if (!servicesImage) return;
+        if (!imgA || !imgB) return;
+        const active = imgA.classList.contains('is-active') ? imgA : imgB;
+        const next = active === imgA ? imgB : imgA;
         const nextSrc = imageForIndex(idx);
-        if (servicesImage.getAttribute('src') === nextSrc) return;
-        servicesImage.style.opacity = '0';
-        setTimeout(() => {
-            servicesImage.setAttribute('src', nextSrc);
-            servicesImage.style.opacity = '1';
-        }, 160);
+        if (active.getAttribute('src') === nextSrc) return;
+        next.setAttribute('src', nextSrc);
+        next.classList.add('is-active');
+        active.classList.remove('is-active');
     }
 });
 
