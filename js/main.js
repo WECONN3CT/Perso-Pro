@@ -47,6 +47,15 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSlideWidth();
     window.addEventListener('resize', updateSlideWidth);
     let lockedIndex = 0;
+    // Crossfade state for left image
+    let baseImageIndex = 0;
+    let nextImageIndex = 1;
+    if (imgA && imgB) {
+        imgA.src = imageForIndex(baseImageIndex);
+        imgB.src = imageForIndex(nextImageIndex);
+        imgA.style.opacity = '1';
+        imgB.style.opacity = '0';
+    }
     let scrollEndTimer;
     const goTo = (index) => {
         lockedIndex = index;
@@ -54,10 +63,33 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     list.addEventListener('scroll', () => {
         clearTimeout(scrollEndTimer);
+        // Progressive crossfade synced with scroll
+        if (slideWidth > 0 && imgA && imgB) {
+            const raw = list.scrollLeft / slideWidth;
+            const base = Math.floor(raw);
+            const progress = Math.min(1, Math.max(0, raw - base));
+            const total = list.querySelectorAll('.service-card').length;
+            const baseIdx = clamp(base, 0, total - 1);
+            const nextIdx = clamp(baseIdx + 1, 0, total - 1);
+            if (baseIdx !== baseImageIndex) {
+                imgA.src = imageForIndex(baseIdx);
+                baseImageIndex = baseIdx;
+            }
+            if (nextIdx !== nextImageIndex) {
+                imgB.src = imageForIndex(nextIdx);
+                nextImageIndex = nextIdx;
+            }
+            // Opacity and subtle zoom like card easing
+            imgA.style.opacity = String(1 - progress);
+            imgB.style.opacity = String(progress);
+            const scaleBase = 1.02 - 0.02 * (1 - progress); // 1.0 when active
+            const scaleNext = 1.02 - 0.02 * progress;
+            imgA.style.transform = `scale(${scaleBase})`;
+            imgB.style.transform = `scale(${scaleNext})`;
+        }
         scrollEndTimer = setTimeout(() => {
             lockedIndex = Math.round(list.scrollLeft / slideWidth);
             isScrolling = false;
-            updateServicesImage(lockedIndex);
         }, 120);
     });
 
