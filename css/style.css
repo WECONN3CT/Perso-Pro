@@ -1086,7 +1086,7 @@ a:hover {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   overscroll-behavior-x: contain;
-  overscroll-behavior-y: none; /* vertikales Scrollen unterbinden */
+  overscroll-behavior-y: auto; /* vertikale Scrollkette zum Body zulassen */
   touch-action: pan-x; /* nur horizontales Gesten-Scrolling erlauben */
   -webkit-overflow-scrolling: touch;
   padding: 0;

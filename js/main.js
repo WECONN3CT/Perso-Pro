@@ -46,10 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
     list.addEventListener('wheel', (e) => {
         // apply only on non-touch large screens
         if (window.matchMedia('(hover: hover) and (pointer: fine)').matches === false) return;
+        const isHorizontalIntent = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+        if (!isHorizontalIntent) return; // vertikales Scrollen: durchreichen
         e.preventDefault();
-        if (isScrolling) return;
+        if (isScrolling) return; // horizontales Scrollen: snappen
         isScrolling = true;
-        const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        const delta = e.deltaX;
         const direction = delta > 0 ? 1 : -1;
         const cards = list.querySelectorAll('.service-card');
         const slideWidth = list.clientWidth; // eine Karte = 100% der rechten Spalte
