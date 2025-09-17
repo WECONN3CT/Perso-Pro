@@ -1048,6 +1048,7 @@ a:hover {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* harte 50/50-Aufteilung */
   gap: 0; /* nahtloser Übergang zwischen Bild und Karte */
   align-items: stretch; /* wichtig: linke Spalte erhält volle Section-Höhe, damit sticky am Ende löst */
+  --services-viewport: clamp(420px, 68vh, 640px); /* einheitliche Höhe für Bild & Karte */
 }
 
 .services-sticky-left { position: relative; }
@@ -1057,6 +1058,7 @@ a:hover {
   top: calc(72px + var(--spacing-xl));
   align-self: start; /* verhindert Stretching durch Grid */
   overflow: hidden; /* für Fade-Overlay am rechten Rand */
+  height: var(--services-viewport);
 }
 
 .sticky-media img {
@@ -1064,7 +1066,8 @@ a:hover {
   box-shadow: var(--shadow-lg);
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* weicher Übergang vom Bild zur Karte (rechts) */
@@ -1082,7 +1085,6 @@ a:hover {
 .services-sticky-right .service-card { border-radius: 0 var(--radius-xl) var(--radius-xl) 0; border-left: none; }
 
 .services-sticky-right { min-height: 100%; }
-.services-sticky-right { --services-viewport: clamp(420px, 68vh, 640px); }
 .services-list {
   display: flex;
   flex-direction: row;
@@ -1126,6 +1128,8 @@ a:hover {
   .sticky-media { position: static; top: auto; margin-bottom: var(--spacing-2xl); align-self: auto; }
   .services-list { height: auto; overflow: visible; scroll-snap-type: none; -webkit-mask-image: none; mask-image: none; display: grid; gap: var(--spacing-xl); }
   .service-card { flex: auto; height: auto; }
+  .sticky-media { height: auto; }
+  .sticky-media img { height: auto; }
 }
 
 /* ===================================
