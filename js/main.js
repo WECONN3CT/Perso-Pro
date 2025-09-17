@@ -1,5 +1,5 @@
 // ===================================
-// Barut Immobilien - Main JavaScript
+// PersoPro - Main JavaScript
 // ===================================
 
 document.addEventListener('DOMContentLoaded', function() {

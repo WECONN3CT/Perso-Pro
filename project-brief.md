@@ -1,7 +1,7 @@
-# Barut Immobilien - Statische Website Entwicklung
+# PersoPro - Statische Website Entwicklung
 
 ## Projektübersicht
-Erstelle eine statische HTML-Website für den Immobilienmakler "Barut Immobilien" die auf GitHub Pages gehostet werden kann.
+Erstelle eine statische HTML-Website für den Personaldienstleister "PersoPro" (Gastronomie & Events), die auf GitHub Pages gehostet werden kann.
 
 ## Design System
 Das komplette Design System ist in der beigefügten `design.json` Datei definiert. Verwende EXAKT diese Spezifikationen:

@@ -1,6 +1,6 @@
-# Barut Immobilien Website
+# PersoPro Website
 
-Statische Website für Barut Immobilien - Ihr vertrauensvoller Immobilienpartner in München.
+Statische Website für PersoPro – Personal für Gastronomie, Unternehmen und Events.
 
 ## 🏠 Live Website
 [Besuchen Sie unsere Website](https://weconn3ct.github.io/Immobilien-Barut/)
@@ -74,14 +74,14 @@ npx http-server
 - **Responsive Breakpoints**: 480px, 768px, 1024px, 1280px
 
 ## 📞 Kontakt
-**Barut Immobilien GmbH**  
-Maximilianstraße 123  
+**PersoPro**  
+Adresse  
 80539 München  
 Tel: +49 89 123 456 77  
 E-Mail: info@barut-immobilien.de
 
 ## 📜 Lizenz
-© 2025 Barut Immobilien. Alle Rechte vorbehalten.
+© 2025 PersoPro. Alle Rechte vorbehalten.
 
 ---
-Entwickelt mit ❤️ für Barut Immobilien München
+Entwickelt mit ❤️ für PersoPro

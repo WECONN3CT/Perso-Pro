@@ -1,4 +1,4 @@
-# Content für Barut Immobilien Website
+# Content für PersoPro Website
 
 ## Homepage Texte
 
@@ -8,8 +8,8 @@
 **CTA Button:** "Kostenlose Beratung"
 
 ### Über uns Preview
-**Überschrift:** "Barut Immobilien - Ihr lokaler Experte"
-**Text:** "Wir sind Ihr verlässlicher Partner wenn es um Immobilien geht. Mit langjähriger Erfahrung und lokalem Marktverständnis begleiten wir Sie bei allen Immobilienfragen."
+**Überschrift:** "PersoPro – Ihr starker Partner für Gastronomie & Events"
+**Text:** "Wir unterstützen Betriebe mit flexibel einsetzbaren Servicekräften, Küchenhilfen und Thekenpersonal – zuverlässig, kurzfristig und planbar."
 
 ### Services
 1. **Verkauf** - Professionelle Vermarktung Ihrer Immobilie
