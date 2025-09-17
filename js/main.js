@@ -372,7 +372,7 @@ function handleHeroSearch(e) {
     e.preventDefault();
     const form = e.currentTarget;
     const params = new URLSearchParams(new FormData(form));
-    // Weiterleitung zur Immobilien-Seite mit Query-Parametern
+    // Weiterleitung zur Leistungen/Profiles-Seite mit Query-Parametern
     const url = `immobilien.html?${params.toString()}#properties`;
     window.location.href = url;
     return false;
