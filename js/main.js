@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollEndTimer = setTimeout(() => {
             lockedIndex = Math.round(list.scrollLeft / slideWidth);
             isScrolling = false;
+            updateServicesImage(lockedIndex);
         }, 120);
     });
 
@@ -70,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextIndex = e.key === 'ArrowRight' ? clamp(lockedIndex + 1, 0, cards.length - 1)
                                                  : clamp(lockedIndex - 1, 0, cards.length - 1);
         goTo(nextIndex);
+        updateServicesImage(nextIndex);
     });
 
     // Touch swipe (links/rechts)
@@ -96,7 +98,29 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSlideWidth();
         const nextIndex = clamp(lockedIndex + direction, 0, cards.length - 1);
         goTo(nextIndex);
+        updateServicesImage(nextIndex);
     }, { passive: true });
+
+    // Bildwechsel links passend zur Karte
+    const servicesImage = document.getElementById('servicesImage');
+    const imageForIndex = (idx) => {
+        switch (idx) {
+            case 0: return 'images/leistungen/küchenhilfe.png';
+            case 1: return 'images/leistungen/servierer.png';
+            case 2: return 'images/leistungen/barista.png';
+            default: return 'images/leistungen/küchenhilfe.png';
+        }
+    };
+    function updateServicesImage(idx) {
+        if (!servicesImage) return;
+        const nextSrc = imageForIndex(idx);
+        if (servicesImage.getAttribute('src') === nextSrc) return;
+        servicesImage.style.opacity = '0';
+        setTimeout(() => {
+            servicesImage.setAttribute('src', nextSrc);
+            servicesImage.style.opacity = '1';
+        }, 160);
+    }
 });
 
 // ===================================
