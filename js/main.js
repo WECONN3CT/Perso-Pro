@@ -43,14 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isScrolling = false;
     const clamp = (val, min, max) => Math.min(max, Math.max(min, val));
     let slideWidth = 0;
-    const updateSlideWidth = () => {
-        const first = list.querySelector('.service-card');
-        if (first) {
-            slideWidth = Math.round(first.getBoundingClientRect().width);
-        } else {
-            slideWidth = list.clientWidth;
-        }
-    };
+    const updateSlideWidth = () => { slideWidth = list.clientWidth; };
     updateSlideWidth();
     window.addEventListener('resize', updateSlideWidth);
     window.addEventListener('load', () => { updateSlideWidth(); });
@@ -73,38 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     list.addEventListener('scroll', () => {
         clearTimeout(scrollEndTimer);
-        // Progressive crossfade: berechne Basis/Next bei jedem Scroll, aktualisiere nur wenn nötig
-        if (slideWidth > 0 && imgA && imgB) {
-            const raw = list.scrollLeft / slideWidth;
-            const total = list.querySelectorAll('.service-card').length;
-            const base = clamp(Math.floor(raw), 0, total - 1);
-            const next = clamp(base + 1, 0, total - 1);
-            if (base !== baseImageIndex) {
-                imgA.src = imageForIndex(base);
-                baseImageIndex = base;
-            }
-            if (next !== nextImageIndex) {
-                imgB.src = imageForIndex(next);
-                nextImageIndex = next;
-            }
-            const progress = Math.min(1, Math.max(0, raw - base));
-            imgA.style.opacity = String(1 - progress);
-            imgB.style.opacity = String(progress);
-            const scaleBase = 1.02 - 0.02 * (1 - progress);
-            const scaleNext = 1.02 - 0.02 * progress;
-            imgA.style.transform = `scale(${scaleBase})`;
-            imgB.style.transform = `scale(${scaleNext})`;
-            if (progress > 0.5) {
-                imgB.classList.add('is-active');
-                imgA.classList.remove('is-active');
-            } else {
-                imgA.classList.add('is-active');
-                imgB.classList.remove('is-active');
-            }
-        }
         scrollEndTimer = setTimeout(() => {
             lockedIndex = Math.round(list.scrollLeft / slideWidth);
             isScrolling = false;
+            updateServicesImage(lockedIndex);
         }, 120);
     });
 
@@ -118,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextIndex = e.key === 'ArrowRight' ? clamp(lockedIndex + 1, 0, cards.length - 1)
                                                  : clamp(lockedIndex - 1, 0, cards.length - 1);
         goTo(nextIndex);
+        updateServicesImage(nextIndex);
     });
 
     // Touch swipe (links/rechts)
@@ -144,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSlideWidth();
         const nextIndex = clamp(lockedIndex + direction, 0, cards.length - 1);
         goTo(nextIndex);
+        updateServicesImage(nextIndex);
     }, { passive: true });
 
     // Bildwechsel links passend zur Karte
