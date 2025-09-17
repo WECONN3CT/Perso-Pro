@@ -60,13 +60,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 120);
     });
 
+    const WHEEL_THRESHOLD = 40; // Minimale horizontale Intensität für einen Slide
     list.addEventListener('wheel', (e) => {
         // apply only on non-touch large screens
         if (window.matchMedia('(hover: hover) and (pointer: fine)').matches === false) return;
         const isHorizontalIntent = Math.abs(e.deltaX) > Math.abs(e.deltaY);
         if (!isHorizontalIntent) return; // vertikales Scrollen: durchreichen
-        // Bei horizontalem Intent: weiches Scrollen zur Zielposition, aber ohne abruptes Stoppen
-        if (isScrolling) return;
+        // nur größere horizontale Gesten berücksichtigen
+        if (Math.abs(e.deltaX) < WHEEL_THRESHOLD) return;
+        // Bei horizontalem Intent: weiches Scrollen zur Zielposition, aber nur EIN Slide pro Gesten-Sequenz
+        if (isScrolling) { e.preventDefault(); return; }
+        e.preventDefault();
         isScrolling = true;
         const delta = e.deltaX;
         const direction = delta > 0 ? 1 : -1;
@@ -76,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // weicher Übergang: addiere einen kleinen Impuls, lasse native Inertia arbeiten, danach snappe sanft
         const target = nextIndex * slideWidth;
         list.scrollTo({ left: target, behavior: 'smooth' });
-        setTimeout(() => { isScrolling = false; }, 300);
     }, { passive: false });
 
     // Keyboard navigation (links/rechts)
