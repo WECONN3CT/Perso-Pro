@@ -1076,18 +1076,19 @@ a:hover {
 .services-sticky-right { --services-viewport: clamp(420px, 68vh, 640px); }
 .services-list {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0;
   height: var(--services-viewport);
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  overscroll-behavior-y: contain;
+  overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
   padding: 0;
-  /* weiche Ränder oben/unten */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
-          mask-image: linear-gradient(to bottom, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
+  /* weiche Ränder links/rechts */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
 }
 .services-list::-webkit-scrollbar { display: none; }
 .services-list { scrollbar-width: none; }
@@ -1095,7 +1096,7 @@ a:hover {
 .service-card {
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  flex: 0 0 var(--services-viewport);
+  flex: 0 0 100%;
   height: var(--services-viewport);
   display: flex;
   flex-direction: column;

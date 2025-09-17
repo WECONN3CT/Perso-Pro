@@ -49,10 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
         isScrolling = true;
         const direction = e.deltaY > 0 ? 1 : -1;
         const cards = Array.from(list.querySelectorAll('.service-card'));
-        const listTop = list.getBoundingClientRect().top;
-        const current = cards.findIndex(card => Math.abs(card.getBoundingClientRect().top - listTop) < 24);
+        const listLeft = list.getBoundingClientRect().left;
+        const current = cards.findIndex(card => Math.abs(card.getBoundingClientRect().left - listLeft) < 24);
         const nextIndex = Math.min(cards.length - 1, Math.max(0, (current === -1 ? 0 : current) + direction));
-        cards[nextIndex] && cards[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        cards[nextIndex] && cards[nextIndex].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
         setTimeout(() => { isScrolling = false; }, 420);
     }, { passive: false });
 });
