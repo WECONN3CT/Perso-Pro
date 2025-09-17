@@ -42,6 +42,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!list) return;
     let isScrolling = false;
     const clamp = (val, min, max) => Math.min(max, Math.max(min, val));
+    // Bild-Elemente und Mapping VOR erster Verwendung definieren
+    const imgA = document.getElementById('servicesImageA');
+    const imgB = document.getElementById('servicesImageB');
+    const imageMap = [
+        'images/leistungen/küchenhilfe.png',
+        'images/leistungen/servierer.png',
+        'images/leistungen/barista.png'
+    ];
+    const imageForIndex = (idx) => imageMap[Math.max(0, Math.min(imageMap.length - 1, idx))];
+    function updateServicesImage(idx) {
+        if (!imgA || !imgB) return;
+        const active = imgA.classList.contains('is-active') ? imgA : imgB;
+        const next = active === imgA ? imgB : imgA;
+        const nextSrc = imageForIndex(idx);
+        if (active.getAttribute('src') === nextSrc) return;
+        next.setAttribute('src', nextSrc);
+        next.classList.add('is-active');
+        active.classList.remove('is-active');
+    }
     let slideWidth = 0;
     const updateSlideWidth = () => { slideWidth = list.clientWidth; };
     updateSlideWidth();
@@ -113,25 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateServicesImage(nextIndex);
     }, { passive: true });
 
-    // Bildwechsel links passend zur Karte
-    const imgA = document.getElementById('servicesImageA');
-    const imgB = document.getElementById('servicesImageB');
-    const imageMap = [
-        'images/leistungen/küchenhilfe.png',
-        'images/leistungen/servierer.png',
-        'images/leistungen/barista.png'
-    ];
-    const imageForIndex = (idx) => imageMap[Math.max(0, Math.min(imageMap.length - 1, idx))];
-    function updateServicesImage(idx) {
-        if (!imgA || !imgB) return;
-        const active = imgA.classList.contains('is-active') ? imgA : imgB;
-        const next = active === imgA ? imgB : imgA;
-        const nextSrc = imageForIndex(idx);
-        if (active.getAttribute('src') === nextSrc) return;
-        next.setAttribute('src', nextSrc);
-        next.classList.add('is-active');
-        active.classList.remove('is-active');
-    }
+    // (früher definiert)
 });
 
 // ===================================
