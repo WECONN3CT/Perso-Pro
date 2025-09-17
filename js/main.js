@@ -71,6 +71,33 @@ document.addEventListener('DOMContentLoaded', () => {
                                                  : clamp(currentIndex - 1, 0, cards.length - 1);
         list.scrollTo({ left: nextIndex * slideWidth, behavior: 'smooth' });
     });
+
+    // Touch swipe (links/rechts)
+    let startX = 0, startY = 0, touching = false;
+    const SWIPE_THRESHOLD = 30;
+    list.addEventListener('touchstart', (e) => {
+        if (!e.touches || e.touches.length !== 1) return;
+        const t = e.touches[0];
+        startX = t.clientX;
+        startY = t.clientY;
+        touching = true;
+    }, { passive: true });
+
+    list.addEventListener('touchend', (e) => {
+        if (!touching) return;
+        touching = false;
+        const t = e.changedTouches && e.changedTouches[0];
+        if (!t) return;
+        const dx = t.clientX - startX;
+        const dy = t.clientY - startY;
+        if (Math.abs(dx) <= Math.abs(dy) || Math.abs(dx) < SWIPE_THRESHOLD) return; // nur horizontale, deutliche Wischgesten
+        const direction = dx < 0 ? 1 : -1;
+        const cards = list.querySelectorAll('.service-card');
+        const slideWidth = list.clientWidth;
+        const currentIndex = Math.round(list.scrollLeft / slideWidth);
+        const nextIndex = clamp(currentIndex + direction, 0, cards.length - 1);
+        list.scrollTo({ left: nextIndex * slideWidth, behavior: 'smooth' });
+    }, { passive: true });
 });
 
 // ===================================
