@@ -1053,7 +1053,7 @@ a:hover {
 /* Sticky Services Layout */
 .services-sticky {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 50% Bild links, 50% Cards rechts */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* harte 50/50-Aufteilung */
   gap: var(--spacing-3xl);
   align-items: stretch; /* wichtig: linke Spalte erhält volle Section-Höhe, damit sticky am Ende löst */
 }
@@ -1070,6 +1070,8 @@ a:hover {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
   display: block;
+  width: 100%;
+  height: auto;
 }
 
 .services-sticky-right { min-height: 100%; }
