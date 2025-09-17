@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const imgA = document.getElementById('servicesImageA');
     const imgB = document.getElementById('servicesImageB');
     const imageMap = [
-        'images/leistungen/küchenhilfe.png',
+        'images/leistungen/kuechenhilfe.png',
         'images/leistungen/servierer.png',
         'images/leistungen/barista.png'
     ];
