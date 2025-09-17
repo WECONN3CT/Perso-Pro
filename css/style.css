@@ -1096,7 +1096,8 @@ a:hover {
 .service-card {
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  flex: 0 0 100%;
+  flex: 0 0 50%;
+  width: 50%;
   height: var(--services-viewport);
   display: flex;
   flex-direction: column;
