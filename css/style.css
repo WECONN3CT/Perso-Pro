@@ -1075,13 +1075,16 @@ a:hover {
 .services-sticky-right { min-height: 100%; }
 .services-sticky-right { --services-viewport: clamp(420px, 68vh, 640px); }
 .services-list {
-  display: grid;
-  gap: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   height: var(--services-viewport);
   overflow-y: auto;
   scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
-  padding: 8px 6px;
+  padding: 0;
   /* weiche Ränder oben/unten */
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
           mask-image: linear-gradient(to bottom, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
@@ -1089,7 +1092,15 @@ a:hover {
 .services-list::-webkit-scrollbar { display: none; }
 .services-list { scrollbar-width: none; }
 
-.service-card { scroll-snap-align: start; min-height: calc(var(--services-viewport) - 16px); display: flex; flex-direction: column; justify-content: center; }
+.service-card {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  flex: 0 0 var(--services-viewport);
+  height: var(--services-viewport);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 /* Reveal Animation */
 .reveal { opacity: 0; transform: translateY(16px); }
@@ -1098,8 +1109,8 @@ a:hover {
 @media (max-width: 1024px) {
   .services-sticky { grid-template-columns: 1fr; }
   .sticky-media { position: static; top: auto; margin-bottom: var(--spacing-2xl); align-self: auto; }
-  .services-list { height: auto; overflow: visible; scroll-snap-type: none; -webkit-mask-image: none; mask-image: none; }
-  .service-card { min-height: auto; }
+  .services-list { height: auto; overflow: visible; scroll-snap-type: none; -webkit-mask-image: none; mask-image: none; display: grid; gap: var(--spacing-xl); }
+  .service-card { flex: auto; height: auto; }
 }
 
 /* ===================================
