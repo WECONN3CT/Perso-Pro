@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Stats counter animation
     initStatsCounters();
 
+    // Roles reveal
+    initRolesReveal();
+
     // Docked-to-Hero behavior (removed)
 });
 
@@ -579,6 +582,23 @@ function initStatsCounters() {
     }, { threshold: 0.3 });
 
     counters.forEach(el => observer.observe(el));
+}
+
+function initRolesReveal() {
+    const cards = document.querySelectorAll('.roles-grid .role-card');
+    if (!cards.length) return;
+    const obs = new IntersectionObserver((entries, o) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('slide-in');
+                o.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+    cards.forEach((c, i) => {
+        c.style.animationDelay = `${80 * i}ms`;
+        obs.observe(c);
+    });
 }
 
 // (removed) Docked-to-Hero Behavior
