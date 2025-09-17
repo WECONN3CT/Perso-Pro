@@ -63,23 +63,21 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     list.addEventListener('scroll', () => {
         clearTimeout(scrollEndTimer);
-        // Progressive crossfade synced mit Scroll, ohne Sprung am Slide-Wechsel
+        // Progressive crossfade: berechne Basis/Next bei jedem Scroll, aktualisiere nur wenn nötig
         if (slideWidth > 0 && imgA && imgB) {
-            const raw = list.scrollLeft / slideWidth; // z.B. 0.0 -> 1.0 -> 2.0 ...
+            const raw = list.scrollLeft / slideWidth;
             const total = list.querySelectorAll('.service-card').length;
-            // Paar (base,next) nur dann umschalten, wenn wirklich die nächste Karte erreicht ist
-            if (raw >= nextImageIndex && nextImageIndex < total) {
-                baseImageIndex = nextImageIndex;
-                nextImageIndex = clamp(baseImageIndex + 1, 0, total - 1);
-                imgA.src = imageForIndex(baseImageIndex);
-                imgB.src = imageForIndex(nextImageIndex);
-            } else if (raw < baseImageIndex && baseImageIndex > 0) {
-                nextImageIndex = baseImageIndex;
-                baseImageIndex = clamp(nextImageIndex - 1, 0, total - 1);
-                imgA.src = imageForIndex(baseImageIndex);
-                imgB.src = imageForIndex(nextImageIndex);
+            const base = clamp(Math.floor(raw), 0, total - 1);
+            const next = clamp(base + 1, 0, total - 1);
+            if (base !== baseImageIndex) {
+                imgA.src = imageForIndex(base);
+                baseImageIndex = base;
             }
-            const progress = Math.min(1, Math.max(0, raw - baseImageIndex));
+            if (next !== nextImageIndex) {
+                imgB.src = imageForIndex(next);
+                nextImageIndex = next;
+            }
+            const progress = Math.min(1, Math.max(0, raw - base));
             imgA.style.opacity = String(1 - progress);
             imgB.style.opacity = String(progress);
             const scaleBase = 1.02 - 0.02 * (1 - progress);
