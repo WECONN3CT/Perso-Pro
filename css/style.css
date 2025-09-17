@@ -1046,7 +1046,7 @@ a:hover {
 .services-sticky {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* harte 50/50-Aufteilung */
-  gap: var(--spacing-3xl);
+  gap: 0; /* nahtloser Übergang zwischen Bild und Karte */
   align-items: stretch; /* wichtig: linke Spalte erhält volle Section-Höhe, damit sticky am Ende löst */
 }
 
@@ -1056,6 +1056,7 @@ a:hover {
   position: sticky;
   top: calc(72px + var(--spacing-xl));
   align-self: start; /* verhindert Stretching durch Grid */
+  overflow: hidden; /* für Fade-Overlay am rechten Rand */
 }
 
 .sticky-media img {
@@ -1065,6 +1066,20 @@ a:hover {
   width: 100%;
   height: auto;
 }
+
+/* weicher Übergang vom Bild zur Karte (rechts) */
+.sticky-media::after {
+  content: "";
+  position: absolute;
+  top: 0; right: -1px; bottom: 0;
+  width: 56px;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, #ffffff 100%);
+}
+
+/* Naht: Bild rechts ohne Radius, Karte links ohne Radius */
+.sticky-media img { border-radius: var(--radius-xl) 0 0 var(--radius-xl); }
+.services-sticky-right .service-card { border-radius: 0 var(--radius-xl) var(--radius-xl) 0; border-left: none; }
 
 .services-sticky-right { min-height: 100%; }
 .services-sticky-right { --services-viewport: clamp(420px, 68vh, 640px); }
@@ -1098,6 +1113,8 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: 1px solid var(--color-medium-gray);
+  background: #fff;
 }
 
 /* Reveal Animation */
