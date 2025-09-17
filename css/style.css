@@ -454,6 +454,31 @@ a:hover {
   font-weight: 700;
   color: var(--color-navy);
   margin-bottom: var(--spacing-xl);
+  position: relative;
+  display: inline-block; /* macht den Unterstrich so breit wie die Überschrift */
+}
+
+/* Dynamischer Unterstrich: exakt so breit wie die Überschrift, animiert von links nach rechts */
+.intro-title::after {
+  content: "";
+  display: block;
+  height: 6px;
+  width: 100%;
+  margin-top: 0.6rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-dark-orange), var(--color-light-orange));
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: intro-underline-sweep 900ms cubic-bezier(0.2, 0.8, 0.2, 1) 120ms forwards;
+}
+
+@keyframes intro-underline-sweep {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-title::after { animation: none; transform: none; }
 }
 
 .intro-text p {
