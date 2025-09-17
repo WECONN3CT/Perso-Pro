@@ -42,8 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!list) return;
     let isScrolling = false;
     const clamp = (val, min, max) => Math.min(max, Math.max(min, val));
-    // Bild-Element und Mapping definieren
-    const imgSingle = document.getElementById('servicesImage');
+    // Bild-Elemente (Crossfade) und Mapping definieren
+    const imgA = document.getElementById('servicesImageA');
+    const imgB = document.getElementById('servicesImageB');
+    let activeIsA = true;
     const imageMap = [
         'images/leistungen/kuechenhilfe.png',
         'images/leistungen/servierer.png',
@@ -51,10 +53,21 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     const imageForIndex = (idx) => imageMap[Math.max(0, Math.min(imageMap.length - 1, idx))];
     function updateServicesImage(idx) {
-        if (!imgSingle) return;
+        if (!imgA || !imgB) return;
         const nextSrc = imageForIndex(idx);
-        if (imgSingle.getAttribute('src') === nextSrc) return;
-        imgSingle.setAttribute('src', nextSrc);
+        const current = activeIsA ? imgA : imgB;
+        const next = activeIsA ? imgB : imgA;
+        if (current.getAttribute('src') === nextSrc) return;
+        // Preload next, then swap classes für sanften Crossfade
+        const tmp = new Image();
+        tmp.onload = () => {
+            next.src = nextSrc;
+            // Crossfade
+            next.classList.add('is-active');
+            current.classList.remove('is-active');
+            activeIsA = !activeIsA;
+        };
+        tmp.src = nextSrc;
     }
     let slideWidth = 0;
     const updateSlideWidth = () => { slideWidth = list.clientWidth; };
@@ -62,10 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updateSlideWidth);
     window.addEventListener('load', () => { updateSlideWidth(); });
     let lockedIndex = 0;
-    // Initiales Bild sicherstellen
-    if (imgSingle && !imgSingle.getAttribute('src')) {
-        imgSingle.src = imageForIndex(0);
-    }
+    // Initiale Quellen sicherstellen
+    if (imgA && !imgA.getAttribute('src')) imgA.src = imageForIndex(0);
+    if (imgB && !imgB.getAttribute('src')) imgB.src = imageForIndex(1);
     let scrollEndTimer;
     const goTo = (index) => {
         lockedIndex = index;
