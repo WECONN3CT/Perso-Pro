@@ -43,7 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let isScrolling = false;
     const clamp = (val, min, max) => Math.min(max, Math.max(min, val));
     let slideWidth = 0;
-    const updateSlideWidth = () => { slideWidth = list.clientWidth; };
+    const updateSlideWidth = () => {
+        const cards = list.querySelectorAll('.service-card');
+        const count = Math.max(1, cards.length);
+        // robustere Breite: Gesamt-Scrollbreite durch Anzahl Slides
+        slideWidth = Math.round(list.scrollWidth / count) || list.clientWidth;
+    };
     updateSlideWidth();
     window.addEventListener('resize', updateSlideWidth);
     let lockedIndex = 0;
@@ -132,14 +137,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Bildwechsel links passend zur Karte
     const imgA = document.getElementById('servicesImageA');
     const imgB = document.getElementById('servicesImageB');
-    const imageForIndex = (idx) => {
-        switch (idx) {
-            case 0: return 'images/leistungen/küchenhilfe.png';
-            case 1: return 'images/leistungen/servierer.png';
-            case 2: return 'images/leistungen/barista.png';
-            default: return 'images/leistungen/küchenhilfe.png';
-        }
-    };
+    const imageMap = [
+        'images/leistungen/küchenhilfe.png',
+        'images/leistungen/servierer.png',
+        'images/leistungen/barista.png'
+    ];
+    const imageForIndex = (idx) => imageMap[Math.max(0, Math.min(imageMap.length - 1, idx))];
     function updateServicesImage(idx) {
         if (!imgA || !imgB) return;
         const active = imgA.classList.contains('is-active') ? imgA : imgB;
