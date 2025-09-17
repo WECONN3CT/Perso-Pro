@@ -868,6 +868,62 @@ a:hover {
   color: var(--color-white);
 }
 
+/* Testimonials */
+.section-testimonials {
+  background: linear-gradient(180deg, #2A4A6B 0%, #1E3A5F 100%);
+  color: var(--color-white);
+}
+
+.testimonials-container { max-width: 1060px; }
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: start;
+}
+
+.testimonial {
+  text-align: center;
+}
+
+.testimonial .avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 999px;
+  object-fit: cover;
+  margin: 0 auto 1rem;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+}
+
+.testimonial .quote {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.92);
+  max-width: 48ch;
+  margin: 0.5rem auto 1.25rem;
+}
+
+.testimonial .author {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.95rem;
+}
+
+.testimonial .author .name {
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.testimonial .author .role { opacity: 0.85; }
+
+@media (max-width: 1024px) {
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+
 .section-title {
   font-size: 2.5rem;
   font-weight: 600;
