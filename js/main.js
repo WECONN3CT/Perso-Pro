@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateSlideWidth = () => { slideWidth = list.clientWidth; };
     updateSlideWidth();
     window.addEventListener('resize', updateSlideWidth);
-    window.addEventListener('load', () => { updateSlideWidth(); });
+    window.addEventListener('load', () => { updateSlideWidth(); imageMap.forEach(preload); });
     let lockedIndex = 0;
     // Initiale Quellen sicherstellen
     if (imgA && !imgA.getAttribute('src')) imgA.src = imageForIndex(0);
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // rAF-Throttling für butterweiche Updates
     let rafId = null;
     let lastLeft = 0;
-    const EPS = 0.002;
+    const EPS = 0.001;
     function updateOnRaf() {
         rafId = null;
         if (!imgA || !imgB) return;
