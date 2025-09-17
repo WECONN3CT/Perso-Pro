@@ -889,7 +889,7 @@ a:hover {
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.5rem, 3vw, 3rem);
+  gap: clamp(2rem, 6vw, 6rem);
   align-items: start;
 }
 
@@ -910,8 +910,8 @@ a:hover {
   font-size: 1.05rem;
   line-height: 1.9;
   color: rgba(255,255,255,0.92);
-  max-width: 48ch;
-  margin: 0.5rem auto 1.25rem;
+  max-width: 52ch;
+  margin: 1.1rem auto 1.6rem;
 }
 
 .testimonial .author {
