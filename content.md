@@ -3,19 +3,19 @@
 ## Homepage Texte
 
 ### Hero Section
-**Hauptüberschrift:** "Ihr vertrauensvoller Partner für Immobilien"
-**Untertitel:** "Seit über 15 Jahren erfolgreich in München und Umgebung - Verkauf, Vermietung und Bewertung aus einer Hand"
-**CTA Button:** "Kostenlose Beratung"
+**Hauptüberschrift:** "Personal, Entlastung, Zuverlässigkeit."
+**Untertitel:** "Kurzfristig einsatzbereite Kräfte für Küche, Service, Theke & Events – planbar und flexibel."
+**CTA Button:** "Personal anfragen"
 
 ### Über uns Preview
 **Überschrift:** "PersoPro – Ihr starker Partner für Gastronomie & Events"
 **Text:** "Wir unterstützen Betriebe mit flexibel einsetzbaren Servicekräften, Küchenhilfen und Thekenpersonal – zuverlässig, kurzfristig und planbar."
 
 ### Services
-1. **Verkauf** - Professionelle Vermarktung Ihrer Immobilie
-2. **Vermietung** - Zuverlässige Mietersuche und -betreuung  
-3. **Bewertung** - Kostenlose Immobilienbewertung
-4. **Beratung** - Umfassende Immobilienberatung
+1. **Küchenhilfe & Spülkraft** - Spülküche, Vorbereitung, Reinigung
+2. **Service & Runner** - Ausgabe, Abräumen, Buffet/Bankett  
+3. **Barista & Theke** - Kaffee, Ausschank, einfache Cocktails
+4. **Event-Support** - Auf-/Abbau, Logistik, Einlass
 
 ## Team Mitglieder
 
@@ -45,10 +45,9 @@
 
 ## Beispiel Immobilien-Beschreibungen
 
-### Immobilie 1
-**Titel:** "Exklusive 4-Zimmer Wohnung mit Balkon"
-**Beschreibung:** "Hochwertig sanierte Altbauwohnung in bester Lage von München-Schwabing. Große Zimmer, hohe Decken und ein sonniger Südbalkon machen diese Immobilie zu etwas Besonderem."
+### Beispiel-Profile
+**Profil:** "Küchenhilfe / Spülkraft"
+**Beschreibung:** "Unterstützung in Spülküche und Vorbereitung, zuverlässig, belastbar."
 
-### Immobilie 2  
-**Titel:** "Moderne 2-Zimmer Wohnung - Erstbezug"
-**Beschreibung:** "Neubau-Wohnung mit moderner Ausstattung und offener Küche. Ideal für Singles oder Paare, die zentral wohnen möchten."
+**Profil:** "Servicehilfe / Runner"  
+**Beschreibung:** "Routine in Buffet/Bankett, schnelle Wege, freundlicher Umgang."

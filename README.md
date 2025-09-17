@@ -2,12 +2,12 @@
 
 Statische Website für PersoPro – Personal für Gastronomie, Unternehmen und Events.
 
-## 🏠 Live Website
-[Besuchen Sie unsere Website](https://weconn3ct.github.io/Immobilien-Barut/)
+## 🌐 Live Website
+[Repository / Deployment folgt]
 
 ## ✨ Features
 - **Responsive Design** - Optimiert für alle Geräte (Desktop, Tablet, Mobile)
-- **Immobilien-Suche** - Dynamische Filter nach Typ, Ort, Preis und Zimmern
+- **Profile-Suche** - Dynamische Filter nach Rolle, Ort, Lohn und Schicht
 - **Kontaktformular** - Mit clientseitiger Validierung
 - **Team-Vorstellung** - Lernen Sie unser Team kennen
 - **SEO-optimiert** - Für beste Sichtbarkeit in Suchmaschinen
@@ -22,7 +22,7 @@ Statische Website für PersoPro – Personal für Gastronomie, Unternehmen und E
 ```
 /
 ├── index.html              # Homepage
-├── immobilien.html         # Immobilien-Übersicht
+├── immobilien.html         # Leistungen / Profile-Übersicht
 ├── ueber-uns.html          # Über uns Seite
 ├── kontakt.html            # Kontaktseite
 ├── impressum.html          # Impressum
@@ -31,19 +31,19 @@ Statische Website für PersoPro – Personal für Gastronomie, Unternehmen und E
 │   └── style.css          # Haupt-Stylesheet
 ├── js/
 │   ├── main.js           # Allgemeine Funktionen
-│   └── properties.js     # Immobilien-Filter
+│   └── properties.js     # Profile-Filter
 ├── data/
-│   └── properties.json   # Immobilien-Daten
+│   └── profiles.json     # Profile-Daten
 └── images/               # Bilder und Assets
 ```
 
 ## 🚀 Lokale Entwicklung
 ```bash
 # Repository klonen
-git clone https://github.com/WECONN3CT/Immobilien-Barut.git
+git clone https://github.com/WECONN3CT/Perso-Pro.git
 
 # In das Verzeichnis wechseln
-cd Immobilien-Barut
+cd Perso-Pro
 
 # Mit lokalem Server starten (Python)
 python3 -m http.server 8000
@@ -60,8 +60,8 @@ npx http-server
 - Mobile Browser (iOS Safari, Chrome Mobile)
 
 ## 📄 Seiten
-- **Homepage** - Hero Section, Services, Featured Properties
-- **Immobilien** - Alle Immobilien mit Filter und Sortierung
+- **Homepage** - Hero Section, Services, Featured Profiles
+- **Leistungen** - Profile mit Filter und Sortierung
 - **Über uns** - Firmengeschichte und Team
 - **Kontakt** - Kontaktformular und Standort
 - **Impressum** - Rechtliche Informationen
