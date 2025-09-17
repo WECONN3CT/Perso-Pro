@@ -1053,7 +1053,7 @@ a:hover {
 /* Sticky Services Layout */
 .services-sticky {
   display: grid;
-  grid-template-columns: 1fr 1.2fr; /* links sticky Bild, rechts Liste */
+  grid-template-columns: 1fr 1fr; /* links Bild (50%), rechts Carousel (50%) */
   gap: var(--spacing-3xl);
   align-items: stretch; /* wichtig: linke Spalte erhält volle Section-Höhe, damit sticky am Ende löst */
 }
@@ -1096,8 +1096,8 @@ a:hover {
 .service-card {
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  flex: 0 0 50%;
-  width: 50%;
+  flex: 0 0 100%;
+  width: 100%;
   height: var(--services-viewport);
   display: flex;
   flex-direction: column;
