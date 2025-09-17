@@ -731,6 +731,69 @@ a:hover {
   background: var(--color-light-gray);
 }
 
+/* Roles Section (seamless under hero) */
+.section-roles {
+  padding-top: 0; /* nahtlos an Hero */
+  background: linear-gradient(180deg, rgba(20,184,166,0.08) 0%, rgba(20,184,166,0.06) 100%);
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.roles-accent {
+  height: 12px;
+  width: 160px;
+  margin: 0 auto 1.75rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-dark-orange), var(--color-light-orange));
+  filter: drop-shadow(0 6px 12px rgba(20,184,166,0.25));
+  animation: roles-accent-scan 1.6s ease-out both;
+}
+
+@keyframes roles-accent-scan {
+  0% { transform: translateX(-40px); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateX(40px); opacity: 1; }
+}
+
+.roles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+.role-card {
+  text-align: center;
+  padding: 1rem 0.5rem 0;
+}
+
+.role-icon {
+  height: 88px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 0.75rem;
+  color: var(--color-charcoal);
+}
+
+.role-title {
+  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  color: var(--color-navy);
+  margin-bottom: 0.75rem;
+}
+
+.role-desc {
+  color: var(--color-dark-gray);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 1024px) {
+  .roles-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .roles-grid { grid-template-columns: 1fr; }
+}
+
 .section-dark {
   padding: 4rem 0;
   background: var(--color-navy);
