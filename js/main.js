@@ -44,13 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const clamp = (val, min, max) => Math.min(max, Math.max(min, val));
     let slideWidth = 0;
     const updateSlideWidth = () => {
-        const cards = list.querySelectorAll('.service-card');
-        const count = Math.max(1, cards.length);
-        // robustere Breite: Gesamt-Scrollbreite durch Anzahl Slides
-        slideWidth = Math.round(list.scrollWidth / count) || list.clientWidth;
+        const first = list.querySelector('.service-card');
+        if (first) {
+            slideWidth = Math.round(first.getBoundingClientRect().width);
+        } else {
+            slideWidth = list.clientWidth;
+        }
     };
     updateSlideWidth();
     window.addEventListener('resize', updateSlideWidth);
+    window.addEventListener('load', () => { updateSlideWidth(); });
     let lockedIndex = 0;
     // Crossfade state for left image
     let baseImageIndex = 0;
@@ -58,6 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (imgA && imgB) {
         imgA.src = imageForIndex(baseImageIndex);
         imgB.src = imageForIndex(nextImageIndex);
+        imgA.classList.add('is-active');
+        imgB.classList.remove('is-active');
         imgA.style.opacity = '1';
         imgB.style.opacity = '0';
     }
@@ -89,6 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const scaleNext = 1.02 - 0.02 * progress;
             imgA.style.transform = `scale(${scaleBase})`;
             imgB.style.transform = `scale(${scaleNext})`;
+            if (progress > 0.5) {
+                imgB.classList.add('is-active');
+                imgA.classList.remove('is-active');
+            } else {
+                imgA.classList.add('is-active');
+                imgB.classList.remove('is-active');
+            }
         }
         scrollEndTimer = setTimeout(() => {
             lockedIndex = Math.round(list.scrollLeft / slideWidth);
