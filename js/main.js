@@ -36,6 +36,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Docked-to-Hero behavior (removed)
 });
 
+// Smooth vertical snap progression on wheel for services list (desktop)
+document.addEventListener('DOMContentLoaded', () => {
+    const list = document.querySelector('.services-list');
+    if (!list) return;
+    let isScrolling = false;
+    list.addEventListener('wheel', (e) => {
+        // apply only on non-touch large screens
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches === false) return;
+        e.preventDefault();
+        if (isScrolling) return;
+        isScrolling = true;
+        const direction = e.deltaY > 0 ? 1 : -1;
+        const cards = Array.from(list.querySelectorAll('.service-card'));
+        const current = cards.findIndex(card => Math.abs(card.getBoundingClientRect().top - list.getBoundingClientRect().top) < 20);
+        const nextIndex = Math.min(cards.length - 1, Math.max(0, (current === -1 ? 0 : current) + direction));
+        const next = cards[nextIndex];
+        next && next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => { isScrolling = false; }, 420);
+    }, { passive: false });
+});
+
 // ===================================
 // Mobile Navigation
 // ===================================
