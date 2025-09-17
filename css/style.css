@@ -1093,6 +1093,11 @@ a:hover {
   filter: none;
 }
 
+/* Während der Scroll-Synchronisation: keine Transition-Ruckler */
+.sticky-media.scrubbing .services-image {
+  transition: none !important;
+}
+
 /* weicher Übergang vom Bild zur Karte (rechts) */
 .sticky-media::after {
   content: "";

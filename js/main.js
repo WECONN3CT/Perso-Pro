@@ -83,13 +83,52 @@ document.addEventListener('DOMContentLoaded', () => {
         lockedIndex = index;
         list.scrollTo({ left: lockedIndex * slideWidth, behavior: 'smooth' });
     };
+    // Smooth, progress-basierte Bildüberblendung beim Scrollen
+    const stickyMedia = document.querySelector('.sticky-media');
     list.addEventListener('scroll', () => {
+        if (!imgA || !imgB) return;
+        // progress zwischen 0..1 bezogen auf aktuellen Slide
+        const progressRaw = (list.scrollLeft / slideWidth);
+        const base = Math.floor(progressRaw);
+        const t = Math.min(1, Math.max(0, progressRaw - base));
+        const nextIndex = Math.min(imageMap.length - 1, base + 1);
+        // set sources falls nötig
+        const baseSrc = imageForIndex(base);
+        const nextSrc = imageForIndex(nextIndex);
+        const front = activeIsA ? imgA : imgB;
+        const back  = activeIsA ? imgB : imgA;
+        if (front.src.indexOf(baseSrc) === -1) front.src = baseSrc;
+        if (back.src.indexOf(nextSrc) === -1) back.src = nextSrc;
+        // scrubbing mode -> transitions aus
+        stickyMedia && stickyMedia.classList.add('scrubbing');
+        // weicher Crossfade anhand von t
+        front.style.opacity = String(1 - t);
+        back.style.opacity = String(t);
+        const scaleFrom = 1.04, scaleTo = 1.0;
+        const ease = (x) => 1 - Math.pow(1 - x, 2); // easeOutQuad
+        const eased = ease(t);
+        back.style.transform = `scale(${(scaleFrom + (scaleTo - scaleFrom) * eased).toFixed(4)})`;
+        front.style.transform = `scale(${(scaleTo + (scaleFrom - scaleTo) * eased).toFixed(4)})`;
+
         clearTimeout(scrollEndTimer);
         scrollEndTimer = setTimeout(() => {
+            // am Ende des Scroll-Gestures sauber auf nächsten Zustand einrasten
             lockedIndex = Math.round(list.scrollLeft / slideWidth);
-            isScrolling = false;
-            updateServicesImage(lockedIndex);
-        }, 120);
+            // Klassen für finalen Zustand setzen
+            const wantSrc = imageForIndex(lockedIndex);
+            const current = activeIsA ? imgA : imgB;
+            const next = activeIsA ? imgB : imgA;
+            current.src = wantSrc;
+            current.classList.add('is-active');
+            next.classList.remove('is-active');
+            // Opacity/Transform zurücksetzen, transitions wieder an
+            current.style.opacity = '';
+            next.style.opacity = '';
+            current.style.transform = '';
+            next.style.transform = '';
+            stickyMedia && stickyMedia.classList.remove('scrubbing');
+            activeIsA = true; // setze A als aktives Layer nach Abschluss
+        }, 80);
     });
 
     // Kein Wheel-Override mehr: native horizontale Scroll-/Snap-Physik sorgt für flüssiges Verhalten
