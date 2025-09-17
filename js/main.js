@@ -30,8 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Stats counter animation
     initStatsCounters();
 
-    // Docked-to-Hero behavior
-    initDockedHero();
+    // Docked-to-Hero behavior (removed)
 });
 
 // ===================================
@@ -582,36 +581,4 @@ function initStatsCounters() {
     counters.forEach(el => observer.observe(el));
 }
 
-// ===================================
-// Docked-to-Hero Behavior
-// ===================================
-
-function initDockedHero() {
-    const hero = document.querySelector('.dockable-hero');
-    const trigger = document.getElementById('hero-trigger');
-    if (!hero || !trigger) return;
-
-    // Start in docked state; expand when trigger enters viewport
-    const expand = () => {
-        hero.classList.remove('is-docked');
-        hero.classList.add('is-expanded');
-        hero.setAttribute('data-hero-state', 'expanded');
-    };
-    const dock = () => {
-        hero.classList.add('is-docked');
-        hero.classList.remove('is-expanded');
-        hero.setAttribute('data-hero-state', 'docked');
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                expand();
-            } else {
-                dock();
-            }
-        });
-    }, { root: null, threshold: 0.01, rootMargin: '0px 0px -80% 0px' });
-
-    observer.observe(trigger);
-}
+// (removed) Docked-to-Hero Behavior

@@ -257,59 +257,7 @@ a:hover {
 }
 
 /* Invisible top trigger spacer for IntersectionObserver */
-.hero-trigger { height: 1px; width: 1px; position: relative; top: -1px; }
-
-/* Docked-to-Hero behavior */
-.dockable-hero {
-  transition: width 520ms cubic-bezier(0.22, 1, 0.36, 1),
-              height 520ms cubic-bezier(0.22, 1, 0.36, 1),
-              border-radius 520ms cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
-              transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
-              background-position 520ms cubic-bezier(0.22, 1, 0.36, 1),
-              color 520ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.dockable-hero.is-docked {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  z-index: 50;
-  width: 320px;
-  height: 180px;
-  padding: 0; /* visual compact */
-  border-radius: 18px;
-  opacity: 0.92;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.18);
-  overflow: hidden;
-  will-change: transform, opacity, border-radius;
-}
-
-.dockable-hero.is-docked .container { height: 100%; }
-.dockable-hero.is-docked .hero-media { height: 100%; aspect-ratio: auto; grid-template-columns: 1fr; }
-.dockable-hero.is-docked .hero-content { padding: 12px; margin: 0; text-align: left; }
-.dockable-hero.is-docked .hero-title { color: var(--color-white); font-size: 1.05rem; margin-bottom: 0.25rem; }
-.dockable-hero.is-docked .hero-subtitle { color: rgba(255,255,255,0.95); font-size: 0.85rem; margin-bottom: 0.5rem; }
-.dockable-hero.is-docked .hero-actions .btn { transform: translateY(6px); opacity: 0; transition: opacity 380ms 140ms, transform 380ms 140ms; padding: 0.4rem 0.7rem; font-size: 0.85rem; }
-.dockable-hero.is-docked .hero-side-image { transform: scale(0.98); opacity: 0.0; transition: transform 520ms, opacity 520ms; }
-
-.dockable-hero.is-expanded {
-  position: static;
-  width: auto;
-  height: auto;
-  border-radius: 12px;
-  opacity: 1;
-  box-shadow: none;
-}
-
-.dockable-hero.is-expanded .hero-side-image { transform: scale(1); opacity: 1; }
-.dockable-hero.is-expanded .hero-actions .btn { opacity: 1; transform: translateY(0); }
-
-/* Text color switch inside hero when expanded */
-.dockable-hero .hero-title,
-.dockable-hero .hero-subtitle { transition: color 520ms cubic-bezier(0.22, 1, 0.36, 1); }
-.dockable-hero.is-expanded .hero-title,
-.dockable-hero.is-expanded .hero-subtitle { color: var(--color-white); }
+.hero-trigger {}
 
 
 /* Full-width container for hero only */
