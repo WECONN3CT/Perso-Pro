@@ -42,6 +42,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!list) return;
     let isScrolling = false;
     const clamp = (val, min, max) => Math.min(max, Math.max(min, val));
+    let slideWidth = 0;
+    const updateSlideWidth = () => { slideWidth = list.clientWidth; };
+    updateSlideWidth();
+    window.addEventListener('resize', updateSlideWidth);
+    let lockedIndex = 0;
+    let scrollEndTimer;
+    const goTo = (index) => {
+        lockedIndex = index;
+        list.scrollTo({ left: lockedIndex * slideWidth, behavior: 'smooth' });
+    };
+    list.addEventListener('scroll', () => {
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(() => {
+            lockedIndex = Math.round(list.scrollLeft / slideWidth);
+            isScrolling = false;
+        }, 120);
+    });
 
     list.addEventListener('wheel', (e) => {
         // apply only on non-touch large screens
@@ -54,10 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const delta = e.deltaX;
         const direction = delta > 0 ? 1 : -1;
         const cards = list.querySelectorAll('.service-card');
-        const slideWidth = list.clientWidth; // eine Karte = 100% der rechten Spalte
-        const currentIndex = Math.round(list.scrollLeft / slideWidth);
-        const nextIndex = clamp(currentIndex + direction, 0, cards.length - 1);
-        list.scrollTo({ left: nextIndex * slideWidth, behavior: 'smooth' });
+        updateSlideWidth();
+        const nextIndex = clamp(lockedIndex + direction, 0, cards.length - 1);
+        goTo(nextIndex);
         setTimeout(() => { isScrolling = false; }, 420);
     }, { passive: false });
 
@@ -65,11 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
     list.addEventListener('keydown', (e) => {
         if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
         const cards = list.querySelectorAll('.service-card');
-        const slideWidth = list.clientWidth;
-        const currentIndex = Math.round(list.scrollLeft / slideWidth);
-        const nextIndex = e.key === 'ArrowRight' ? clamp(currentIndex + 1, 0, cards.length - 1)
-                                                 : clamp(currentIndex - 1, 0, cards.length - 1);
-        list.scrollTo({ left: nextIndex * slideWidth, behavior: 'smooth' });
+        updateSlideWidth();
+        const nextIndex = e.key === 'ArrowRight' ? clamp(lockedIndex + 1, 0, cards.length - 1)
+                                                 : clamp(lockedIndex - 1, 0, cards.length - 1);
+        goTo(nextIndex);
     });
 
     // Touch swipe (links/rechts)
@@ -93,10 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (Math.abs(dx) <= Math.abs(dy) || Math.abs(dx) < SWIPE_THRESHOLD) return; // nur horizontale, deutliche Wischgesten
         const direction = dx < 0 ? 1 : -1;
         const cards = list.querySelectorAll('.service-card');
-        const slideWidth = list.clientWidth;
-        const currentIndex = Math.round(list.scrollLeft / slideWidth);
-        const nextIndex = clamp(currentIndex + direction, 0, cards.length - 1);
-        list.scrollTo({ left: nextIndex * slideWidth, behavior: 'smooth' });
+        updateSlideWidth();
+        const nextIndex = clamp(lockedIndex + direction, 0, cards.length - 1);
+        goTo(nextIndex);
     }, { passive: true });
 });
 
