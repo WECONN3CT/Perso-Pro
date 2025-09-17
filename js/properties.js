@@ -19,16 +19,17 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 async function loadProperties() {
     try {
-        const response = await fetch('data/properties.json');
+        const response = await fetch('data/profiles.json');
         const data = await response.json();
-        allProperties = data.properties;
+        // profiles: [{ id, title, role, wage, location, region, experience, shift, skills, images }]
+        allProperties = data.profiles || [];
         filteredProperties = [...allProperties];
         displayProperties();
         updateResultsCount();
     } catch (error) {
         console.error('Error loading properties:', error);
         document.getElementById('propertiesGrid').innerHTML = 
-            '<p class="text-center">Fehler beim Laden der Immobilien. Bitte versuchen Sie es später erneut.</p>';
+            '<p class="text-center">Fehler beim Laden der Profile. Bitte versuchen Sie es später erneut.</p>';
     }
 }
 
@@ -53,53 +54,39 @@ function displayProperties() {
     
     grid.innerHTML = propertiesToShow.map(property => `
         <article class="property-card" id="property-${property.id}">
-            <img src="${property.images[0] || 'images/properties/placeholder.jpg'}" 
-                 alt="${property.title}" 
+            <img src="${(property.images && property.images[0]) || 'images/start/persohero.png'}" 
+                 alt="${property.title || property.role}" 
                  class="property-image"
                  loading="lazy">
             <div class="property-content">
                 <div class="property-price">
-                    ${formatPrice(property.price, property.type)}
+                    ${formatWage(property.wage)}
                 </div>
-                <h3 class="property-title">${property.title}</h3>
+                <h3 class="property-title">${property.title || property.role}</h3>
                 <div class="property-location">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                         <circle cx="12" cy="10" r="3"></circle>
                     </svg>
-                    ${property.location}
+                    ${property.location || ''}
                 </div>
                 <div class="property-features">
                     <span class="property-feature">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                            <line x1="9" y1="6" x2="15" y2="6"></line>
-                            <line x1="9" y1="10" x2="15" y2="10"></line>
+                            <path d="M12 20a8 8 0 1 0-8-8 8 8 0 0 0 8 8z"></path>
                         </svg>
-                        ${property.rooms} Zimmer
+                        ${property.experience ? `${property.experience} Jahre Erfahrung` : 'Erfahrung: n/a'}
                     </span>
                     <span class="property-feature">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="3" y1="9" x2="21" y2="9"></line>
-                            <line x1="9" y1="21" x2="9" y2="9"></line>
+                            <path d="M3 12h18M12 3v18"></path>
                         </svg>
-                        ${property.size} m²
+                        ${property.shift ? `Schicht: ${property.shift}` : 'Schicht: flexibel'}
                     </span>
-                    ${property.bathrooms ? `
-                    <span class="property-feature">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 6l.5-1.5c.3-.9 1.1-1.5 2-1.5s1.7.6 2 1.5L14 6"></path>
-                            <path d="M5 12h14a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-4a1 1 0 0 1 1-1z"></path>
-                            <path d="M8 21v1m8-1v1"></path>
-                        </svg>
-                        ${property.bathrooms} Bad
-                    </span>
-                    ` : ''}
                 </div>
-                <button class="property-link" onclick="showPropertyDetails(${property.id})">
-                    Details ansehen →
-                </button>
+                <a class="property-link" href="kontakt.html?profile=${property.id}&role=${encodeURIComponent(property.role || '')}">
+                    Personal anfragen →
+                </a>
             </div>
         </article>
     `).join('');
@@ -131,40 +118,34 @@ function initializeFilters() {
 }
 
 function applyFilters() {
-    const type = document.getElementById('typeFilter').value;
-    const location = document.getElementById('locationFilter').value;
-    const maxPrice = document.getElementById('priceFilter').value;
-    const rooms = document.getElementById('roomsFilter').value;
+    const role = document.getElementById('typeFilter').value; // Rolle
+    const region = document.getElementById('locationFilter').value; // Einsatzort
+    const maxWage = document.getElementById('priceFilter').value; // Stundenlohn bis
+    const shift = document.getElementById('roomsFilter').value; // Schicht
     
     filteredProperties = allProperties.filter(property => {
         let matches = true;
         
-        // Type filter
-        if (type && property.type !== type) {
+        // Role filter
+        if (role && !(property.role || '').includes(role)) {
             matches = false;
         }
         
-        // Location filter
-        if (location && !property.location.includes(location)) {
+        // Region filter
+        if (region && (property.region !== region)) {
             matches = false;
         }
         
-        // Price filter
-        if (maxPrice) {
-            const propertyPrice = property.type === 'Miete' ? property.price * 100 : property.price;
-            if (propertyPrice > parseInt(maxPrice)) {
+        // Wage filter
+        if (maxWage) {
+            if (parseFloat(property.wage || 0) > parseFloat(maxWage)) {
                 matches = false;
             }
         }
         
-        // Rooms filter
-        if (rooms) {
-            const roomCount = parseInt(rooms);
-            if (roomCount === 5) {
-                if (property.rooms < 5) matches = false;
-            } else {
-                if (property.rooms !== roomCount) matches = false;
-            }
+        // Shift filter
+        if (shift) {
+            if ((property.shift || '') !== shift) matches = false;
         }
         
         return matches;
@@ -200,25 +181,14 @@ function sortProperties() {
     const sortValue = document.getElementById('sortSelect').value;
     
     switch(sortValue) {
-        case 'price-asc':
-            filteredProperties.sort((a, b) => {
-                const priceA = a.type === 'Miete' ? a.price * 100 : a.price;
-                const priceB = b.type === 'Miete' ? b.price * 100 : b.price;
-                return priceA - priceB;
-            });
+        case 'wage-asc':
+            filteredProperties.sort((a, b) => (parseFloat(a.wage || 0) - parseFloat(b.wage || 0)));
             break;
-        case 'price-desc':
-            filteredProperties.sort((a, b) => {
-                const priceA = a.type === 'Miete' ? a.price * 100 : a.price;
-                const priceB = b.type === 'Miete' ? b.price * 100 : b.price;
-                return priceB - priceA;
-            });
+        case 'wage-desc':
+            filteredProperties.sort((a, b) => (parseFloat(b.wage || 0) - parseFloat(a.wage || 0)));
             break;
-        case 'size-desc':
-            filteredProperties.sort((a, b) => b.size - a.size);
-            break;
-        case 'rooms-desc':
-            filteredProperties.sort((a, b) => b.rooms - a.rooms);
+        case 'experience-desc':
+            filteredProperties.sort((a, b) => (parseFloat(b.experience || 0) - parseFloat(a.experience || 0)));
             break;
     }
     
@@ -357,15 +327,16 @@ function changeModalImage(imageSrc) {
 // Utility Functions
 // ===================================
 
-function formatPrice(price, type = 'Kauf') {
-    const formatted = price.toLocaleString('de-DE');
-    return type === 'Miete' ? `${formatted} €/Monat` : `${formatted} €`;
+function formatWage(wage) {
+    const value = Number(wage || 0);
+    const formatted = value.toLocaleString('de-DE', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+    return `${formatted} €/Std`;
 }
 
 function updateResultsCount() {
     const countElement = document.getElementById('resultsCount');
     const count = filteredProperties.length;
-    countElement.textContent = `${count} ${count === 1 ? 'Immobilie' : 'Immobilien'} gefunden`;
+    countElement.textContent = `${count} ${count === 1 ? 'Profil' : 'Profile'} gefunden`;
 }
 
 // ===================================

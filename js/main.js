@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth Scrolling
     initSmoothScrolling();
     
-    // Load Featured Properties on Homepage
+    // Load Featured Profiles on Homepage
     if (document.getElementById('featuredProperties')) {
         loadFeaturedProperties();
         initPropertiesCarousel();
@@ -111,57 +111,51 @@ function initSmoothScrolling() {
 }
 
 // ===================================
-// Load Featured Properties
+// Load Featured Profiles
 // ===================================
 
 async function loadFeaturedProperties() {
     try {
-        const response = await fetch('data/properties.json');
+        const response = await fetch('data/profiles.json');
         const data = await response.json();
         
         const featuredContainer = document.getElementById('featuredProperties');
         if (!featuredContainer) return;
         
-        // Display first 8 properties as featured (carousel shows 4 per page)
-        const featuredProperties = data.properties.slice(0, 8);
+        // Display first 8 profiles as featured (carousel shows 4 per page)
+        const featuredProfiles = (data.profiles || []).slice(0, 8);
         
-        featuredContainer.innerHTML = featuredProperties.map(property => `
+        featuredContainer.innerHTML = featuredProfiles.map(profile => `
             <article class="property-card">
-                <img src="${property.images[0] || 'images/properties/placeholder.jpg'}" 
-                     alt="${property.title}" 
+                <img src="${(profile.images && profile.images[0]) || 'images/start/persohero.png'}" 
+                     alt="${profile.title || profile.role}" 
                      class="property-image"
                      loading="lazy">
                 <div class="property-content">
-                    <div class="property-price">
-                        ${property.type === 'Miete' ? property.price.toLocaleString('de-DE') + ' €/Monat' : property.price.toLocaleString('de-DE') + ' €'}
-                    </div>
-                    <h3 class="property-title">${property.title}</h3>
+                    <div class="property-price">${(Number(profile.wage||0)).toLocaleString('de-DE')} €/Std</div>
+                    <h3 class="property-title">${profile.title || profile.role}</h3>
                     <div class="property-location">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                             <circle cx="12" cy="10" r="3"></circle>
                         </svg>
-                        ${property.location}
+                        ${profile.location || ''}
                     </div>
                     <div class="property-features">
                         <span class="property-feature">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                                <line x1="9" y1="6" x2="15" y2="6"></line>
-                                <line x1="9" y1="10" x2="15" y2="10"></line>
+                                <path d="M12 20a8 8 0 1 0-8-8 8 8 0 0 0 8 8z"></path>
                             </svg>
-                            ${property.rooms} Zimmer
+                            ${profile.experience ? `${profile.experience} Jahre` : 'Erfahrung n/a'}
                         </span>
                         <span class="property-feature">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="3" y1="9" x2="21" y2="9"></line>
-                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                                <path d="M3 12h18M12 3v18"></path>
                             </svg>
-                            ${property.size} m²
+                            ${profile.shift ? `Schicht: ${profile.shift}` : 'Schicht: flexibel'}
                         </span>
                     </div>
-                    <a href="immobilien.html#property-${property.id}" class="property-link">Details ansehen →</a>
+                    <a href="kontakt.html?profile=${profile.id}" class="property-link">Personal anfragen →</a>
                 </div>
             </article>
         `).join('');
@@ -169,7 +163,7 @@ async function loadFeaturedProperties() {
         console.error('Error loading properties:', error);
         const featuredContainer = document.getElementById('featuredProperties');
         if (featuredContainer) {
-            featuredContainer.innerHTML = '<p class="text-center">Immobilien werden geladen...</p>';
+            featuredContainer.innerHTML = '<p class="text-center">Profile werden geladen...</p>';
         }
     }
 }

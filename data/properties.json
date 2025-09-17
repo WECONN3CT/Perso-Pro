@@ -1,302 +1,56 @@
 {
-  "properties": [
+  "profiles": [
     {
-      "id": 1,
-      "title": "Exklusive 4-Zimmer Wohnung mit Balkon",
-      "type": "Kauf",
-      "price": 850000,
-      "location": "München Schwabing",
-      "address": "Leopoldstraße 45",
-      "size": 125,
-      "rooms": 4,
-      "bedrooms": 3,
-      "bathrooms": 2,
-      "year": 2018,
-      "energy": "B",
-      "images": [
-        "images/properties/property1-1.jpg",
-        "images/properties/property1-2.jpg",
-        "images/properties/property1-3.jpg"
-      ],
-      "description": "Hochwertig sanierte Altbauwohnung in bester Lage von München-Schwabing. Große Zimmer, hohe Decken und ein sonniger Südbalkon machen diese Immobilie zu etwas Besonderem. Die Wohnung wurde 2018 kernsaniert und verfügt über eine moderne Ausstattung.",
-      "features": [
-        "Balkon",
-        "Aufzug",
-        "Tiefgarage",
-        "Einbauküche",
-        "Parkett",
-        "Fußbodenheizung",
-        "Keller"
-      ],
-      "featured": true,
-      "available": true
+      "id": 101,
+      "title": "Küchenhilfe / Spülkraft",
+      "role": "kueche",
+      "wage": 16.5,
+      "location": "München",
+      "region": "muenchen",
+      "experience": 2,
+      "shift": "frueh",
+      "skills": ["Spülküche", "Vorbereitung", "Reinigung"],
+      "images": ["images/start/persohero.png"],
+      "description": "Unterstützung in Spülküche und Vorbereitung, zuverlässig, belastbar."
     },
     {
-      "id": 2,
-      "title": "Moderne 2-Zimmer Wohnung - Erstbezug",
-      "type": "Miete",
-      "price": 1850,
-      "location": "München Maxvorstadt",
-      "address": "Theresienstraße 78",
-      "size": 65,
-      "rooms": 2,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "year": 2024,
-      "energy": "A+",
-      "images": [
-        "images/properties/property2-1.jpg",
-        "images/properties/property2-2.jpg"
-      ],
-      "description": "Neubau-Wohnung mit moderner Ausstattung und offener Küche. Ideal für Singles oder Paare, die zentral wohnen möchten. Die Wohnung verfügt über bodentiefe Fenster und eine hochwertige Einbauküche.",
-      "features": [
-        "Einbauküche",
-        "Loggia",
-        "Aufzug",
-        "Keller",
-        "Fahrradraum",
-        "Barrierefreier Zugang"
-      ],
-      "featured": true,
-      "available": true
+      "id": 102,
+      "title": "Servicehilfe / Runner",
+      "role": "service",
+      "wage": 18,
+      "location": "München & Umland",
+      "region": "umland",
+      "experience": 3,
+      "shift": "wochenende",
+      "skills": ["Ausgabe", "Abräumen", "Buffet"],
+      "images": ["images/start/persohero.png"],
+      "description": "Routine in Buffet/Bankett, schnelle Wege, freundlicher Umgang."
     },
     {
-      "id": 3,
-      "title": "Charmantes Einfamilienhaus mit Garten",
-      "type": "Kauf",
-      "price": 1250000,
-      "location": "München Bogenhausen",
-      "address": "Möhlstraße 15",
-      "size": 180,
-      "rooms": 6,
-      "bedrooms": 4,
-      "bathrooms": 2,
-      "year": 1995,
-      "energy": "D",
-      "images": [
-        "images/properties/property3-1.jpg",
-        "images/properties/property3-2.jpg",
-        "images/properties/property3-3.jpg"
-      ],
-      "description": "Familienfreundliches Einfamilienhaus in ruhiger Lage von Bogenhausen. Der große Garten mit altem Baumbestand bietet viel Platz für Kinder. Das Haus wurde kontinuierlich modernisiert und gepflegt.",
-      "features": [
-        "Garten",
-        "Garage",
-        "Terrasse",
-        "Kamin",
-        "Sauna",
-        "Einbauküche",
-        "Keller",
-        "Dachboden"
-      ],
-      "featured": true,
-      "available": true
+      "id": 103,
+      "title": "Barista / Theke",
+      "role": "theke",
+      "wage": 20,
+      "location": "München",
+      "region": "muenchen",
+      "experience": 4,
+      "shift": "spaet",
+      "skills": ["Siebräger", "Milchschaum", "Ausschank"],
+      "images": ["images/start/persohero.png"],
+      "description": "Kaffeespezialitäten, Ausschank, einfache Cocktails, Kassenroutine."
     },
     {
-      "id": 4,
-      "title": "Bürofläche in Top-Lage",
-      "type": "Miete",
-      "price": 3500,
-      "location": "München Innenstadt",
-      "address": "Marienplatz 8",
-      "size": 150,
-      "rooms": 5,
-      "bedrooms": 0,
-      "bathrooms": 2,
-      "year": 2010,
-      "energy": "C",
-      "images": [
-        "images/properties/property4-1.jpg",
-        "images/properties/property4-2.jpg"
-      ],
-      "description": "Repräsentative Bürofläche direkt am Marienplatz. Die Räumlichkeiten eignen sich ideal für Kanzleien, Agenturen oder Beratungsunternehmen. Klimaanlage und moderne IT-Infrastruktur vorhanden.",
-      "features": [
-        "Klimaanlage",
-        "Aufzug",
-        "Serverraum",
-        "Konferenzraum",
-        "Teeküche",
-        "Barrierefreier Zugang"
-      ],
-      "featured": false,
-      "available": true
-    },
-    {
-      "id": 5,
-      "title": "Gemütliche 3-Zimmer Wohnung mit Terrasse",
-      "type": "Kauf",
-      "price": 650000,
-      "location": "München Sendling",
-      "address": "Plinganserstraße 42",
-      "size": 85,
-      "rooms": 3,
-      "bedrooms": 2,
-      "bathrooms": 1,
-      "year": 2005,
-      "energy": "C",
-      "images": [
-        "images/properties/property5-1.jpg",
-        "images/properties/property5-2.jpg"
-      ],
-      "description": "Helle und freundliche Wohnung mit großer Sonnenterrasse in Sendling. Die Wohnung befindet sich im 2. OG eines gepflegten Mehrfamilienhauses und bietet einen schönen Blick ins Grüne.",
-      "features": [
-        "Terrasse",
-        "Einbauküche",
-        "Kellerabteil",
-        "Fahrradraum",
-        "Parkett",
-        "Gäste-WC"
-      ],
-      "featured": false,
-      "available": true
-    },
-    {
-      "id": 6,
-      "title": "Luxus-Penthouse mit Dachterrasse",
-      "type": "Kauf",
-      "price": 2500000,
-      "location": "München Lehel",
-      "address": "Prinzregentenstraße 90",
-      "size": 220,
-      "rooms": 5,
-      "bedrooms": 3,
-      "bathrooms": 3,
-      "year": 2020,
-      "energy": "A",
-      "images": [
-        "images/properties/property6-1.jpg",
-        "images/properties/property6-2.jpg",
-        "images/properties/property6-3.jpg"
-      ],
-      "description": "Exklusives Penthouse mit spektakulärem Blick über München. Die 150m² große Dachterrasse bietet absolute Privatsphäre. Hochwertigste Ausstattung mit Smart-Home-System und Designer-Einbauküche.",
-      "features": [
-        "Dachterrasse",
-        "Aufzug direkt in Wohnung",
-        "Smart Home",
-        "Klimaanlage",
-        "Weinkühlschrank",
-        "Tiefgarage (3 Stellplätze)",
-        "Concierge-Service"
-      ],
-      "featured": false,
-      "available": true
-    },
-    {
-      "id": 7,
-      "title": "Studentenwohnung in Uni-Nähe",
-      "type": "Miete",
-      "price": 950,
-      "location": "München Maxvorstadt",
-      "address": "Schellingstraße 55",
-      "size": 35,
-      "rooms": 1,
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "year": 2015,
-      "energy": "B",
-      "images": [
-        "images/properties/property7-1.jpg",
-        "images/properties/property7-2.jpg"
-      ],
-      "description": "Perfekte Studentenwohnung in unmittelbarer Nähe zur LMU. Die Wohnung ist möbliert und sofort bezugsfertig. Alle Geschäfte des täglichen Bedarfs sowie U-Bahn in Gehweite.",
-      "features": [
-        "Möbliert",
-        "Einbauküche",
-        "Internet inklusive",
-        "Waschmaschine",
-        "Kellerabteil"
-      ],
-      "featured": false,
-      "available": true
-    },
-    {
-      "id": 8,
-      "title": "Doppelhaushälfte mit Einliegerwohnung",
-      "type": "Kauf",
-      "price": 980000,
-      "location": "München Pasing",
-      "address": "Am Schützeneck 12",
-      "size": 160,
-      "rooms": 7,
-      "bedrooms": 5,
-      "bathrooms": 3,
-      "year": 1998,
-      "energy": "D",
-      "images": [
-        "images/properties/property8-1.jpg",
-        "images/properties/property8-2.jpg"
-      ],
-      "description": "Ideal für Mehrgenerationen-Wohnen oder als Kapitalanlage. Die Einliegerwohnung ist separat zugänglich und vermietet. Großer Garten mit Südausrichtung und Doppelgarage.",
-      "features": [
-        "Einliegerwohnung",
-        "Garten",
-        "Doppelgarage",
-        "Terrasse",
-        "Balkon",
-        "Keller",
-        "Photovoltaikanlage"
-      ],
-      "featured": false,
-      "available": true
-    },
-    {
-      "id": 9,
-      "title": "Ladenfläche in Fußgängerzone",
-      "type": "Miete",
-      "price": 4200,
-      "location": "München Altstadt",
-      "address": "Kaufingerstraße 20",
-      "size": 120,
-      "rooms": 3,
-      "bedrooms": 0,
-      "bathrooms": 1,
-      "year": 2012,
-      "energy": "C",
-      "images": [
-        "images/properties/property9-1.jpg",
-        "images/properties/property9-2.jpg"
-      ],
-      "description": "Erstklassige Ladenfläche in der Kaufingerstraße mit großer Schaufensterfront. Ideal für Einzelhandel oder Gastronomie. Hohe Passantenfrequenz garantiert.",
-      "features": [
-        "Schaufenster",
-        "Lager",
-        "Klimaanlage",
-        "Barrierefreier Zugang",
-        "Personalraum"
-      ],
-      "featured": false,
-      "available": true
-    },
-    {
-      "id": 10,
-      "title": "Moderne 4-Zimmer Maisonette",
-      "type": "Miete",
-      "price": 2800,
-      "location": "München Giesing",
-      "address": "Tegernseer Landstraße 88",
-      "size": 110,
-      "rooms": 4,
-      "bedrooms": 3,
-      "bathrooms": 2,
-      "year": 2019,
-      "energy": "A",
-      "images": [
-        "images/properties/property10-1.jpg",
-        "images/properties/property10-2.jpg",
-        "images/properties/property10-3.jpg"
-      ],
-      "description": "Stilvolle Maisonette-Wohnung über zwei Etagen mit hochwertiger Ausstattung. Offener Wohn-/Essbereich mit Galerie. Zwei Balkone mit unterschiedlicher Ausrichtung.",
-      "features": [
-        "Maisonette",
-        "2 Balkone",
-        "Einbauküche",
-        "Parkett",
-        "Fußbodenheizung",
-        "Tiefgarage",
-        "Aufzug"
-      ],
-      "featured": false,
-      "available": true
+      "id": 104,
+      "title": "Event-Support",
+      "role": "event",
+      "wage": 17.5,
+      "location": "München & Umland",
+      "region": "umland",
+      "experience": 2,
+      "shift": "nacht",
+      "skills": ["Aufbau/Abbau", "Logistik", "Einlass"],
+      "images": ["images/start/persohero.png"],
+      "description": "Auf-/Abbau, Logistik, Einlass, Backoffice – belastbar und teamfähig."
     }
   ]
 }
