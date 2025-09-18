@@ -300,7 +300,7 @@ a:hover {
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   max-width: 900px;
   margin: 0;
   margin-left: var(--spacing-xl);
@@ -313,7 +313,7 @@ a:hover {
 
 .hero-side-image {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   grid-column: 2 / 3;
   grid-row: 1;
   width: 100%;
@@ -323,7 +323,7 @@ a:hover {
   filter: drop-shadow(0 12px 30px rgba(0,0,0,0.15));
   object-fit: cover;     /* füllt die Spalte, darf überstehen */
   object-position: bottom right; /* Fokus auf Personen unten rechts */
-  transform: scale(1.55);
+  transform: scale(1.35) translateX(2%);
   transform-origin: bottom right;
 }
 
