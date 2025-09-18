@@ -731,13 +731,14 @@ a:hover {
 
 .btn-secondary {
   background: transparent;
-  color: var(--color-navy);
-  border: 2px solid var(--color-navy);
+  color: var(--color-orange); /* Türkis */
+  border: 2px solid var(--color-orange);
 }
 
 .btn-secondary:hover {
-  background: var(--color-navy);
+  background: var(--color-orange);
   color: var(--color-white);
+  border-color: var(--color-orange);
   transform: translateY(-2px);
 }
 
