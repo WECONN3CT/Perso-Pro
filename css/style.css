@@ -321,8 +321,8 @@ a:hover {
   height: 100%;
   align-self: stretch;
   justify-self: center;
-  /* Schatten entfernt, um jede Weichzeichnung zu vermeiden */
-  filter: none;
+  /* weiche Schatten, um Personen hervorzuheben */
+  filter: drop-shadow(0 22px 36px rgba(0,0,0,0.28)) drop-shadow(0 8px 16px rgba(0,0,0,0.18));
   object-fit: contain; /* vollständiges Bild sichtbar */
   object-position: 80% 100%; /* weiter nach links, unten bündig */
   transform: scale(1.36);
