@@ -314,12 +314,30 @@ a:hover {
 .hero-side-image {
   position: relative;
   z-index: 2;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
   align-self: end;
   justify-self: center;
-  max-width: clamp(1280px, 68vw, 1520px);
   filter: drop-shadow(0 12px 30px rgba(0,0,0,0.15));
+  object-fit: contain;
+}
+
+/* Gleiche Höhe wie die Headline-Zeile (H2) */
+.hero-media {
+  grid-template-rows: auto 1fr;
+}
+.hero-content .hero-title { margin-bottom: 0.75rem; }
+.hero-content ~ .hero-side-image { align-self: start; }
+.hero-content {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+.hero-title {
+  line-height: 1.04;
+}
+.hero-side-image {
+  height: calc(1.04 * 1em * clamp(2.25, 6vw, 4.25));
 }
 
 /* ================================
