@@ -1111,7 +1111,8 @@ a:hover {
   top: 0; right: 0; bottom: 0;
   width: 22px;
   pointer-events: none;
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 60%, #ffffff 100%);
+  /* reines Weiß am rechten Ende, abgestimmt auf Kartenhintergrund */
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 58%, #ffffff 100%);
 }
 
 /* Naht: Bild rechts ohne Radius, Karte links ohne Radius */
@@ -1126,9 +1127,13 @@ a:hover {
 .services-sticky-right .service-card {
   border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
   border-left: none;
+  border-top: none;
+  border-right: none;
+  border-bottom: none; /* Karte ohne Rand für nahtloses Weiß */
   position: relative;
   margin-left: -1px; /* überlappt minimal, beseitigt evtl. 1px-Lücke */
   box-shadow: none; /* vermeidet dunklen Schatten an der Naht */
+  background: #ffffff; /* exakt gleiches Weiß wie im Overlay-Ende */
 }
 
 .services-sticky-right { min-height: 100%; }
