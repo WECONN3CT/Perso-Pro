@@ -324,7 +324,7 @@ a:hover {
   filter: none;
   object-fit: cover;
   object-position: bottom right;
-  transform: scale(1.20) translateX(2%);
+  transform: scale(1.10) translateX(0%);
   transform-origin: bottom right;
   backface-visibility: hidden;
   will-change: transform;
