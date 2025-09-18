@@ -321,8 +321,8 @@ a:hover {
   justify-self: center;
   filter: drop-shadow(0 12px 30px rgba(0,0,0,0.15));
   object-fit: contain;
-  /* Höhe exakt wie Überschrift */
-  height: calc(var(--hero-title-size, 4.25rem) * 1.04);
+  /* Höhe = 2x Überschrift */
+  height: calc(var(--hero-title-size, 4.25rem) * 2.08);
 }
 
 /* Gleiche Höhe wie die Headline-Zeile (H2) */
