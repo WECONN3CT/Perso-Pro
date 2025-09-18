@@ -65,22 +65,18 @@ document.addEventListener('DOMContentLoaded', () => {
         preloaded.add(src);
     }
     imageMap.forEach(preload);
+    // Helper bleibt für evtl. direkte Sprünge verfügbar (nicht in Scroll benutzt)
     function updateServicesImage(idx) {
         if (!imgA || !imgB) return;
-        const nextSrc = imageForIndex(idx);
-        const current = activeIsA ? imgA : imgB;
-        const next = activeIsA ? imgB : imgA;
-        if (current.getAttribute('src') === nextSrc) return;
-        // Preload next, then swap classes für sanften Crossfade
-        const tmp = new Image();
-        tmp.onload = () => {
-            next.src = nextSrc;
-            // Crossfade
-            next.classList.add('is-active');
-            current.classList.remove('is-active');
-            activeIsA = !activeIsA;
-        };
-        tmp.src = nextSrc;
+        const targetSrc = imageForIndex(idx);
+        const activeLayer = activeIsA ? imgA : imgB;
+        const otherLayer  = activeIsA ? imgB : imgA;
+        if (activeLayer.getAttribute('src') === targetSrc) return;
+        preload(targetSrc);
+        otherLayer.src = targetSrc;
+        otherLayer.classList.add('is-active');
+        activeLayer.classList.remove('is-active');
+        activeIsA = !activeIsA;
     }
     let slideWidth = 0;
     const updateSlideWidth = () => { slideWidth = list.clientWidth; };
@@ -133,19 +129,28 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(scrollEndTimer);
         scrollEndTimer = setTimeout(() => {
             lockedIndex = Math.round(lastLeft / slideWidth);
-            const wantSrc = imageForIndex(lockedIndex);
+            const progressRawEnd = (lastLeft / slideWidth) || 0;
+            const baseEnd = Math.floor(progressRawEnd);
+            const tEnd = Math.min(1, Math.max(0, progressRawEnd - baseEnd));
+            const easeEnd = (x) => 1 - Math.pow(1 - x, 2);
+            const easedEnd = easeEnd(tEnd);
             const current = activeIsA ? imgA : imgB;
-            const next = activeIsA ? imgB : imgA;
+            const other = activeIsA ? imgB : imgA;
+            const wantSrc = imageForIndex(lockedIndex);
             preload(wantSrc);
-            current.src = wantSrc;
-            current.classList.add('is-active');
-            next.classList.remove('is-active');
-            current.style.opacity = '';
-            next.style.opacity = '';
-            current.style.transform = '';
-            next.style.transform = '';
+            // Wähle die aktuell sichtbare Ebene (>= 0.5 => other ist sichtbar)
+            const finalActive = (easedEnd >= 0.5) ? other : current;
+            const finalInactive = (finalActive === current) ? other : current;
+            if (finalActive.getAttribute('src') !== wantSrc) finalActive.src = wantSrc;
+            finalActive.classList.add('is-active');
+            finalInactive.classList.remove('is-active');
+            // Inline-Styles zurücksetzen, Übergänge wieder an
+            finalActive.style.opacity = '';
+            finalInactive.style.opacity = '';
+            finalActive.style.transform = '';
+            finalInactive.style.transform = '';
             stickyMedia && stickyMedia.classList.remove('scrubbing');
-            activeIsA = (current === imgA);
+            activeIsA = (finalActive === imgA);
         }, 60);
     }
 
@@ -166,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextIndex = e.key === 'ArrowRight' ? clamp(lockedIndex + 1, 0, cards.length - 1)
                                                  : clamp(lockedIndex - 1, 0, cards.length - 1);
         goTo(nextIndex);
-        updateServicesImage(nextIndex);
     });
 
     // Touch swipe (links/rechts)
@@ -193,7 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSlideWidth();
         const nextIndex = clamp(lockedIndex + direction, 0, cards.length - 1);
         goTo(nextIndex);
-        updateServicesImage(nextIndex);
     }, { passive: true });
 
     // (früher definiert)
