@@ -321,7 +321,10 @@ a:hover {
   align-self: stretch;   /* füllt die Spaltenhöhe */
   justify-self: center;
   filter: drop-shadow(0 12px 30px rgba(0,0,0,0.15));
-  object-fit: contain;   /* skaliert vollständig innerhalb der Spalte */
+  object-fit: cover;     /* füllt die Spalte, darf überstehen */
+  object-position: bottom right; /* Fokus auf Personen unten rechts */
+  transform: scale(1.55);
+  transform-origin: bottom right;
 }
 
 /* Gleiche Höhe wie die Headline-Zeile (H2) */
