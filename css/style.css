@@ -278,9 +278,7 @@ a:hover {
   height: auto;
   aspect-ratio: 2100 / 1100;
   min-height: 0;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  align-items: stretch; /* beide Spalten volle Höhe */
+  display: block; /* absolute Positionierung des Bildes */
 }
 
 .hero-video {
@@ -312,19 +310,15 @@ a:hover {
 .hero-actions { display: flex; gap: 1rem; margin-top: 1rem; }
 
 .hero-side-image {
-  position: relative;
+  position: absolute; /* nicht mehr an Spalte gebunden - kann überlappen */
+  inset: auto 0 0 auto; /* bottom-right verankern */
+  right: clamp(0px, 2vw, 28px);
   z-index: 1;
-  grid-column: 2 / 3;
-  grid-row: 1;
-  width: 100%;
-  height: 100%;
-  align-self: stretch;   /* füllt die Spaltenhöhe */
-  justify-self: center;
+  width: auto;
+  height: 120%; /* groß genug, um vollständig scharf sichtbar zu sein */
   filter: drop-shadow(0 12px 30px rgba(0,0,0,0.15));
-  object-fit: cover;     /* füllt die Spalte, darf überstehen */
-  object-position: bottom right; /* Fokus auf Personen unten rechts */
-  transform: scale(1.32) translateX(6%);
-  transform-origin: bottom right;
+  object-fit: contain;
+  object-position: bottom right;
 }
 
 /* Gleiche Höhe wie die Headline-Zeile (H2) */
