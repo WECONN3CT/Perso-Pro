@@ -280,7 +280,7 @@ a:hover {
   min-height: 0;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  align-items: start;
+  align-items: stretch; /* beide Spalten volle Höhe */
 }
 
 .hero-video {
@@ -314,15 +314,14 @@ a:hover {
 .hero-side-image {
   position: relative;
   z-index: 2;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  align-self: end;
+  grid-column: 2 / 3;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+  align-self: stretch;   /* füllt die Spaltenhöhe */
   justify-self: center;
   filter: drop-shadow(0 12px 30px rgba(0,0,0,0.15));
-  object-fit: contain;
-  /* Höhe = 2x Überschrift */
-  height: calc(var(--hero-title-size, 4.25rem) * 2.08);
+  object-fit: contain;   /* skaliert vollständig innerhalb der Spalte */
 }
 
 /* Gleiche Höhe wie die Headline-Zeile (H2) */
