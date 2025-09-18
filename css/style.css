@@ -323,7 +323,7 @@ a:hover {
   filter: drop-shadow(0 12px 30px rgba(0,0,0,0.15));
   object-fit: cover;     /* füllt die Spalte, darf überstehen */
   object-position: bottom right; /* Fokus auf Personen unten rechts */
-  transform: scale(1.35) translateX(2%);
+  transform: scale(1.32) translateX(6%);
   transform-origin: bottom right;
 }
 
