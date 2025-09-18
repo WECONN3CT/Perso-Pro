@@ -584,9 +584,10 @@ a:hover {
   letter-spacing: 0.015em;
 }
 
-/* Glass look for hero content block for modern aesthetic */
+/* Hero text block: remove backdrop blur to avoid blurring people/cups behind */
 .hero-content {
-  backdrop-filter: saturate(120%) blur(2px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .btn-hero {
@@ -1046,7 +1047,8 @@ a:hover {
   text-align: left;
   padding: 1.5rem;
   transform: translateY(0);
-  backdrop-filter: saturate(120%) blur(4px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .service-cta:hover { box-shadow: 0 10px 24px rgba(21,43,66,0.12); }
