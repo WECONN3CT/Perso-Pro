@@ -324,13 +324,14 @@ a:hover {
   filter: none;
   object-fit: cover;
   object-position: bottom right;
-  transform: scale(1.32) translateX(4%);
+  transform: scale(1.26) translateX(3%);
   transform-origin: bottom right;
   backface-visibility: hidden;
   will-change: transform;
   /* bessere Schärfe beim Skalieren */
   image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: pixelated;
 }
 
 /* Gleiche Höhe wie die Headline-Zeile (H2) */
