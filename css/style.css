@@ -322,10 +322,10 @@ a:hover {
   justify-self: center;
   /* Schatten entfernt, um jede Weichzeichnung zu vermeiden */
   filter: none;
-  object-fit: cover;
-  object-position: bottom right;
-  transform: scale(0.75) translateX(0%);
-  transform-origin: bottom right;
+  object-fit: contain; /* vollständiges Bild sichtbar */
+  object-position: right center;
+  transform: none;
+  transform-origin: center;
   backface-visibility: hidden;
   will-change: transform;
   /* bessere Schärfe beim Skalieren */
