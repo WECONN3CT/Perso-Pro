@@ -321,24 +321,14 @@ a:hover {
   justify-self: center;
   filter: drop-shadow(0 12px 30px rgba(0,0,0,0.15));
   object-fit: contain;
+  /* Höhe exakt wie Überschrift */
+  height: calc(var(--hero-title-size, 4.25rem) * 1.04);
 }
 
 /* Gleiche Höhe wie die Headline-Zeile (H2) */
-.hero-media {
-  grid-template-rows: auto 1fr;
-}
+.hero-media { grid-template-rows: initial; }
 .hero-content .hero-title { margin-bottom: 0.75rem; }
-.hero-content ~ .hero-side-image { align-self: start; }
-.hero-content {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
-.hero-title {
-  line-height: 1.04;
-}
-.hero-side-image {
-  height: calc(1.04 * 1em * clamp(2.25, 6vw, 4.25));
-}
+.hero-side-image { height: auto; }
 
 /* ================================
    Hero Search Filter
@@ -545,6 +535,7 @@ a:hover {
   font-size: clamp(2.25rem, 6vw, 4.25rem);
   font-weight: 800;
   line-height: 1.04;
+  --hero-title-size: clamp(2.25rem, 6vw, 4.25rem);
   margin-bottom: 0.75rem;
   letter-spacing: -0.02em;
   background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(232,238,246,1) 100%);
