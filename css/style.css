@@ -323,7 +323,7 @@ a:hover {
   /* Schatten entfernt, um jede Weichzeichnung zu vermeiden */
   filter: none;
   object-fit: contain; /* vollständiges Bild sichtbar */
-  object-position: right center;
+  object-position: right bottom; /* Bild am unteren Rand ausrichten */
   transform: none;
   transform-origin: center;
   backface-visibility: hidden;
