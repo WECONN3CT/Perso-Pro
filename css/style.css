@@ -321,8 +321,8 @@ a:hover {
   height: 100%;
   align-self: stretch;
   justify-self: center;
-  /* sehr deutlicher, größerer Schatten */
-  filter: drop-shadow(0 42px 68px rgba(0,0,0,0.45)) drop-shadow(0 18px 32px rgba(0,0,0,0.28));
+  /* sehr deutlicher, größerer schwarzer Schatten */
+  filter: drop-shadow(0 42px 68px rgba(0,0,0,0.6)) drop-shadow(0 18px 32px rgba(0,0,0,0.4));
   object-fit: contain; /* vollständiges Bild sichtbar */
   object-position: 80% 100%; /* weiter nach links, unten bündig */
   transform: scale(1.36);
