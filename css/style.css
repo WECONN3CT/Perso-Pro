@@ -305,8 +305,8 @@ a:hover {
   margin: 0;
   margin-left: var(--spacing-xl);
   padding: 0 var(--spacing-xl);
-  /* weiter nach unten rücken – näher zur Mitte des Containers */
-  padding-top: clamp(72px, 22vh, 260px);
+  /* etwas höher positionieren */
+  padding-top: clamp(56px, 18vh, 220px);
   text-align: left;
 }
 
