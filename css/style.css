@@ -815,18 +815,15 @@ a:hover {
 .role-card {
   text-align: center;
   padding: 1rem 0.75rem 1rem;
-  border-radius: 14px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.6) 100%);
-  border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 5px 14px rgba(21,43,66,0.06);
+  border-radius: 0;
+  background: transparent; /* weiße Karten entfernen */
+  border: none;
+  box-shadow: none;
   transform: translateY(0);
-  transition: transform 360ms cubic-bezier(0.22,1,0.36,1), box-shadow 360ms cubic-bezier(0.22,1,0.36,1), background 360ms ease;
+  transition: transform 360ms cubic-bezier(0.22,1,0.36,1);
 }
 
-.role-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 34px rgba(21,43,66,0.12);
-}
+.role-card:hover { transform: translateY(-6px); }
 
 .role-icon {
   height: 72px;
