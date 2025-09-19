@@ -66,6 +66,18 @@
   --breakpoint-xl: 1280px;
 }
 
+/* Local Royalty Free font */
+@font-face {
+  font-family: 'Royalty Free';
+  src: url('../royalty_free/Royalty Free.woff2') format('woff2'),
+       url('../royalty_free/Royalty Free.woff') format('woff'),
+       url('../royalty_free/Royalty Free.ttf') format('truetype'),
+       url('../royalty_free/Royalty Free.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ===================================
    Reset and Base Styles
    =================================== */
@@ -662,7 +674,7 @@ a:hover {
 }
 
 .hero-title .hero-word-script {
-  font-family: 'Dear Script', cursive;
+  font-family: 'Royalty Free', cursive;
   -webkit-text-fill-color: currentColor;
   background: none;
   color: var(--color-orange);
