@@ -369,18 +369,18 @@ a:hover {
   position: sticky;
   top: 72px; /* below sticky header */
   z-index: 950;
-  height: 12px;
+  height: 6px; /* dezenter, halb so hoch */
   margin: 6px 0 0 0;
-  background: rgba(20,184,166,0.18);
-  backdrop-filter: blur(2px);
+  background: rgba(20,184,166,0.06); /* sehr leichtes Türkis */
+  border-radius: 999px;
 }
 .scroll-progress .bar {
   height: 100%;
   width: 0%;
-  background: var(--color-orange);
-  border-radius: 999px;
-  box-shadow: 0 0 0 2px rgba(20,184,166,0.15) inset;
-  transition: width 80ms linear;
+  background: rgba(20,184,166,0.65); /* dezenter als Vollfarbe */
+  border-radius: inherit;
+  box-shadow: none;
+  transition: width 90ms linear;
 }
 .hero-side-image { height: auto; }
 
