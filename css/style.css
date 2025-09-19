@@ -686,7 +686,7 @@ a:hover {
 }
 
 .hero-script {
-  font-family: 'Photograph Signature', 'Royalty Free', cursive;
+  font-family: 'Photograph Signature', cursive;
   color: var(--color-orange);
   font-weight: 700;
   font-size: clamp(2.4rem, 8.2vw, 5.75rem);
@@ -701,7 +701,7 @@ a:hover {
 }
 
 .hero-title .hero-word-script {
-  font-family: 'Photograph Signature', 'Royalty Free', cursive;
+  font-family: 'Photograph Signature', cursive;
   -webkit-text-fill-color: currentColor;
   background: none;
   color: var(--color-orange);
