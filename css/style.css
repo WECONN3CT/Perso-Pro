@@ -1985,5 +1985,5 @@ a:hover {
   cursor: pointer;
   z-index: 2000;
 }
-.cc-fab svg, .cc-fab img { width: 28px; height: 28px; display: block; }
+.cc-fab svg, .cc-fab img { width: 28px; height: 28px; display: block; object-fit: contain; }
 /* Aufmerksamkeitspuls entfernt – dezenter Button ohne Glow */
