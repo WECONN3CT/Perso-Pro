@@ -22,7 +22,7 @@ Statische Website für PersoPro – Personal für Gastronomie, Unternehmen und E
 ```
 /
 ├── index.html              # Homepage
-├── immobilien.html         # Leistungen / Profile-Übersicht
+├── unsere-leistungen.html  # Leistungen / Profile-Übersicht
 ├── ueber-uns.html          # Über uns Seite
 ├── kontakt.html            # Kontaktseite
 ├── impressum.html          # Impressum
@@ -33,7 +33,7 @@ Statische Website für PersoPro – Personal für Gastronomie, Unternehmen und E
 │   ├── main.js           # Allgemeine Funktionen
 │   └── properties.js     # Profile-Filter
 ├── data/
-│   └── profiles.json     # Profile-Daten
+│   └── properties.json   # Profile-Daten
 └── images/               # Bilder und Assets
 ```
 

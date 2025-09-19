@@ -483,8 +483,8 @@ function handleHeroSearch(e) {
     e.preventDefault();
     const form = e.currentTarget;
     const params = new URLSearchParams(new FormData(form));
-    // Weiterleitung zur Leistungen/Profiles-Seite mit Query-Parametern
-    const url = `immobilien.html?${params.toString()}#properties`;
+    // Weiterleitung zur Leistungen-Seite mit Query-Parametern
+    const url = `unsere-leistungen.html?${params.toString()}#properties`;
     window.location.href = url;
     return false;
 }

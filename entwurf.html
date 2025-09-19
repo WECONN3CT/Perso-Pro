@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PersoPro - Unsere Leistungen</title>
+  <meta name="description" content="PersoPro stellt kurzfristig qualifiziertes Personal für Küche, Service, Theke sowie Café & Bar bereit. Zeitarbeit mit Prozesssicherheit, klaren SLAs und schneller Disposition." />
+  
+  <!-- Farb- und Designsystem angelehnt an die Startseite -->
+  <style>
+    :root {
+      /* Falls die Startseite eigene Variablen hat, hier 1:1 übernehmen */
+      --brand-900: #0d2f4f;   /* Primär - dunkles Blau */
+      --brand-800: #123b63;   /* Header/Hero */
+      --brand-600: #1a4f85;   /* Akzent */
+      --brand-100: #e9f2ff;   /* zarte Hintergründe */
+      --text-900: #0b1220;
+      --text-700: #2a3342;
+      --text-500: #667085;
+      --muted: #eef2f6;
+      --white: #ffffff;
+      --success: #16a34a;
+      --warning: #d97706;
+      --danger: #b91c1c;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+      --shadow-md: 0 6px 18px rgba(16, 24, 40, 0.08);
+      --container: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; color: var(--text-900); }
+    a { color: var(--brand-600); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 20px; }
+
+    /* Hero */
+    .hero { background: linear-gradient(180deg, var(--brand-800), var(--brand-900)); color: var(--white); padding: 72px 0; }
+    .hero h1 { font-size: clamp(28px, 3.2vw, 44px); margin: 0 0 10px; letter-spacing: 0.2px; }
+    .hero p { margin: 8px 0 0; opacity: 0.92; font-size: clamp(16px, 1.6vw, 18px); }
+
+    /* CTA-Bar */
+    .cta-bar { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; background: var(--white); margin-top: 20px; padding: 14px; border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); }
+    .cta-bar small { color: #dbe8ff; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid transparent; border-radius: 999px; padding: 12px 18px; font-weight: 600; cursor: pointer; transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, border-color 120ms ease; }
+    .btn-primary { background: var(--white); color: var(--brand-800); border-color: rgba(255,255,255,0.28); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+    .btn-action { background: var(--brand-600); color: var(--white); }
+    .btn-action:hover { background: #155c9f; }
+
+    /* Value props */
+    .value-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; margin: 40px 0; }
+    .value { grid-column: span 4; background: var(--white); border: 1px solid #e6edf5; border-radius: var(--radius-lg); padding: 18px; box-shadow: var(--shadow-sm); }
+    .value h3 { margin: 8px 0; font-size: 18px; }
+    .value p { margin: 4px 0 0; color: var(--text-700); font-size: 14px; }
+    .badge { display: inline-block; font-size: 12px; padding: 4px 10px; border-radius: 999px; background: var(--brand-100); color: var(--brand-600); border: 1px solid #cfe0ff; font-weight: 600; }
+
+    /* Leistungsblöcke */
+    .section { padding: 56px 0; background: var(--white); }
+    .section.alt { background: #f8fbff; }
+    .section h2 { font-size: clamp(24px, 2.4vw, 32px); margin: 0 0 18px; color: var(--brand-900); }
+    .section p.lead { color: var(--text-700); margin-top: 0; }
+
+    .service-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+    .service-card { grid-column: span 6; background: var(--white); border: 1px solid #e6edf5; border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-md); }
+    .service-card h3 { margin: 0 0 8px; font-size: 20px; }
+    .service-card p { margin: 8px 0 14px; color: var(--text-700); }
+    .chip { display: inline-block; padding: 6px 10px; border-radius: 999px; background: var(--muted); color: var(--text-700); font-size: 12px; margin: 4px 6px 0 0; }
+    .ul-clean { list-style: none; padding: 0; margin: 0; }
+    .ul-clean li { padding-left: 22px; position: relative; margin: 8px 0; color: var(--text-700); }
+    .ul-clean li:before { content: ""; position: absolute; left: 0; top: 8px; width: 10px; height: 10px; border-radius: 2px; background: var(--brand-600); opacity: 0.85; }
+
+    /* Prozess */
+    .steps { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; margin-top: 16px; }
+    .step { grid-column: span 3; background: var(--white); border: 1px solid #e6edf5; border-radius: var(--radius-md); padding: 16px; }
+    .step .nr { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; background: var(--brand-100); color: var(--brand-600); font-weight: 700; }
+
+    /* SLA Tabelle */
+    .table { width: 100%; border-collapse: collapse; margin-top: 14px; }
+    .table th, .table td { border: 1px solid #e6edf5; padding: 12px; text-align: left; font-size: 14px; }
+    .table th { background: var(--brand-100); color: var(--brand-900); }
+    .table tr:nth-child(even) td { background: #fbfdff; }
+
+    /* FAQ */
+    .accordion { border: 1px solid #e6edf5; border-radius: var(--radius-md); overflow: hidden; }
+    .acc-item + .acc-item { border-top: 1px solid #e6edf5; }
+    .acc-head { width: 100%; text-align: left; background: var(--white); padding: 14px 16px; border: 0; cursor: pointer; font-weight: 600; }
+    .acc-body { max-height: 0; overflow: hidden; transition: max-height 240ms ease; background: #fbfdff; padding: 0 16px; }
+    .acc-body p, .acc-body ul { color: var(--text-700); }
+    .acc-item.open .acc-body { padding: 12px 16px 16px; }
+
+    /* Footer CTA */
+    .contact { background: linear-gradient(180deg, var(--brand-800), var(--brand-900)); color: var(--white); padding: 42px 0; text-align: center; }
+    .contact h3 { margin: 0 0 10px; }
+    .contact p { margin: 0 0 18px; opacity: 0.95; }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .value { grid-column: span 6; }
+      .service-card { grid-column: span 12; }
+      .step { grid-column: span 6; }
+    }
+    @media (max-width: 600px) {
+      .value { grid-column: span 12; }
+      .step { grid-column: span 12; }
+      .cta-bar { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <h1>Unsere Leistungen</h1>
+      <p>Personal für Küche, Service, Theke sowie Café & Bar - kurzfristig verfügbar und qualitätsgesichert. Fokus Zeitarbeit mit klaren Prozessen, schneller Disposition und verlässlichen SLAs.</p>
+      <div class="cta-bar">
+        <div>
+          <strong>Akute Anfrage</strong><br />
+          <span style="color:#e3ecff">Wir besetzen in der Regel innerhalb von 24 bis 72 Stunden - je nach Rolle und Zeitraum.</span>
+        </div>
+        <div>
+          <a class="btn btn-primary" href="#services">Leistungen ansehen</a>
+          <a class="btn btn-action" href="#kontakt">Personal anfragen</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Value Props -->
+  <section class="section alt">
+    <div class="container">
+      <div class="value-grid">
+        <div class="value">
+          <span class="badge">Zeitarbeit</span>
+          <h3>Flexible Abdeckung</h3>
+          <p>Schichten, Spitzen, Events - planbar von heute bis mehrere Wochen. Optional mit Verlängerungsoption pro Einsatz.</p>
+        </div>
+        <div class="value">
+          <span class="badge">Qualität</span>
+          <h3>Vorqualifizierte Profile</h3>
+          <p>Erprobte Aushilfen und Fachkräfte mit Referenzen. Einheitliches Briefing, Checklisten und Einsatznachbereitung.</p>
+        </div>
+        <div class="value">
+          <span class="badge">Compliance</span>
+          <h3>Rechtssicher</h3>
+          <p>AÜG-konforme Prozesse, Nachweise, Arbeitsschutz und Zeiterfassung. DSGVO-konforme Datenhaltung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leistungen -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2>Leistungsportfolio im Überblick</h2>
+      <p class="lead">Wir liefern einsatzbereites Personal für die folgenden Bereiche. Jede Rolle kommt mit klar definierten Aufgabenpaketen und Übergaben am Einsatzort.</p>
+
+      <div class="service-grid" style="margin-top: 14px;">
+        <!-- Spülhilfskräfte -->
+        <article class="service-card" aria-labelledby="s1">
+          <h3 id="s1">Spülhilfskräfte - Spülküche</h3>
+          <p>Sichere Abwicklung der Spülstraße und Hygienevorschriften. Effizient, sauber, belastbar.</p>
+          <ul class="ul-clean">
+            <li>Bedienung von Gewerbespülmaschinen inkl. Vorspülen und Sortieren</li>
+            <li>Mise en Place in der Spülküche, Abfalltrennung, Flächenhygiene</li>
+            <li>Transport von Körben, Rücklaufsteuerung und Engpassmanagement</li>
+          </ul>
+          <div style="margin-top: 10px;">
+            <span class="chip">HACCP Grundkenntnisse</span>
+            <span class="chip">Schicht 6-8 Std</span>
+            <span class="chip">Einweisung 30 Min</span>
+          </div>
+        </article>
+
+        <!-- Servicehilfspersonal -->
+        <article class="service-card" aria-labelledby="s2">
+          <h3 id="s2">Servicehilfspersonal</h3>
+          <p>Front- und Back-of-House Unterstützung für reibungslosen Ablauf im Gästebereich.</p>
+          <ul class="ul-clean">
+            <li>Auffüllen von Geschirr und Besteck</li>
+            <li>Essensausgabe am Buffet</li>
+            <li>Aufsammeln und Einräumen von Geschirr und Besteck</li>
+            <li>Bestellungen aufnehmen nach Vorgabe</li>
+          </ul>
+          <div style="margin-top: 10px;">
+            <span class="chip">Gästekommunikation</span>
+            <span class="chip">Kassennahe Prozesse</span>
+            <span class="chip">Team-Einsatz</span>
+          </div>
+        </article>
+
+        <!-- Thekenpersonal -->
+        <article class="service-card" aria-labelledby="s3">
+          <h3 id="s3">Thekenpersonal</h3>
+          <p>Getränkeausgabe und Kassenvorgänge mit schneller Taktung. Routiniert in Stoßzeiten.</p>
+          <ul class="ul-clean">
+            <li>Zapfen, Flaschen- und Gläserausgabe</li>
+            <li>Bedienung von Kaffeeautomaten</li>
+            <li>Essensausgabe an der Theke</li>
+            <li>Kassieren, Bons prüfen, Nachfüllsteuerung</li>
+          </ul>
+          <div style="margin-top: 10px;">
+            <span class="chip">EC-Kasse Basics</span>
+            <span class="chip">Inventurdisziplin</span>
+            <span class="chip">Stoßzeitenfähig</span>
+          </div>
+        </article>
+
+        <!-- Café & Bar -->
+        <article class="service-card" aria-labelledby="s4">
+          <h3 id="s4">Café & Bar</h3>
+          <p>Erfahrenes Personal für hochwertige Heißgetränke an Siebträgermaschinen. Kein Barista-Level, aber geschulte Zubereitung.</p>
+          <ul class="ul-clean">
+            <li>Zubereitung von Lungo, Cappuccino, Latte Macchiato und Espresso am Siebträger</li>
+            <li>Milchschäumen nach Standards, einfache Latte-Art optional</li>
+            <li>Kassenbedienung, Bestellabwicklung und Thekenservice</li>
+          </ul>
+          <div style="margin-top: 10px;">
+            <span class="chip">Siebträger-Routine</span>
+            <span class="chip">Produktqualität</span>
+            <span class="chip">Abstimmung mit Küche</span>
+          </div>
+        </article>
+      </div>
+
+      <!-- SLA Tabelle -->
+      <div style="margin-top: 26px;">
+        <h3 style="margin: 0 0 8px;">Service-Level und Rahmenbedingungen</h3>
+        <table class="table" aria-label="Service-Level Tabelle">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Standard</th>
+              <th>Optional</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Vorlaufzeit</td>
+              <td>24 - 72 Stunden je nach Rolle</td>
+              <td>Same-Day auf Anfrage</td>
+            </tr>
+            <tr>
+              <td>Schichtlängen</td>
+              <td>6 - 8 Stunden</td>
+              <td>4 - 10 Stunden nach Absprache</td>
+            </tr>
+            <tr>
+              <td>Briefing am Einsatzort</td>
+              <td>30 Minuten Übergabe</td>
+              <td>Erweitertes Onboarding mit Checkliste</td>
+            </tr>
+            <tr>
+              <td>Zeiterfassung</td>
+              <td>digital oder auf Laufzettel</td>
+              <td>Schnittstelle zur Kasse/BI</td>
+            </tr>
+            <tr>
+              <td>Teamleitung vor Ort</td>
+              <td>Ansprechpartner je Schicht</td>
+              <td>Lead vor Ort durch PersoPro</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prozess -->
+  <section class="section alt">
+    <div class="container">
+      <h2>So besetzen wir Ihre Schichten</h2>
+      <p class="lead">Transparenter, schneller Ablauf mit Rückmeldung innerhalb weniger Stunden. Ein Ansprechpartner, klare Zusagen.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="nr">1</div>
+          <h4>Anfrage</h4>
+          <p>Rolle, Einsatzort, Beginn, Schichtlänge, Dresscode, Besonderheiten.</p>
+        </div>
+        <div class="step">
+          <div class="nr">2</div>
+          <h4>Match</h4>
+          <p>Profilabgleich in unserem Pool, Verfügbarkeit und Referenzenprüfung.</p>
+        </div>
+        <div class="step">
+          <div class="nr">3</div>
+          <h4>Bestätigung</h4>
+          <p>Schriftliche Zusage mit Ankunftszeit, Kontakt und Check-in Details.</p>
+        </div>
+        <div class="step">
+          <div class="nr">4</div>
+          <h4>Einsatz & Feedback</h4>
+          <p>Zeiterfassung, Übergabe, kurze Nachbesprechung und Qualitätsfeedback.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <h2>FAQ zur Zeitarbeit bei PersoPro</h2>
+      <div class="accordion" id="faq">
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">Welche Mindestabnahme gilt pro Einsatz?</button>
+          <div class="acc-body"><p>Standard sind 6 Stunden pro Schicht. Kürzere Einsätze sind nach Lage und Rolle möglich, ggf. mit Pauschale.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">Wie wird Qualität abgesichert?</button>
+          <div class="acc-body"><p>Einheitliche Briefings, Checklisten, Zeiterfassung sowie ein Feedback-Loop nach jedem Einsatz. Wiederkehrende Teams für Stammkunden.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">Sind Barista verfügbar?</button>
+          <div class="acc-body"><p>Aktuell kein dedizierter Barista-Service. Unser Café-Team beherrscht die Zubereitung am Siebträger auf hohem Niveau, jedoch ohne Wettbewerbs-Latte-Art.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">Wie kurzfristig ist Same-Day möglich?</button>
+          <div class="acc-body"><p>Abhängig von Rolle, Uhrzeit und Standort. Wir priorisieren akute Anfragen und geben innerhalb von 60 bis 120 Minuten eine belastbare Rückmeldung.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Kontakt -->
+  <section id="kontakt" class="contact" aria-labelledby="c1">
+    <div class="container">
+      <h3 id="c1">Personal anfragen</h3>
+      <p>Nennen Sie Rolle, Datum, Uhrzeit, Ort und Schichtdauer. Wir melden uns schnell mit Verfügbarkeit und Konditionen.</p>
+      <a class="btn btn-action" href="mailto:dispo@persopro.de?subject=Personal%20anfragen%20-%20PersoPro&body=Rolle%3A%0ADatum%20%2F%20Uhrzeit%3A%0AEinsatzort%3A%0ASchichtl%C3%A4nge%3A%0ABesonderheiten%20%2F%20Dresscode%3A%0A%0AKontakt%3A">E-Mail an Disposition</a>
+      <a class="btn btn-primary" href="#">Jetzt telefonieren</a>
+    </div>
+  </section>
+
+  <script>
+    // Akkordeon Steuerung
+    document.querySelectorAll('.acc-item').forEach(function(item){
+      var head = item.querySelector('.acc-head');
+      var body = item.querySelector('.acc-body');
+      head.addEventListener('click', function(){
+        var open = item.classList.toggle('open');
+        head.setAttribute('aria-expanded', open ? 'true' : 'false');
+        body.style.maxHeight = open ? body.scrollHeight + 'px' : '0px';
+      });
+    });
+
+    // Sanftes Scrollen
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var id = a.getAttribute('href');
+        if(id.length > 1){
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

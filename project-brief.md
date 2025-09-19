@@ -19,7 +19,7 @@ Das komplette Design System ist in der beigefügten `design.json` Datei definier
 - Services Übersicht
 - Kontakt CTA
 
-### 2. immobilien.html
+### 2. unsere-leistungen.html
 - Header mit Suchfilter (Typ, Preis, Ort)
 - Grid mit Immobilien-Cards
 - JavaScript Filter-Funktionalität
@@ -79,7 +79,7 @@ Erstelle eine `data/properties.json` mit ca. 8-10 Beispiel-Immobilien:
 ```
 /
 ├── index.html
-├── immobilien.html
+├── unsere-leistungen.html
 ├── ueber-uns.html
 ├── kontakt.html
 ├── impressum.html
