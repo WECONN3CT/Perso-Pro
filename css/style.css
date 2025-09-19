@@ -468,7 +468,7 @@ a:hover {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: var(--spacing-3xl);
-  align-items: start;
+  align-items: center; /* Karten vertikal mittig auf Höhe des Textblocks */
 }
 
 .intro-copy { text-align: left; }
@@ -515,6 +515,7 @@ a:hover {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--spacing-lg);
+  align-self: center; /* im Grid der Intro-Section vertikal mittig */
 }
 
 .award-card {
