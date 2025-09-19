@@ -134,31 +134,52 @@
     pen.style.transform += ' scale(0.85)';
   }
 
-  function buildHandwritingSVG(word) {
-    // NOTE: For a production Dear Script exact path, you'd export from a font tool.
-    // Here we provide a simplified bezier path approximation for demo purposes.
-    // The API is generic: pass any path 'd' array; we animate stroke-dashoffset.
+  function buildHandwritingSVG(word, mountRect) {
+    // Stroke-based via <textPath> fallback: uses Dear Script (browser must have it / or local @font-face).
+    // For pixel-perfect Dear Script, replace with exported glyph paths.
     const svgNS = 'http://www.w3.org/2000/svg';
     const svg = document.createElementNS(svgNS, 'svg');
     svg.setAttribute('class', 'handwriting-svg');
-    svg.setAttribute('viewBox', '0 0 1200 200');
+    const width = Math.max(600, mountRect.width);
+    const height = Math.max(120, mountRect.height);
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
     svg.setAttribute('preserveAspectRatio', 'xMinYMid meet');
 
-    // Approximate combined path to simulate cursive flow; replace with real Dear Script outline when available
-    const d = 'M20,120 C60,60 120,60 160,120 S240,180 280,120 360,60 400,120 480,180 520,120 600,60 640,120 720,180 760,120 840,60 880,120 960,180 1000,120 1080,60 1120,120';
-    const path = document.createElementNS(svgNS, 'path');
-    path.setAttribute('d', d);
-    path.setAttribute('class', 'hw-stroke hw-animate');
-    svg.appendChild(path);
+    // Path baseline (slightly wavy to suggest natural movement)
+    const baseline = document.createElementNS(svgNS, 'path');
+    const dBase = `M10 ${height*0.6} C ${width*0.25} ${height*0.55}, ${width*0.5} ${height*0.65}, ${width*0.75} ${height*0.6} S ${width-10} ${height*0.62}, ${width-10} ${height*0.6}`;
+    baseline.setAttribute('d', dBase);
+    baseline.setAttribute('id', 'hw-baseline');
+    baseline.setAttribute('fill', 'none');
+    baseline.setAttribute('stroke', 'none');
+    svg.appendChild(baseline);
+
+    const text = document.createElementNS(svgNS, 'text');
+    text.setAttribute('class', 'hw-text');
+    text.setAttribute('font-family', 'Dear Script, cursive');
+    text.setAttribute('font-size', String(height * 0.45));
+    text.setAttribute('dominant-baseline', 'middle');
+    const textPath = document.createElementNS(svgNS, 'textPath');
+    textPath.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#hw-baseline');
+    textPath.textContent = word;
+    text.appendChild(textPath);
+    svg.appendChild(text);
+
+    // Create an invisible stroke outline clone for animation measurement
+    const outline = document.createElementNS(svgNS, 'path');
+    outline.setAttribute('d', baseline.getAttribute('d'));
+    outline.setAttribute('class', 'hw-stroke hw-animate');
+    outline.setAttribute('opacity', '0');
+    svg.appendChild(outline);
 
     const pen = document.createElementNS(svgNS, 'circle');
     pen.setAttribute('class', 'hw-pen');
     pen.setAttribute('r', '5');
-    pen.setAttribute('cx', '20');
-    pen.setAttribute('cy', '120');
+    pen.setAttribute('cx', '10');
+    pen.setAttribute('cy', String(height*0.6));
     svg.appendChild(pen);
 
-    return { svg, path, pen };
+    return { svg, path: outline, pen };
   }
 
   function animatePath(path, pen, duration = 3500) {
@@ -194,7 +215,8 @@
     if (mount) {
       // Hide script span text content (we use stroke animation instead)
       el.style.visibility = 'hidden';
-      const { svg, path, pen } = buildHandwritingSVG(full);
+      const rect = mount.getBoundingClientRect();
+      const { svg, path, pen } = buildHandwritingSVG(full, rect);
       mount.appendChild(svg);
 
       const startAnimation = () => {
