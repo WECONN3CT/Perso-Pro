@@ -281,6 +281,50 @@
         </div>
     </section>
 
+    <!-- Kontaktformular direkt unter dem Leistungsportfolio -->
+    <section class="section leistungen-page" aria-labelledby="contactFormTitle">
+      <div class="container">
+        <h2 id="contactFormTitle">Kontaktformular</h2>
+        <p class="lead">Teilen Sie uns Ihren Bedarf mit – wir melden uns schnell zurück.</p>
+        <form action="kontakt.html" method="GET" class="contact-form" style="max-width:780px;margin:0 auto;display:grid;gap:14px;grid-template-columns:1fr 1fr;">
+          <div style="grid-column:span 1;">
+            <label class="form-label" for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" required style="width:100%;padding:12px 14px;border:2px solid var(--color-medium-gray);border-radius:12px;">
+          </div>
+          <div style="grid-column:span 1;">
+            <label class="form-label" for="cf-company">Unternehmen</label>
+            <input id="cf-company" name="company" type="text" style="width:100%;padding:12px 14px;border:2px solid var(--color-medium-gray);border-radius:12px;">
+          </div>
+          <div style="grid-column:span 1;">
+            <label class="form-label" for="cf-email">E-Mail</label>
+            <input id="cf-email" name="email" type="email" required style="width:100%;padding:12px 14px;border:2px solid var(--color-medium-gray);border-radius:12px;">
+          </div>
+          <div style="grid-column:span 1;">
+            <label class="form-label" for="cf-phone">Telefon</label>
+            <input id="cf-phone" name="phone" type="tel" style="width:100%;padding:12px 14px;border:2px solid var(--color-medium-gray);border-radius:12px;">
+          </div>
+          <div style="grid-column:span 2;">
+            <label class="form-label" for="cf-role">Gesuchte Rolle</label>
+            <select id="cf-role" name="role" style="width:100%;padding:12px 14px;border:2px solid var(--color-medium-gray);border-radius:12px;">
+              <option value="">Bitte wählen</option>
+              <option value="kueche">Küchenhilfe / Spülkraft</option>
+              <option value="service">Service / Runner</option>
+              <option value="theke">Barista / Theke</option>
+              <option value="event">Event-Support</option>
+            </select>
+          </div>
+          <div style="grid-column:span 2;">
+            <label class="form-label" for="cf-message">Details (Zeitraum, Ort, Schichtlänge)</label>
+            <textarea id="cf-message" name="message" rows="5" required style="width:100%;padding:12px 14px;border:2px solid var(--color-medium-gray);border-radius:12px;"></textarea>
+          </div>
+          <div style="grid-column:span 2;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+            <button type="submit" class="btn btn-primary">Anfrage senden</button>
+            <a class="btn btn-secondary" href="tel:+498912345677">Direkt anrufen</a>
+          </div>
+        </form>
+      </div>
+    </section>
+
     <!-- Footer Kontakt (aus entwurf, farblich angepasst) -->
     <section id="kontakt" class="contact leistungen-page" aria-labelledby="c1">
       <div class="container">
