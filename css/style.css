@@ -661,14 +661,14 @@ a:hover {
   width: fit-content;
 }
 
-.hero-title .hero-word-indie {
-  font-family: 'Indie Flower', cursive;
+.hero-title .hero-word-pacifico {
+  font-family: 'Pacifico', cursive;
   -webkit-text-fill-color: currentColor;
   background: none;
   color: #ffffff;
-  letter-spacing: 0;
-  font-weight: 400; /* Indie Flower hat regulär 400 */
-  font-synthesis: none; /* keine künstliche Bold/Italic, damit Font nicht ersetzt wird */
+  letter-spacing: 0.01em;
+  font-weight: 400;
+  font-synthesis: none;
 }
 
 .hero-title::after {
