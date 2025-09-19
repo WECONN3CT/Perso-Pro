@@ -60,7 +60,7 @@ npx http-server
 - Mobile Browser (iOS Safari, Chrome Mobile)
 
 ## 📄 Seiten
-- **Homepage** - Hero Section, Services, Featured Profiles
+- **Homepage** - Hero Section, Services
 - **Leistungen** - Profile mit Filter und Sortierung
 - **Über uns** - Firmengeschichte und Team
 - **Kontakt** - Kontaktformular und Standort
