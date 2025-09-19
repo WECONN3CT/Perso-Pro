@@ -661,6 +661,14 @@ function initRolesReveal() {
 function initScrollProgress() {
     const bar = document.getElementById('scrollProgressBar');
     if (!bar) return;
+    const container = bar.parentElement;
+    const header = document.querySelector('.header');
+    const applyTop = () => {
+        if (!container) return;
+        const h = header ? Math.round(header.getBoundingClientRect().height) : 72;
+        // -1px kompensiert evtl. Border/Shadow, damit keine sichtbare Lücke entsteht
+        container.style.top = `${Math.max(0, h - 1)}px`;
+    };
     const update = () => {
         const doc = document.documentElement;
         const body = document.body;
@@ -669,9 +677,10 @@ function initScrollProgress() {
         const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
         bar.style.width = `${progress}%`;
     };
+    applyTop();
     update();
     window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
+    window.addEventListener('resize', () => { applyTop(); update(); });
 }
 
 // (removed) Docked-to-Hero Behavior
