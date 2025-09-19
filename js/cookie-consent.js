@@ -59,12 +59,21 @@
 
   function openModal() {
     const m = document.getElementById('cc-modal');
-    if (m) m.classList.remove('cc-hidden');
+    if (!m) return;
+    m.classList.remove('cc-hidden');
+    requestAnimationFrame(() => m.classList.add('cc-visible'));
   }
 
   function closeModal() {
     const m = document.getElementById('cc-modal');
-    if (m) m.classList.add('cc-hidden');
+    if (!m) return;
+    m.classList.remove('cc-visible');
+    const onEnd = () => {
+      m.classList.add('cc-hidden');
+      m.removeEventListener('transitionend', onEnd);
+    };
+    let fallback = setTimeout(onEnd, 400);
+    m.addEventListener('transitionend', () => { clearTimeout(fallback); onEnd(); }, { once: true });
   }
 
   function showBanner() {
@@ -108,6 +117,7 @@
     const btnSave = document.getElementById('cc-save');
     const btnClose = document.getElementById('cc-close');
     const links = document.querySelectorAll('[data-open-cookie-settings]');
+    const fab = document.getElementById('cc-fab');
 
     if (btnAcceptAll) btnAcceptAll.addEventListener('click', () => {
       const c = saveConsent({ analytics: true, marketing: true });
@@ -144,17 +154,24 @@
       e.preventDefault();
       openModal();
     }));
+
+    if (fab) {
+      fab.addEventListener('click', () => {
+        openModal();
+      });
+    }
   }
 
   function bootstrap() {
     const current = readConsent();
     initUI(current);
     if (current) {
-      // Consent present → enable allowed scripts immediately
       enableDeferredScripts(current);
     } else {
-      // No consent → show banner
-      showBanner();
+      // Keine Zustimmung: zeige aufmerksamkeitsstarken FAB unten links
+      // (Banner entfällt zugunsten des FABs)
+      const fab = document.getElementById('cc-fab');
+      if (fab) fab.classList.add('cc-attention');
     }
   }
 
