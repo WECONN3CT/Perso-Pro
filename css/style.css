@@ -696,6 +696,25 @@ a:hover {
 @keyframes tw-wobble { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(0.8px) rotate(0.3deg); } }
 @keyframes tw-fade { to { opacity: 0; } }
 
+/* SVG handwriting (stroke-based) */
+.handwriting-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.handwriting-svg path.hw-stroke {
+  stroke: var(--color-orange);
+  stroke-width: 2.5px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.handwriting-svg path.hw-animate {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+.handwriting-svg .hw-pen {
+  fill: var(--color-orange);
+  filter: drop-shadow(0 1px 1.5px rgba(0,0,0,0.25));
+}
+
 .hero-title::after {
   content: "";
   display: block;
