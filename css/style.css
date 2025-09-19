@@ -1985,8 +1985,8 @@ a:hover {
   cursor: pointer;
   z-index: 2000;
 }
-/* Hintergrundbild als Icon (robuster als <img>) */
-.cc-fab { background-image: url('../images/start/cookieicon.png'); background-repeat: no-repeat; background-position: center; background-size: 34px 34px; }
+/* Icon wird inline als SVG eingebettet; kein Background-Image nötig */
+.cc-fab { background-image: none; }
 /* Fallback: Icon als Background laden, falls <img> durch CSP/CDN nicht geladen wird */
 .cc-fab { background-image: url('../images/start/cookieicon.png'); background-repeat: no-repeat; background-position: center; background-size: 28px 28px; }
 /* Aufmerksamkeitspuls entfernt – dezenter Button ohne Glow */
