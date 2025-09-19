@@ -662,29 +662,33 @@ a:hover {
 }
 
 .hero-title .hero-word-script {
-  font-family: 'Dancing Script', cursive;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   -webkit-text-fill-color: currentColor;
   background: none;
   color: var(--color-orange);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
   font-weight: 700;
   font-synthesis: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: baseline;
   white-space: nowrap;
-  overflow: hidden;
-  will-change: clip-path;
-  clip-path: inset(0 100% 0 0);
-  animation: script-write 1.8s cubic-bezier(0.22,1,0.36,1) 240ms forwards;
 }
 
-@keyframes script-write {
-  from { clip-path: inset(0 100% 0 0); }
-  to   { clip-path: inset(0 0 0 0); }
+/* Typing cursor */
+.tw-cursor {
+  display: inline-block;
+  width: 0.08em;
+  height: 0.95em;
+  margin-left: 0.1em;
+  background: currentColor;
+  border-radius: 2px;
+  animation: tw-blink 1s steps(2, end) infinite, tw-wobble 1.6s ease-in-out infinite;
+  transform-origin: center bottom;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-title .hero-word-script { animation: none; clip-path: inset(0 0 0 0); }
-}
+@keyframes tw-blink { 50% { opacity: 0; } }
+@keyframes tw-wobble { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(0.8px) rotate(0.3deg); } }
+@keyframes tw-fade { to { opacity: 0; } }
 
 .hero-title::after {
   content: "";
