@@ -32,6 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scroll progress bar under header
     initScrollProgress();
 
+    // Header transparency → solid on scroll
+    initHeaderScrollState();
+
     // Docked-to-Hero behavior (removed)
 });
 
@@ -683,4 +686,21 @@ function initScrollProgress() {
     window.addEventListener('resize', () => { applyTop(); update(); });
 }
 
+// Switch header style based on scroll position
+function initHeaderScrollState() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+    const update = () => {
+        const scrolled = (document.documentElement.scrollTop || document.body.scrollTop) > 8;
+        if (scrolled) {
+            header.classList.add('header-solid');
+            header.classList.remove('header-transparent');
+        } else {
+            header.classList.add('header-transparent');
+            header.classList.remove('header-solid');
+        }
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+}
 // (removed) Docked-to-Hero Behavior

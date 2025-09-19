@@ -186,6 +186,29 @@ a:hover {
   z-index: 1000;
 }
 
+/* Transparent header on top (initial) */
+.header-transparent {
+  background: transparent;
+  border-bottom: none;
+  box-shadow: none;
+}
+.header-transparent .nav-link,
+.header-transparent .logo h1 { color: var(--color-white); }
+.header-transparent .nav-toggle span { background: var(--color-white); }
+
+/* Solid header on scroll */
+.header-solid {
+  background: var(--color-white) !important;
+  border-bottom: 1px solid var(--color-medium-gray) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+.header-solid .nav-link,
+.header-solid .logo h1 { color: var(--color-navy) !important; }
+.header-solid .nav-toggle span { background: var(--color-navy) !important; }
+
+/* Hero container top padding equals header height */
+.hero-section > .container { padding-top: 72px; }
+
 .navigation {
   display: flex;
   justify-content: space-between;
