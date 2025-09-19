@@ -369,7 +369,7 @@ a:hover {
   position: sticky;
   top: 0; /* dynamisch per JS gesetzt */
   z-index: 950;
-  height: 6px; /* dezenter, halb so hoch */
+  height: 8px; /* etwas dicker */
   margin: 0; /* nahtlos direkt unter dem Header */
   background: rgba(20,184,166,0.10); /* leicht sichtbarer Track */
   border-radius: 999px;
