@@ -671,8 +671,8 @@ a:hover {
 }
 
 .hero-title {
-  font-size: clamp(2.25rem, 6vw, 4.25rem);
-  font-weight: 800;
+  font-size: clamp(2.25rem, 6.2vw, 4.6rem);
+  font-weight: 850;
   line-height: 1.04;
   --hero-title-size: clamp(2.25rem, 6vw, 4.25rem);
   margin-bottom: 0.75rem;
@@ -683,6 +683,16 @@ a:hover {
   -webkit-text-fill-color: transparent;
   display: inline-block; /* Breite = Textbreite */
   width: fit-content;
+}
+
+.hero-script {
+  font-family: 'Photograph Signature', 'Royalty Free', cursive;
+  color: var(--color-orange);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 8.2vw, 5.75rem);
+  line-height: 1;
+  transform: translateY(-6px) rotate(-2deg);
+  margin-bottom: 0.35rem;
 }
 
 .hero-title .hero-word-script {
