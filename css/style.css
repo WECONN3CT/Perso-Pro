@@ -709,7 +709,7 @@ a:hover {
   font-weight: 400;
   font-size: clamp(2rem, 6.5vw, 4.2rem);
   line-height: 1;
-  transform: translateY(-2px) rotate(-2deg);
+  transform: translateY(0) rotate(0deg);
   margin-bottom: 0.35rem;
   position: relative;
 }
