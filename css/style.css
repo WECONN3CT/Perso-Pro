@@ -661,8 +661,8 @@ a:hover {
   width: fit-content;
 }
 
-.hero-title .hero-word-pacifico {
-  font-family: 'Pacifico', cursive;
+.hero-title .hero-word-sacramento {
+  font-family: 'Sacramento', cursive;
   -webkit-text-fill-color: currentColor;
   background: none;
   color: #ffffff;
