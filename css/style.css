@@ -364,6 +364,24 @@ a:hover {
 /* Gleiche Höhe wie die Headline-Zeile (H2) */
 .hero-media { grid-template-rows: initial; }
 .hero-content .hero-title { margin-bottom: 0.75rem; }
+/* Scroll Progress Bar under header */
+.scroll-progress {
+  position: sticky;
+  top: 72px; /* below sticky header */
+  z-index: 950;
+  height: 12px;
+  margin: 6px 0 0 0;
+  background: rgba(20,184,166,0.18);
+  backdrop-filter: blur(2px);
+}
+.scroll-progress .bar {
+  height: 100%;
+  width: 0%;
+  background: var(--color-orange);
+  border-radius: 999px;
+  box-shadow: 0 0 0 2px rgba(20,184,166,0.15) inset;
+  transition: width 80ms linear;
+}
 .hero-side-image { height: auto; }
 
 /* ================================

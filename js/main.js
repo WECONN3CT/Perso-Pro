@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Roles reveal
     initRolesReveal();
 
+    // Scroll progress bar under header
+    initScrollProgress();
+
     // Docked-to-Hero behavior (removed)
 });
 
@@ -649,6 +652,26 @@ function initRolesReveal() {
         c.style.animationDelay = `${80 * i}ms`;
         obs.observe(c);
     });
+}
+
+// ===================================
+// Scroll Progress Bar
+// ===================================
+
+function initScrollProgress() {
+    const bar = document.getElementById('scrollProgressBar');
+    if (!bar) return;
+    const update = () => {
+        const doc = document.documentElement;
+        const body = document.body;
+        const scrollTop = doc.scrollTop || body.scrollTop;
+        const scrollHeight = (doc.scrollHeight || body.scrollHeight) - window.innerHeight;
+        const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        bar.style.width = `${progress}%`;
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
 }
 
 // (removed) Docked-to-Hero Behavior
