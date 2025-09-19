@@ -528,7 +528,16 @@ a:hover {
   text-align: center;
 }
 
-.award-card.gold { background: linear-gradient(180deg, #f0d58a 0%, #d7b970 100%); color: #1E1E1E; }
+.award-card.gold {
+  /* Medal-like rich gold finish */
+  background:
+    radial-gradient(120% 100% at 10% 0%, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0) 40%),
+    radial-gradient(120% 120% at 100% 100%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 45%),
+    linear-gradient(135deg, #fbf2c7 0%, #e7c96a 22%, #f3d67f 40%, #caa347 58%, #f6e39b 75%, #b8872a 100%);
+  color: #1E1E1E;
+  border-color: #caa347;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(0,0,0,0.15);
+}
 .award-card.white { background: var(--color-white); }
 .award-card.small { padding: var(--spacing-md); }
 /* Flexibel-Karte exakt so groß wie die obere goldene Karte */
