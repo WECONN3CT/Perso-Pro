@@ -70,10 +70,10 @@
     // Measure full width responsive
     const fullWidth = () => text.getBoundingClientRect().width;
     function speedForChar(ch) {
-      // slower for curves, faster for straight-ish
-      if (/[aegosßöäü]/i.test(ch)) return randomBetween(26, 40); // slower px/ms
-      if (/[mntuirl]/i.test(ch)) return randomBetween(40, 60); // faster
-      return randomBetween(32, 52);
+      // Sanftere, engere Range für gleichmäßigeren Fluss
+      if (/[aegosßöäü]/i.test(ch)) return randomBetween(22, 30);
+      if (/[mntuirl]/i.test(ch)) return randomBetween(30, 42);
+      return randomBetween(26, 38);
     }
 
     // Generate waypoints widths for fluid reveal with variable speeds and pauses
@@ -103,19 +103,23 @@
         const currentPx = reveal.offsetWidth;
         const delta = targetPx - currentPx;
         const dir = Math.sign(delta);
-        const advance = Math.max(0.6, Math.min(Math.abs(delta), target.speed * 0.6)); // px per frame approx
+        // weichere Beschleunigung/Abbremsung je Abschnitt
+        const localT = Math.min(1, Math.max(0, Math.abs(delta) / (totalW * 0.08)));
+        const ease = localT < 0.5 ? 2*localT*localT : -1 + (4 - 2*localT)*localT;
+        const baseAdvance = target.speed * 0.5;
+        const advance = Math.max(0.8, Math.min(Math.abs(delta), baseAdvance * (0.6 + 0.4*ease)));
         const next = currentPx + dir * advance;
         reveal.style.width = `${next}px`;
         pen.style.transform = `translateX(${next}px)`;
         // jitter for hand wobble
-        pen.style.opacity = String(0.88 + Math.random() * 0.12);
-        pen.style.transform += ` translateY(${(Math.sin(now/120)+Math.random()*0.2).toFixed(2)}px)`;
+        pen.style.opacity = '0.92';
+        pen.style.transform += ` translateY(${(Math.sin(now/220)*0.6).toFixed(2)}px)`;
 
         // natural pauses at joins
         if (Math.abs(delta) < 1) {
           currentIndex++;
           // brief pause between letters
-          const pause = /[aouäöüßg]/i.test(target.char) ? randomBetween(40, 90) : randomBetween(20, 60);
+          const pause = /[aouäöüßg]/i.test(target.char) ? randomBetween(24, 48) : randomBetween(12, 32);
           setTimeout(() => requestAnimationFrame(step), pause);
         } else {
           requestAnimationFrame(step);
