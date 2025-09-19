@@ -9,11 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth Scrolling
     initSmoothScrolling();
     
-    // Load Featured Profiles on Homepage
-    if (document.getElementById('featuredProperties')) {
-        loadFeaturedProperties();
-        initPropertiesCarousel();
-    }
+    // (removed) Featured Profiles section
     
     // Form Validation
     initFormValidation();
@@ -281,63 +277,7 @@ function initSmoothScrolling() {
     });
 }
 
-// ===================================
-// Load Featured Profiles
-// ===================================
-
-async function loadFeaturedProperties() {
-    try {
-        const response = await fetch('data/profiles.json');
-        const data = await response.json();
-        
-        const featuredContainer = document.getElementById('featuredProperties');
-        if (!featuredContainer) return;
-        
-        // Display first 8 profiles as featured (carousel shows 4 per page)
-        const featuredProfiles = (data.profiles || []).slice(0, 8);
-        
-        featuredContainer.innerHTML = featuredProfiles.map(profile => `
-            <article class="property-card">
-                <img src="${(profile.images && profile.images[0]) || 'images/start/persohero.png'}" 
-                     alt="${profile.title || profile.role}" 
-                     class="property-image"
-                     loading="lazy">
-                <div class="property-content">
-                    <div class="property-price">${(Number(profile.wage||0)).toLocaleString('de-DE')} €/Std</div>
-                    <h3 class="property-title">${profile.title || profile.role}</h3>
-                    <div class="property-location">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                        ${profile.location || ''}
-                    </div>
-                    <div class="property-features">
-                        <span class="property-feature">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 20a8 8 0 1 0-8-8 8 8 0 0 0 8 8z"></path>
-                            </svg>
-                            ${profile.experience ? `${profile.experience} Jahre` : 'Erfahrung n/a'}
-                        </span>
-                        <span class="property-feature">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M3 12h18M12 3v18"></path>
-                            </svg>
-                            ${profile.shift ? `Schicht: ${profile.shift}` : 'Schicht: flexibel'}
-                        </span>
-                    </div>
-                    <a href="kontakt.html?profile=${profile.id}" class="property-link">Personal anfragen →</a>
-                </div>
-            </article>
-        `).join('');
-    } catch (error) {
-        console.error('Error loading properties:', error);
-        const featuredContainer = document.getElementById('featuredProperties');
-        if (featuredContainer) {
-            featuredContainer.innerHTML = '<p class="text-center">Profile werden geladen...</p>';
-        }
-    }
-}
+// (removed) loadFeaturedProperties
 
 // ===================================
 // Form Validation
@@ -618,67 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animatedElements.forEach(el => scrollObserver.observe(el));
 });
 
-// ===================================
-// Properties Carousel
-// ===================================
-
-function initPropertiesCarousel() {
-    const track = document.querySelector('.carousel-track #featuredProperties');
-    if (!track) return;
-
-    const prevBtn = document.querySelector('.properties-carousel .prev');
-    const nextBtn = document.querySelector('.properties-carousel .next');
-
-    const stepWidth = () => {
-        // Scroll by width of 1 column (+gap) so es slidet Karte für Karte
-        const styles = getComputedStyle(track);
-        const gap = parseFloat(styles.getPropertyValue('--carousel-gap') || styles.gap || '16');
-        const colWidth = (track.clientWidth - gap * 3) / 4;
-        return colWidth + gap;
-    };
-
-    prevBtn && prevBtn.addEventListener('click', () => {
-        track.scrollBy({ left: -stepWidth(), behavior: 'smooth' });
-        updateButtons();
-    });
-    nextBtn && nextBtn.addEventListener('click', () => {
-        track.scrollBy({ left: stepWidth(), behavior: 'smooth' });
-        updateButtons();
-    });
-
-    function updateButtons() {
-        if (!prevBtn || !nextBtn) return;
-        const maxScroll = track.scrollWidth - track.clientWidth - 1;
-        prevBtn.classList.toggle('disabled', track.scrollLeft <= 1);
-        nextBtn.classList.toggle('disabled', track.scrollLeft >= maxScroll);
-    }
-
-    track.addEventListener('scroll', () => {
-        // debounce via rAF
-        requestAnimationFrame(updateButtons);
-    });
-
-    updateButtons();
-
-    // Resize handling to keep stepWidth in sync
-    window.addEventListener('resize', () => {
-        // force re-eval by reading stepWidth
-        stepWidth();
-        updateButtons();
-    });
-
-    // Beobachte DOM-Änderungen im Track (nachdem Karten geladen wurden)
-    const mo = new MutationObserver(() => {
-        requestAnimationFrame(updateButtons);
-    });
-    mo.observe(track, { childList: true, subtree: true });
-
-    // Beobachte Größenänderungen des Track-Inhalts
-    if (window.ResizeObserver) {
-        const ro = new ResizeObserver(() => requestAnimationFrame(updateButtons));
-        ro.observe(track);
-    }
-}
+// (removed) initPropertiesCarousel
 
 // ===================================
 // Services Reveal
