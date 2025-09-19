@@ -538,14 +538,26 @@ a:hover {
   --gold-5: #b07d2c; /* rich amber */
   background:
     /* soft top-left highlight */
-    radial-gradient(120% 100% at 12% 0%, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.00) 42%),
+    radial-gradient(120% 100% at 12% 0%, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.00) 42%),
     /* subtle bottom-right vignette */
-    radial-gradient(140% 100% at 100% 100%, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.00) 55%),
+    radial-gradient(140% 100% at 100% 100%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.00) 55%),
+    /* conic swirl for metallic reflections */
+    conic-gradient(from 230deg at 38% 36%,
+      rgba(255,255,255,0.20) 0deg,
+      rgba(255,255,255,0.00) 42deg,
+      rgba(0,0,0,0.10) 85deg,
+      rgba(255,255,255,0.18) 120deg,
+      rgba(0,0,0,0.10) 200deg,
+      rgba(255,255,255,0.00) 260deg,
+      rgba(255,255,255,0.18) 360deg),
+    /* inner ring highlight */
+    radial-gradient(65% 65% at 42% 38%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.12) 30%, rgba(255,255,255,0.00) 60%),
     /* nuanced base gold gradient */
     linear-gradient(135deg, var(--gold-1) 0%, var(--gold-2) 24%, var(--gold-3) 48%, var(--gold-4) 72%, var(--gold-5) 100%),
     /* micro texture / brushed effect */
-    repeating-linear-gradient(14deg, rgba(255,255,255,0.03) 0 1px, rgba(0,0,0,0.03) 1px 2px);
-  background-blend-mode: soft-light, multiply, normal, overlay;
+    repeating-linear-gradient(14deg, rgba(255,255,255,0.025) 0 1px, rgba(0,0,0,0.03) 1px 2px),
+    repeating-linear-gradient(-14deg, rgba(255,255,255,0.02) 0 1px, rgba(0,0,0,0.025) 1px 2px);
+  background-blend-mode: soft-light, multiply, soft-light, overlay, normal, overlay, overlay;
   color: #1E1E1E;
   border-color: #d1b065;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -1px 0 rgba(0,0,0,0.08);
