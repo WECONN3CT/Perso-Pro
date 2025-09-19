@@ -7,7 +7,6 @@
  */
 (function () {
   const targetSelector = '.hero-title .hero-word-script';
-  const svgMountSelector = '.hero-title';
   const cursorClass = 'tw-cursor';
   const enableSounds = false; // set true to enable sounds if provided
 
@@ -134,113 +133,19 @@
     pen.style.transform += ' scale(0.85)';
   }
 
-  function buildHandwritingSVG(word, mountRect) {
-    // Stroke-based via <textPath> fallback: uses Dear Script (browser must have it / or local @font-face).
-    // For pixel-perfect Dear Script, replace with exported glyph paths.
-    const svgNS = 'http://www.w3.org/2000/svg';
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('class', 'handwriting-svg');
-    const width = Math.max(600, mountRect.width);
-    const height = Math.max(120, mountRect.height);
-    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
-    svg.setAttribute('preserveAspectRatio', 'xMinYMid meet');
-
-    // Path baseline (slightly wavy to suggest natural movement)
-    const baseline = document.createElementNS(svgNS, 'path');
-    const dBase = `M10 ${height*0.6} C ${width*0.25} ${height*0.55}, ${width*0.5} ${height*0.65}, ${width*0.75} ${height*0.6} S ${width-10} ${height*0.62}, ${width-10} ${height*0.6}`;
-    baseline.setAttribute('d', dBase);
-    baseline.setAttribute('id', 'hw-baseline');
-    baseline.setAttribute('fill', 'none');
-    baseline.setAttribute('stroke', 'none');
-    svg.appendChild(baseline);
-
-    const text = document.createElementNS(svgNS, 'text');
-    text.setAttribute('class', 'hw-text');
-    text.setAttribute('font-family', 'Dear Script, cursive');
-    text.setAttribute('font-size', String(height * 0.45));
-    text.setAttribute('dominant-baseline', 'middle');
-    const textPath = document.createElementNS(svgNS, 'textPath');
-    textPath.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#hw-baseline');
-    textPath.textContent = word;
-    text.appendChild(textPath);
-    svg.appendChild(text);
-
-    // Create an invisible stroke outline clone for animation measurement
-    const outline = document.createElementNS(svgNS, 'path');
-    outline.setAttribute('d', baseline.getAttribute('d'));
-    outline.setAttribute('class', 'hw-stroke hw-animate');
-    outline.setAttribute('opacity', '0');
-    svg.appendChild(outline);
-
-    const pen = document.createElementNS(svgNS, 'circle');
-    pen.setAttribute('class', 'hw-pen');
-    pen.setAttribute('r', '5');
-    pen.setAttribute('cx', '10');
-    pen.setAttribute('cy', String(height*0.6));
-    svg.appendChild(pen);
-
-    return { svg, path: outline, pen };
-  }
-
-  function animatePath(path, pen, duration = 3500) {
-    const length = path.getTotalLength();
-    path.style.strokeDasharray = String(length);
-    path.style.strokeDashoffset = String(length);
-    path.getBoundingClientRect();
-    const start = performance.now();
-
-    function frame(now) {
-      const t = Math.min(1, (now - start) / duration);
-      // easeInOut for realistic acceleration
-      const eased = t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
-      const draw = length * (1 - eased);
-      path.style.strokeDashoffset = String(draw);
-      // move pen along current point
-      const pos = path.getPointAtLength(length * eased);
-      pen.setAttribute('cx', pos.x.toFixed(2));
-      pen.setAttribute('cy', pos.y.toFixed(2));
-      // subtle pen opacity jitter
-      pen.style.opacity = String(0.85 + Math.random()*0.15);
-      if (t < 1) requestAnimationFrame(frame); else pen.style.opacity = '0';
-    }
-    requestAnimationFrame(frame);
-  }
-
   function bootstrap() {
     const el = document.querySelector(targetSelector);
     if (!el) return;
     const full = 'Maßgeschneiderte';
-    // Build SVG handwriting and mount right after hero title wrapper
-    const mount = document.querySelector(svgMountSelector);
-    if (mount) {
-      // Hide script span text content (we use stroke animation instead)
-      el.style.visibility = 'hidden';
-      const rect = mount.getBoundingClientRect();
-      const { svg, path, pen } = buildHandwritingSVG(full, rect);
-      mount.appendChild(svg);
-
-      const startAnimation = () => {
-        animatePath(path, pen, 3600);
-      };
+    // Start the non-SVG fluid reveal on scroll into view
+    const startAnimation = () => {
+      const fallbackTimeout = setTimeout(() => { if (!el.textContent) el.textContent = full; }, 150);
+      typeWord(el, full).finally(() => clearTimeout(fallbackTimeout));
+    };
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { startAnimation(); io.disconnect(); } });
     }, { threshold: 0.4 });
-      io.observe(svg);
-      // Fallback for very weak devices: show entire stroke
-      setTimeout(() => {
-        try {
-          const len = path.getTotalLength();
-          if (!len || !isFinite(len)) {
-            path.style.strokeDashoffset = '0';
-            pen.style.opacity = '0';
-          }
-        } catch(_) {}
-      }, 600);
-    } else {
-      // fallback to previous type effect if mount missing
-      const fallbackTimeout = setTimeout(() => { if (!el.textContent) el.textContent = full; }, 150);
-      typeWord(el, full).finally(() => clearTimeout(fallbackTimeout));
-    }
+    io.observe(el);
   }
 
   if (document.readyState === 'loading') {

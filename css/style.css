@@ -698,24 +698,8 @@ a:hover {
 @keyframes tw-fade { to { opacity: 0; } }
 
 /* SVG handwriting (stroke-based) */
-.handwriting-svg { display: block; width: 100%; height: 100%; overflow: visible; position: absolute; left: 0; top: 0; }
-.handwriting-svg text.hw-text { fill: none; stroke: var(--color-orange); stroke-width: 2.6px; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
-.handwriting-svg path.hw-stroke {
-  stroke: var(--color-orange);
-  stroke-width: 2.5px;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-}
-.handwriting-svg path.hw-animate {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-}
-.handwriting-svg .hw-pen {
-  fill: var(--color-orange);
-  filter: drop-shadow(0 1px 1.5px rgba(0,0,0,0.25));
-}
+/* remove SVG handwriting artifacts */
+.handwriting-svg, .handwriting-svg * { display: none !important; }
 
 .hero-title::after {
   content: "";
