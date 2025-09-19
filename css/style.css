@@ -1986,4 +1986,6 @@ a:hover {
   z-index: 2000;
 }
 .cc-fab svg, .cc-fab img { width: 28px; height: 28px; display: block; object-fit: contain; }
+/* Fallback: Icon als Background laden, falls <img> durch CSP/CDN nicht geladen wird */
+.cc-fab { background-image: url('../images/start/cookieicon.png'); background-repeat: no-repeat; background-position: center; background-size: 28px 28px; }
 /* Aufmerksamkeitspuls entfernt – dezenter Button ohne Glow */
