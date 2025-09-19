@@ -665,10 +665,25 @@ a:hover {
   font-family: 'Dancing Script', cursive;
   -webkit-text-fill-color: currentColor;
   background: none;
-  color: #ffffff;
+  color: var(--color-orange);
   letter-spacing: 0.01em;
   font-weight: 700;
   font-synthesis: none;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  will-change: clip-path;
+  clip-path: inset(0 100% 0 0);
+  animation: script-write 1.8s cubic-bezier(0.22,1,0.36,1) 240ms forwards;
+}
+
+@keyframes script-write {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title .hero-word-script { animation: none; clip-path: inset(0 0 0 0); }
 }
 
 .hero-title::after {
