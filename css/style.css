@@ -661,6 +661,15 @@ a:hover {
   width: fit-content;
 }
 
+.hero-title .hero-word-indie {
+  font-family: 'Indie Flower', cursive;
+  -webkit-text-fill-color: currentColor;
+  background: none;
+  color: #ffffff;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
 .hero-title::after {
   content: "";
   display: block;
