@@ -111,44 +111,43 @@
     if (marketingToggle) marketingToggle.checked = !!(consent && consent.categories.marketing);
 
     // Wire events
-    const btnAcceptAll = document.getElementById('cc-accept-all');
-    const btnReject = document.getElementById('cc-reject');
-    const btnSettings = document.getElementById('cc-settings');
-    const btnSave = document.getElementById('cc-save');
+    const btnAcceptAll = document.querySelectorAll('[data-cc-accept-all]');
+    const btnReject = document.querySelectorAll('[data-cc-reject]');
+    const btnSettings = document.querySelectorAll('[data-cc-settings]');
+    const btnSave = document.querySelectorAll('[data-cc-save]');
     const btnClose = document.getElementById('cc-close');
     const links = document.querySelectorAll('[data-open-cookie-settings]');
     const fab = document.getElementById('cc-fab');
 
-    if (btnAcceptAll) btnAcceptAll.addEventListener('click', () => {
+    btnAcceptAll.forEach((el) => el.addEventListener('click', () => {
       const c = saveConsent({ analytics: true, marketing: true });
       enableDeferredScripts(c);
       hideBanner();
       closeModal();
-    });
+    }));
 
-    if (btnReject) btnReject.addEventListener('click', () => {
+    btnReject.forEach((el) => el.addEventListener('click', () => {
       const c = saveConsent({ analytics: false, marketing: false });
-      // Do not run deferred scripts
       hideBanner();
       closeModal();
-    });
+    }));
 
-    if (btnSettings) btnSettings.addEventListener('click', () => {
+    btnSettings.forEach((el) => el.addEventListener('click', () => {
       openModal();
-    });
+    }));
 
     if (btnClose) btnClose.addEventListener('click', () => {
       closeModal();
     });
 
-    if (btnSave) btnSave.addEventListener('click', () => {
+    btnSave.forEach((el) => el.addEventListener('click', () => {
       const analytics = analyticsToggle ? !!analyticsToggle.checked : false;
       const marketing = marketingToggle ? !!marketingToggle.checked : false;
       const c = saveConsent({ analytics, marketing });
       enableDeferredScripts(c);
       hideBanner();
       closeModal();
-    });
+    }));
 
     links.forEach((el) => el.addEventListener('click', (e) => {
       e.preventDefault();
@@ -168,8 +167,8 @@
     if (current) {
       enableDeferredScripts(current);
     } else {
-      // Keine Zustimmung: zeige aufmerksamkeitsstarken FAB unten links
-      // (Banner entfällt zugunsten des FABs)
+      // Keine Zustimmung: Banner anzeigen und FAB hervorheben
+      showBanner();
       const fab = document.getElementById('cc-fab');
       if (fab) fab.classList.add('cc-attention');
     }

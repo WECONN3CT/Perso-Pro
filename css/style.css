@@ -1865,10 +1865,10 @@ a:hover {
 
 .cc-banner {
   position: fixed;
-  left: 50%;
+  left: 16px;
   bottom: 16px;
-  transform: translate(-50%, 24px);
-  width: min(calc(100% - 24px), 980px);
+  transform: translateY(24px);
+  width: min(520px, calc(100% - 32px));
   background: var(--color-white);
   border: 1px solid var(--color-medium-gray);
   border-radius: 14px;
@@ -1893,13 +1893,13 @@ a:hover {
 .cc-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
 
 .cc-banner.cc-visible {
-  transform: translate(-50%, 0);
+  transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
 }
 
 @media (max-width: 640px) {
-  .cc-banner { grid-template-columns: 1fr; gap: 12px; }
+  .cc-banner { grid-template-columns: 1fr; gap: 12px; width: calc(100% - 24px); left: 12px; right: 12px; }
   .cc-actions { justify-content: stretch; }
   .cc-actions .btn { width: 100%; }
 }
