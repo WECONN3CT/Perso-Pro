@@ -667,7 +667,8 @@ a:hover {
   background: none;
   color: #ffffff;
   letter-spacing: 0;
-  font-weight: 700;
+  font-weight: 400; /* Indie Flower hat regulär 400 */
+  font-synthesis: none; /* keine künstliche Bold/Italic, damit Font nicht ersetzt wird */
 }
 
 .hero-title::after {
