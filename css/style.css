@@ -600,7 +600,7 @@ a:hover {
     rgba(0,0,0,0) 100%);
   transform: translateX(-150%) rotate(10deg);
   animation: goldSheenDark 11s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-  animation-delay: 0.8s;
+  animation-delay: 0.6s;
   pointer-events: none;
   border-radius: inherit;
   mix-blend-mode: multiply;
@@ -608,17 +608,19 @@ a:hover {
 }
 
 @keyframes goldSheen {
-  0%   { transform: translateX(-140%) rotate(12deg); opacity: 0.30; }
-  30%  { opacity: 0.58; }
-  55%  { transform: translateX(140%) rotate(12deg); opacity: 0.34; }
-  100% { transform: translateX(140%) rotate(12deg); opacity: 0.30; }
+  /* Bright on light side, fades on darker side */
+  0%   { transform: translateX(-140%) rotate(12deg); opacity: 0.65; }
+  35%  { opacity: 0.55; }
+  60%  { transform: translateX(140%) rotate(12deg); opacity: 0.22; }
+  100% { transform: translateX(140%) rotate(12deg); opacity: 0.15; }
 }
 
 @keyframes goldSheenDark {
-  0%   { transform: translateX(-150%) rotate(10deg); opacity: 0.14; }
-  50%  { opacity: 0.24; }
-  60%  { transform: translateX(150%) rotate(10deg); opacity: 0.14; }
-  100% { transform: translateX(150%) rotate(10deg); opacity: 0.14; }
+  /* Dark grows as sheen reaches darker side */
+  0%   { transform: translateX(-150%) rotate(10deg); opacity: 0.00; }
+  40%  { opacity: 0.12; }
+  70%  { transform: translateX(150%) rotate(10deg); opacity: 0.28; }
+  100% { transform: translateX(150%) rotate(10deg); opacity: 0.28; }
 }
 
 @media (prefers-reduced-motion: reduce) {
