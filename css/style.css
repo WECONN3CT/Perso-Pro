@@ -830,7 +830,8 @@ a:hover {
   display: grid;
   place-items: center;
   margin-bottom: 0.75rem;
-  color: var(--color-charcoal);
+  /* leichtes Grau/Türkis für semi-transparenten Look */
+  color: #6CB7B2; /* mix aus grau/türkis */
   position: relative;
 }
 
