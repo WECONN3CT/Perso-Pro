@@ -531,23 +531,23 @@ a:hover {
 .award-card.gold {
   /* Subtle medal-like gold */
   /* palette for nuanced gold */
-  --gold-1: #fff1b8; /* highlight */
-  --gold-2: #f1cc6b; /* light gold */
-  --gold-3: #e0b34e; /* mid gold */
-  --gold-4: #c0882b; /* deep gold */
-  --gold-5: #9a6a1b; /* rich amber */
+  --gold-1: #fff3c6; /* highlight (lighter) */
+  --gold-2: #f5d881; /* light gold (lighter) */
+  --gold-3: #e8bf5a; /* mid gold (lighter) */
+  --gold-4: #cfa043; /* deep gold (lighter) */
+  --gold-5: #b07d2c; /* rich amber (lighter) */
   background:
     /* soft top-left highlight */
     radial-gradient(120% 100% at 12% 0%, rgba(255,255,255,0.36) 0%, rgba(255,255,255,0.00) 42%),
     /* subtle bottom-right vignette */
-    radial-gradient(140% 100% at 100% 100%, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.00) 55%),
+    radial-gradient(140% 100% at 100% 100%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.00) 55%),
     /* conic swirl for metallic reflections */
     conic-gradient(from 230deg at 38% 36%,
       rgba(255,255,255,0.25) 0deg,
       rgba(255,255,255,0.00) 42deg,
-      rgba(0,0,0,0.16) 85deg,
+      rgba(0,0,0,0.12) 85deg,
       rgba(255,255,255,0.24) 120deg,
-      rgba(0,0,0,0.16) 200deg,
+      rgba(0,0,0,0.12) 200deg,
       rgba(255,255,255,0.00) 260deg,
       rgba(255,255,255,0.22) 360deg),
     /* inner ring highlight */
@@ -595,7 +595,7 @@ a:hover {
   background: linear-gradient(120deg,
     rgba(0,0,0,0) 0%,
     rgba(0,0,0,0.00) 42%,
-    rgba(0,0,0,0.30) 50%,
+    rgba(0,0,0,0.20) 50%,
     rgba(0,0,0,0.00) 58%,
     rgba(0,0,0,0) 100%);
   transform: translateX(-150%) rotate(10deg);
