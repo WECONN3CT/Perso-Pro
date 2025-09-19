@@ -65,76 +65,11 @@
     reveal.appendChild(text);
     el.textContent = '';
     el.appendChild(reveal);
-    el.appendChild(pen);
 
     // Measure full width responsive
-    const fullWidth = () => text.getBoundingClientRect().width;
-    function speedForChar(ch) {
-      // Sanftere, engere Range für gleichmäßigeren Fluss
-      if (/[aegosßöäü]/i.test(ch)) return randomBetween(22, 30);
-      if (/[mntuirl]/i.test(ch)) return randomBetween(30, 42);
-      return randomBetween(26, 38);
-    }
-
-    // Generate waypoints widths for fluid reveal with variable speeds and pauses
-    const widths = [];
-    const total = word.length;
-    let cumulative = 0;
-    for (let i = 0; i < total; i++) {
-      const ch = word[i];
-      const ratio = (i + 1) / total;
-      // approximate char width fraction
-      const chunk = 1 / total;
-      cumulative += chunk;
-      widths.push({ idx: i, fraction: cumulative, char: ch, speed: speedForChar(ch) });
-    }
-
-    // Animate reveal width and move pen
-    const start = performance.now();
-    let currentIndex = 0;
-
-    await new Promise((resolve) => {
-      function step(now) {
-        const totalW = fullWidth();
-        if (currentIndex >= widths.length) { resolve(); return; }
-        const target = widths[currentIndex];
-        // next target width in pixels
-        const targetPx = target.fraction * totalW;
-        const currentPx = reveal.offsetWidth;
-        const delta = targetPx - currentPx;
-        const dir = Math.sign(delta);
-        // weichere Beschleunigung/Abbremsung je Abschnitt
-        const localT = Math.min(1, Math.max(0, Math.abs(delta) / (totalW * 0.08)));
-        const ease = localT < 0.5 ? 2*localT*localT : -1 + (4 - 2*localT)*localT;
-        const baseAdvance = target.speed * 0.5;
-        const advance = Math.max(0.8, Math.min(Math.abs(delta), baseAdvance * (0.6 + 0.4*ease)));
-        const next = currentPx + dir * advance;
-        reveal.style.width = `${next}px`;
-        pen.style.transform = `translateX(${next}px)`;
-        // jitter for hand wobble
-        pen.style.opacity = '0.92';
-        pen.style.transform += ` translateY(${(Math.sin(now/220)*0.6).toFixed(2)}px)`;
-
-        // natural pauses at joins
-        if (Math.abs(delta) < 1) {
-          currentIndex++;
-          // brief pause between letters
-          const pause = /[aouäöüßg]/i.test(target.char) ? randomBetween(24, 48) : randomBetween(12, 32);
-          setTimeout(() => requestAnimationFrame(step), pause);
-        } else {
-          requestAnimationFrame(step);
-        }
-      }
-      // initial delay
-      setTimeout(() => requestAnimationFrame(step), 220);
-    });
-
-    // finalize: ensure full width
-    reveal.style.width = `${fullWidth()}px`;
-    // hide pen elegantly
-    pen.style.transition = 'opacity 360ms ease, transform 420ms ease';
-    pen.style.opacity = '0';
-    pen.style.transform += ' scale(0.85)';
+    // GPU-smooth reveal via scaleX animation
+    reveal.classList.add('animate');
+    await new Promise((r) => setTimeout(r, 2500));
   }
 
   function bootstrap() {

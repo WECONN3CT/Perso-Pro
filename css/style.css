@@ -696,16 +696,25 @@ a:hover {
   position: relative;
 }
 .hero-script .hw-reveal {
-  display: block;
+  display: inline-block;
   overflow: hidden;
-  width: 0;
-  will-change: width;
+  /* GPU-smooth: animiere die Breite via scaleX statt layout-basiertem width */
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
   /* Platz nach oben, damit hohe Glyphen (z. B. ß, Akzente) nicht abgeschnitten werden */
   padding-top: 0.18em;
   margin-top: -0.18em;
   /* Platz nach unten für Unterlängen (g, j, y) */
   padding-bottom: 0.24em;
   margin-bottom: -0.24em;
+}
+.hero-script .hw-reveal.animate { animation: hw-write 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.hero-script .hw-text { display: inline-block; }
+@keyframes hw-write { to { transform: scaleX(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-script .hw-reveal { transform: none; animation: none; }
 }
 .hero-script .hw-text { display: inline-block; }
 .hero-script .hw-pen { display: none; }
