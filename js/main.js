@@ -499,11 +499,11 @@ style.textContent = `
     @keyframes slideIn {
         from {
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateY(16px) scale(0.98);
         }
         to {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
     }
     
@@ -528,11 +528,11 @@ style.textContent = `
     }
     
     .fade-in {
-        animation: fadeIn 0.5s ease forwards;
+        animation: fadeIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
     
     .slide-in {
-        animation: slideIn 0.35s ease forwards;
+        animation: slideIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 `;
 document.head.appendChild(style);
@@ -556,7 +556,8 @@ const scrollObserver = new IntersectionObserver((entries) => {
 document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.service-card, .property-card, .about-preview, .leistungen-page .value, .leistungen-page .step, .leistungen-page .acc-item');
     animatedElements.forEach((el, i) => {
-        el.style.animationDelay = `${i * 80}ms`;
+        el.style.animationDelay = `${i * 100}ms`;
+        el.style.willChange = 'transform, opacity';
         scrollObserver.observe(el);
     });
 });
