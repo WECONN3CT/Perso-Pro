@@ -52,62 +52,101 @@
   function playBell() { if (enableSounds && endAudio) { try { endAudio.currentTime = 0; endAudio.play(); } catch(_){} } }
 
   async function typeWord(el, word) {
-    // Fallback: if JS breaks show full text
     if (!el) return;
-    const original = word;
+    // Build reveal structure: wrapper span with relative positioning
+    el.style.position = 'relative';
+    const reveal = document.createElement('span');
+    reveal.className = 'hw-reveal';
+    const text = document.createElement('span');
+    text.className = 'hw-text';
+    text.textContent = word;
+    const pen = document.createElement('span');
+    pen.className = 'hw-pen';
+    reveal.appendChild(text);
     el.textContent = '';
+    el.appendChild(reveal);
+    el.appendChild(pen);
 
-    const cursor = createCursor();
-    el.after(cursor);
-
-    const typoPositions = chooseTyposFor(word);
-    let output = '';
-    for (let i = 0; i < word.length; i++) {
-      const ch = word[i];
-      const baseDelay = randomBetween(80, 200);
-      const extra = isUpperOrUmlaut(ch) ? randomBetween(80, 160) : (Math.random() < 0.2 ? randomBetween(30, 80) : 0);
-      const delay = baseDelay + extra;
-
-      // Occasional deliberate pause to simulate thinking
-      if (Math.random() < 0.06) {
-        await new Promise(r => setTimeout(r, randomBetween(120, 260)));
-      }
-
-      // Typo handling
-      if (typoPositions.includes(i)) {
-        // insert wrong character (neighbor or random letter)
-        const wrong = 'asdfjklöuiopqwertzxcvbnm'.charAt(randomBetween(0, 26));
-        output += wrong;
-        el.textContent = output;
-        playKey();
-        await new Promise(r => setTimeout(r, randomBetween(60, 140)));
-        // backspace
-        output = output.slice(0, -1);
-        el.textContent = output;
-        await new Promise(r => setTimeout(r, randomBetween(80, 140)));
-      }
-
-      output += ch;
-      el.textContent = output;
-      playKey();
-      await new Promise(r => setTimeout(r, delay));
+    // Measure full width responsive
+    const fullWidth = () => text.getBoundingClientRect().width;
+    function speedForChar(ch) {
+      // slower for curves, faster for straight-ish
+      if (/[aegosßöäü]/i.test(ch)) return randomBetween(26, 40); // slower px/ms
+      if (/[mntuirl]/i.test(ch)) return randomBetween(40, 60); // faster
+      return randomBetween(32, 52);
     }
 
-    // Keep cursor for a bit and then fade
-    await new Promise(r => setTimeout(r, 2000));
-    cursor.style.animation = 'tw-blink 1s steps(2, end) infinite, tw-wobble 1.6s ease-in-out infinite, tw-fade 400ms ease forwards';
-    playBell();
+    // Generate waypoints widths for fluid reveal with variable speeds and pauses
+    const widths = [];
+    const total = word.length;
+    let cumulative = 0;
+    for (let i = 0; i < total; i++) {
+      const ch = word[i];
+      const ratio = (i + 1) / total;
+      // approximate char width fraction
+      const chunk = 1 / total;
+      cumulative += chunk;
+      widths.push({ idx: i, fraction: cumulative, char: ch, speed: speedForChar(ch) });
+    }
+
+    // Animate reveal width and move pen
+    const start = performance.now();
+    let currentIndex = 0;
+
+    await new Promise((resolve) => {
+      function step(now) {
+        const totalW = fullWidth();
+        if (currentIndex >= widths.length) { resolve(); return; }
+        const target = widths[currentIndex];
+        // next target width in pixels
+        const targetPx = target.fraction * totalW;
+        const currentPx = reveal.offsetWidth;
+        const delta = targetPx - currentPx;
+        const dir = Math.sign(delta);
+        const advance = Math.max(0.6, Math.min(Math.abs(delta), target.speed * 0.6)); // px per frame approx
+        const next = currentPx + dir * advance;
+        reveal.style.width = `${next}px`;
+        pen.style.transform = `translateX(${next}px)`;
+        // jitter for hand wobble
+        pen.style.opacity = String(0.88 + Math.random() * 0.12);
+        pen.style.transform += ` translateY(${(Math.sin(now/120)+Math.random()*0.2).toFixed(2)}px)`;
+
+        // natural pauses at joins
+        if (Math.abs(delta) < 1) {
+          currentIndex++;
+          // brief pause between letters
+          const pause = /[aouäöüßg]/i.test(target.char) ? randomBetween(40, 90) : randomBetween(20, 60);
+          setTimeout(() => requestAnimationFrame(step), pause);
+        } else {
+          requestAnimationFrame(step);
+        }
+      }
+      // initial delay
+      setTimeout(() => requestAnimationFrame(step), 220);
+    });
+
+    // finalize: ensure full width
+    reveal.style.width = `${fullWidth()}px`;
+    // hide pen elegantly
+    pen.style.transition = 'opacity 360ms ease, transform 420ms ease';
+    pen.style.opacity = '0';
+    pen.style.transform += ' scale(0.85)';
   }
 
   function bootstrap() {
     const el = document.querySelector(targetSelector);
     if (!el) return;
     const full = 'Maßgeschneiderte';
-    // Fallback: if animation fails within 100ms, show full word
-    const fallbackTimeout = setTimeout(() => {
-      if (!el.textContent) el.textContent = full;
-    }, 100);
-    typeWord(el, full).finally(() => clearTimeout(fallbackTimeout));
+    // Intersection start
+    const startAnimation = () => {
+      // Fallback after 150ms
+      const fallbackTimeout = setTimeout(() => { if (!el.textContent) el.textContent = full; }, 150);
+      typeWord(el, full).finally(() => clearTimeout(fallbackTimeout));
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { startAnimation(); io.disconnect(); } });
+    }, { threshold: 0.4 });
+    io.observe(el);
   }
 
   if (document.readyState === 'loading') {
