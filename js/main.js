@@ -528,11 +528,11 @@ style.textContent = `
     }
     
     .fade-in {
-        animation: fadeIn 0.5s ease;
+        animation: fadeIn 0.5s ease forwards;
     }
     
     .slide-in {
-        animation: slideIn 0.3s ease;
+        animation: slideIn 0.35s ease forwards;
     }
 `;
 document.head.appendChild(style);
@@ -546,7 +546,7 @@ const observerOptions = {
 const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
+            entry.target.classList.add('fade-in', 'slide-in');
             scrollObserver.unobserve(entry.target);
         }
     });
@@ -554,8 +554,11 @@ const scrollObserver = new IntersectionObserver((entries) => {
 
 // Observe elements for scroll animations
 document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.service-card, .property-card, .about-preview');
-    animatedElements.forEach(el => scrollObserver.observe(el));
+    const animatedElements = document.querySelectorAll('.service-card, .property-card, .about-preview, .leistungen-page .value, .leistungen-page .step, .leistungen-page .acc-item');
+    animatedElements.forEach((el, i) => {
+        el.style.animationDelay = `${i * 80}ms`;
+        scrollObserver.observe(el);
+    });
 });
 
 // (removed) initPropertiesCarousel
