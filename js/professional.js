@@ -6,7 +6,7 @@
  * - Optional sound hooks (simple Audio elements)
  */
 (function () {
-  const targetSelector = '.hero-title .hero-word-script';
+  const targetSelector = '.hero-script';
   const cursorClass = 'tw-cursor';
   const enableSounds = false; // set true to enable sounds if provided
 

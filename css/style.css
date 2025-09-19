@@ -693,6 +693,11 @@ a:hover {
   line-height: 1;
   transform: translateY(-6px) rotate(-2deg);
   margin-bottom: 0.35rem;
+  position: relative;
+}
+.hero-script .hw-reveal { display: block; overflow: hidden; width: 0; will-change: width; }
+.hero-script .hw-text { display: inline-block; }
+.hero-script .hw-pen { position: absolute; left: 0; bottom: 0.05em; width: 10px; height: 10px; border-radius: 50%; background: currentColor; box-shadow: 0 2px 6px rgba(0,0,0,0.2); opacity: 0.95; transform: translateX(0); }
 }
 
 .hero-title .hero-word-script {
