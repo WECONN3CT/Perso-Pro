@@ -830,7 +830,7 @@ a:hover {
   display: grid;
   place-items: center;
   margin-bottom: 0.75rem;
-  color: rgba(38, 50, 56, 0.48); /* stärker transparent */
+  color: var(--color-charcoal);
   position: relative;
 }
 
@@ -860,7 +860,7 @@ a:hover {
 
 .role-title {
   font-size: clamp(0.95rem, 1.8vw, 1.2rem);
-  color: rgba(22, 34, 42, 0.62); /* stärker transparent */
+  color: var(--color-navy);
   margin-bottom: 0.5rem;
   position: relative;
   /* eingravierter Text-Effekt */
@@ -883,7 +883,7 @@ a:hover {
 .role-card:hover .role-title::after { width: 68px; }
 
 .role-desc {
-  color: rgba(55, 65, 81, 0.62);
+  color: var(--color-dark-gray);
   font-size: 0.95rem;
   line-height: 1.65;
   transition: opacity 360ms ease, transform 360ms ease;
