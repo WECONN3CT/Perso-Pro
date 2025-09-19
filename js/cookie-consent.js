@@ -69,12 +69,29 @@
 
   function showBanner() {
     const b = document.getElementById('cc-banner');
-    if (b) b.classList.remove('cc-hidden');
+    if (!b) return;
+    // sichtbar machen und im nächsten Frame animiert einblenden
+    b.classList.remove('cc-hidden');
+    requestAnimationFrame(() => {
+      b.classList.add('cc-visible');
+    });
   }
 
   function hideBanner() {
     const b = document.getElementById('cc-banner');
-    if (b) b.classList.add('cc-hidden');
+    if (!b) return;
+    // erst ausblenden, danach display:none setzen
+    b.classList.remove('cc-visible');
+    const onEnd = () => {
+      b.classList.add('cc-hidden');
+      b.removeEventListener('transitionend', onEnd);
+    };
+    // Fallback, falls transitionend nicht feuert
+    let fallback = setTimeout(onEnd, 600);
+    b.addEventListener('transitionend', () => {
+      clearTimeout(fallback);
+      onEnd();
+    }, { once: true });
   }
 
   function initUI(consent) {

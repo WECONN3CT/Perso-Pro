@@ -1867,7 +1867,7 @@ a:hover {
   position: fixed;
   left: 50%;
   bottom: 16px;
-  transform: translateX(-50%);
+  transform: translate(-50%, 24px);
   width: min(calc(100% - 24px), 980px);
   background: var(--color-white);
   border: 1px solid var(--color-medium-gray);
@@ -1879,6 +1879,10 @@ a:hover {
   gap: 16px;
   align-items: center;
   z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1), opacity 420ms ease;
 }
 
 .cc-banner .cc-text { color: var(--color-charcoal); }
@@ -1888,10 +1892,20 @@ a:hover {
 
 .cc-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
 
+.cc-banner.cc-visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
 @media (max-width: 640px) {
   .cc-banner { grid-template-columns: 1fr; gap: 12px; }
   .cc-actions { justify-content: stretch; }
   .cc-actions .btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc-banner { transition: none; transform: translate(-50%, 0); }
 }
 
 .cc-modal {
