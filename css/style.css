@@ -688,10 +688,10 @@ a:hover {
 .hero-script {
   font-family: 'Photograph Signature', cursive;
   color: var(--color-orange);
-  font-weight: 700;
-  font-size: clamp(2.2rem, 7.2vw, 5rem);
+  font-weight: 400;
+  font-size: clamp(2rem, 6.5vw, 4.2rem);
   line-height: 1;
-  transform: translateY(-4px) rotate(-2deg);
+  transform: translateY(-2px) rotate(-2deg);
   margin-bottom: 0.35rem;
   position: relative;
 }
