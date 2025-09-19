@@ -309,6 +309,7 @@
                         <li><a href="kontakt.html">Kontakt</a></li>
                         <li><a href="impressum.html">Impressum</a></li>
                         <li><a href="datenschutz.html">Datenschutz</a></li>
+                        <li><a href="#" data-open-cookie-settings>Cookie-Einstellungen</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -336,5 +337,55 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/cookie-consent.js"></script>
+    <!-- Cookie Banner -->
+    <div id="cc-banner" class="cc-banner cc-hidden" role="region" aria-label="Cookie-Hinweis">
+      <div class="cc-text">
+        <p>Wir verwenden Cookies, um unsere Website zu verbessern. Essentielle Cookies sind notwendig. Mit Ihrer Zustimmung nutzen wir zusätzlich Cookies für Statistik und Marketing. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+      </div>
+      <div class="cc-actions">
+        <button id="cc-settings" class="btn btn-secondary" type="button">Einstellungen</button>
+        <button id="cc-reject" class="btn btn-ghost" type="button">Nur Essenziell</button>
+        <button id="cc-accept-all" class="btn btn-primary" type="button">Alle akzeptieren</button>
+      </div>
+    </div>
+
+    <!-- Cookie Modal -->
+    <div id="cc-modal" class="cc-modal cc-hidden" role="dialog" aria-modal="true" aria-labelledby="cc-modal-title">
+      <div class="cc-dialog">
+        <button id="cc-close" class="cc-close" aria-label="Schließen">×</button>
+        <h3 id="cc-modal-title">Cookie-Einstellungen</h3>
+        <p class="cc-modal-desc">Hier können Sie auswählen, welche Cookies wir verwenden dürfen. Essentielle Cookies sind für die Grundfunktionen der Seite erforderlich und nicht abwählbar.</p>
+        <div class="cc-options">
+          <label class="cc-option" for="cc-opt-essential">
+            <input id="cc-opt-essential" type="checkbox" checked disabled>
+            <div>
+              <span>Essenziell</span>
+              <small class="block">Erforderlich für Grundfunktionen wie Navigation und Formularübermittlung.</small>
+            </div>
+          </label>
+          <label class="cc-option" for="cc-opt-analytics">
+            <input id="cc-opt-analytics" type="checkbox">
+            <div>
+              <span>Statistik</span>
+              <small class="block">Hilft uns zu verstehen, wie Besucher unsere Website nutzen (z. B. Matomo/GA).</small>
+            </div>
+          </label>
+          <label class="cc-option" for="cc-opt-marketing">
+            <input id="cc-opt-marketing" type="checkbox">
+            <div>
+              <span>Marketing</span>
+              <small class="block">Zur Anzeige relevanter Inhalte von Drittanbietern.</small>
+            </div>
+          </label>
+        </div>
+        <div class="cc-modal-actions">
+          <button id="cc-reject" class="btn btn-ghost" type="button">Nur essenziell</button>
+          <button id="cc-save" class="btn btn-secondary" type="button">Auswahl speichern</button>
+          <button id="cc-accept-all" class="btn btn-primary" type="button">Alle akzeptieren</button>
+        </div>
+        <p class="cc-legal">Weitere Informationen finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>. Sie können Ihre Auswahl jederzeit in den <a href="#" data-open-cookie-settings>Cookie-Einstellungen</a> ändern.</p>
+      </div>
+    </div>
 </body>
 </html>
