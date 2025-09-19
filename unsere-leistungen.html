@@ -8,104 +8,97 @@
     <title>Leistungen - PersoPro</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Additional styles for properties page */
+        /* Page hero aligned with index design */
         .properties-header {
             background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-light-navy) 100%);
             padding: 3rem 0;
             color: var(--color-white);
             text-align: center;
         }
-        
-        .properties-header h1 {
-            color: var(--color-white);
-            margin-bottom: 1rem;
-        }
-        
-        .filter-section {
-            background: var(--color-light-gray);
-            padding: 2rem 0;
-            border-bottom: 1px solid var(--color-medium-gray);
-        }
-        
-        .filter-container {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            align-items: end;
-        }
-        
-        .filter-group {
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .filter-select {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 2px solid var(--color-medium-gray);
-            border-radius: var(--radius-md);
-            font-size: 1rem;
-            background: var(--color-white);
-            cursor: pointer;
-            transition: var(--transition-default);
-        }
-        
-        .filter-select:focus {
-            border-color: var(--color-orange);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
-        }
-        
-        .results-info {
-            padding: 2rem 0 1rem;
-            display: flex;
-            justify-content: space-between;
+        .properties-header h1 { color: var(--color-white); margin-bottom: 0.75rem; }
+        .properties-header p { opacity: 0.95; }
+
+        /* Scoped styles for Leistungen page sections */
+        .leistungen-page .cta-bar {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 12px;
             align-items: center;
-        }
-        
-        .results-count {
-            color: var(--color-dark-gray);
-            font-size: 1.1rem;
-        }
-        
-        .sort-select {
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--color-medium-gray);
-            border-radius: var(--radius-md);
             background: var(--color-white);
-            cursor: pointer;
+            margin-top: 20px;
+            padding: 14px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-medium-gray);
         }
-        
-        .no-results {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--color-dark-gray);
+        .leistungen-page .cta-bar .cta-note { color: #e3ecff; }
+
+        .leistungen-page .value-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 18px;
+            margin: 40px 0;
         }
-        
-        .no-results h3 {
-            color: var(--color-navy);
-            margin-bottom: 1rem;
+        .leistungen-page .value {
+            grid-column: span 4;
+            background: var(--color-white);
+            border: 1px solid var(--color-medium-gray);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: var(--shadow-sm);
         }
-        
-        .load-more {
-            text-align: center;
-            padding: 2rem 0;
+        .leistungen-page .value h3 { margin: 8px 0; font-size: 1.125rem; color: var(--color-navy); }
+        .leistungen-page .value p { margin: 4px 0 0; color: var(--color-dark-gray); font-size: 0.95rem; }
+        .leistungen-page .badge {
+            display: inline-block; font-size: 0.75rem; padding: 4px 10px; border-radius: 999px;
+            background: rgba(20,184,166,0.12); color: var(--color-orange); border: 1px solid rgba(20,184,166,0.25);
+            font-weight: 700;
         }
-        
-        @media (max-width: 768px) {
-            .filter-container {
-                flex-direction: column;
-            }
-            
-            .filter-group {
-                width: 100%;
-            }
-            
-            .results-info {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: start;
-            }
+
+        .leistungen-page .service-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+        .leistungen-page .service-card {
+            grid-column: span 6;
+            background: var(--color-white);
+            border: 1px solid var(--color-medium-gray);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+        }
+        .leistungen-page .service-card h3 { margin: 0 0 8px; font-size: 1.25rem; color: var(--color-navy); }
+        .leistungen-page .service-card p { margin: 8px 0 14px; color: var(--color-dark-gray); }
+        .leistungen-page .chip {
+            display: inline-block; padding: 6px 10px; border-radius: 999px;
+            background: var(--color-light-gray); color: var(--color-navy);
+            font-size: 12px; margin: 4px 6px 0 0; border: 1px solid var(--color-medium-gray);
+        }
+        .leistungen-page .ul-clean { list-style: none; padding: 0; margin: 0; }
+        .leistungen-page .ul-clean li { padding-left: 22px; position: relative; margin: 8px 0; color: var(--color-dark-gray); }
+        .leistungen-page .ul-clean li:before { content: ""; position: absolute; left: 0; top: 8px; width: 10px; height: 10px; border-radius: 2px; background: var(--color-orange); opacity: 0.85; }
+
+        .leistungen-page .steps { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; margin-top: 16px; }
+        .leistungen-page .step { grid-column: span 3; background: var(--color-white); border: 1px solid var(--color-medium-gray); border-radius: 12px; padding: 16px; }
+        .leistungen-page .step .nr { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; background: rgba(20,184,166,0.12); color: var(--color-orange); font-weight: 700; }
+
+        .leistungen-page .table { width: 100%; border-collapse: collapse; margin-top: 14px; }
+        .leistungen-page .table th, .leistungen-page .table td { border: 1px solid var(--color-medium-gray); padding: 12px; text-align: left; font-size: 14px; }
+        .leistungen-page .table th { background: var(--color-light-gray); color: var(--color-navy); }
+        .leistungen-page .table tr:nth-child(even) td { background: #fbfdff; }
+
+        .leistungen-page .accordion { border: 1px solid var(--color-medium-gray); border-radius: 12px; overflow: hidden; }
+        .leistungen-page .acc-item + .acc-item { border-top: 1px solid var(--color-medium-gray); }
+        .leistungen-page .acc-head { width: 100%; text-align: left; background: var(--color-white); padding: 14px 16px; border: 0; cursor: pointer; font-weight: 700; color: var(--color-navy); }
+        .leistungen-page .acc-body { max-height: 0; overflow: hidden; transition: max-height 240ms ease; background: var(--color-light-gray); padding: 0 16px; }
+        .leistungen-page .acc-item.open .acc-body { padding: 12px 16px 16px; }
+
+        @media (max-width: 980px) {
+          .leistungen-page .value { grid-column: span 6; }
+          .leistungen-page .service-card { grid-column: span 12; }
+          .leistungen-page .step { grid-column: span 6; }
+        }
+        @media (max-width: 600px) {
+          .leistungen-page .value { grid-column: span 12; }
+          .leistungen-page .step { grid-column: span 12; }
+          .leistungen-page .cta-bar { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -134,86 +127,125 @@
         </div>
     </header>
 
-    <!-- Properties Header -->
-    <section class="properties-header">
+    <!-- Page Header -->
+    <section class="properties-header leistungen-page">
         <div class="container">
             <h1>Unsere Leistungen</h1>
             <p>Personal für Küche, Service, Theke und Events – kurzfristig verfügbar</p>
-        </div>
-    </section>
-
-    <!-- Filter Section (repurposed: Einsatzplanung) -->
-    <section class="filter-section">
-        <div class="container">
-            <div class="filter-container">
-                <div class="filter-group">
-                    <label class="form-label" for="typeFilter">Rolle</label>
-                    <select id="typeFilter" class="filter-select">
-                        <option value="">Alle Rollen</option>
-                        <option value="kueche">Küchenhilfe / Spülkraft</option>
-                        <option value="service">Service / Runner</option>
-                        <option value="theke">Barista / Theke</option>
-                        <option value="event">Event-Support</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label class="form-label" for="locationFilter">Einsatzort</label>
-                    <select id="locationFilter" class="filter-select">
-                        <option value="">Alle Einsatzorte</option>
-                        <option value="muenchen">München</option>
-                        <option value="umland">Umland</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label class="form-label" for="priceFilter">Stundenlohn bis</label>
-                    <select id="priceFilter" class="filter-select">
-                        <option value="">Alle</option>
-                        <option value="14">bis 14 €</option>
-                        <option value="18">bis 18 €</option>
-                        <option value="22">bis 22 €</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label class="form-label" for="roomsFilter">Schicht</label>
-                    <select id="roomsFilter" class="filter-select">
-                        <option value="">Alle</option>
-                        <option value="frueh">Früh</option>
-                        <option value="spaet">Spät</option>
-                        <option value="nacht">Nacht</option>
-                        <option value="wochenende">Wochenende</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <button class="btn btn-primary" onclick="resetFilters()">Filter zurücksetzen</button>
-                </div>
+            <div class="cta-bar">
+              <div>
+                <strong>Akute Anfrage</strong><br />
+                <span class="cta-note">Wir besetzen in der Regel innerhalb von 24–72 Stunden.</span>
+              </div>
+              <div>
+                <a class="btn btn-primary" href="#services">Leistungen ansehen</a>
+                <a class="btn btn-secondary" href="#kontakt">Personal anfragen</a>
+              </div>
             </div>
         </div>
     </section>
 
-    <!-- Properties List (repurposed: Ergebnisse) -->
-    <section class="section">
+    <!-- Value Props (from entwurf structure) -->
+    <section class="section section-alternate leistungen-page">
         <div class="container">
-            <div class="results-info">
-                <span class="results-count" id="resultsCount">Verfügbare Profile werden geladen...</span>
-                <select class="sort-select" id="sortSelect">
-                    <option value="wage-asc">Stundenlohn aufsteigend</option>
-                    <option value="wage-desc">Stundenlohn absteigend</option>
-                    <option value="experience-desc">Erfahrung absteigend</option>
-                </select>
+            <div class="value-grid">
+              <div class="value">
+                <span class="badge">Zeitarbeit</span>
+                <h3>Flexible Abdeckung</h3>
+                <p>Schichten, Spitzen, Events − planbar von heute bis mehrere Wochen.</p>
+              </div>
+              <div class="value">
+                <span class="badge">Qualität</span>
+                <h3>Vorqualifizierte Profile</h3>
+                <p>Erprobte Aushilfen mit einheitlichem Briefing und Checklisten.</p>
+              </div>
+              <div class="value">
+                <span class="badge">Compliance</span>
+                <h3>Rechtssicher</h3>
+                <p>AÜG-konforme Prozesse, Arbeitsschutz und DSGVO-konforme Daten.</p>
+              </div>
             </div>
-            
-            <div class="properties-grid" id="propertiesGrid">
-                <!-- Properties will be loaded here -->
+        </div>
+    </section>
+
+    <!-- Leistungen Liste (aus entwurf übernommen) -->
+    <section id="services" class="section leistungen-page">
+        <div class="container">
+            <h2>Leistungsportfolio im Überblick</h2>
+            <p class="lead">Wir liefern einsatzbereites Personal für die folgenden Bereiche.</p>
+            <div class="service-grid" style="margin-top:14px;">
+              <article class="service-card" aria-labelledby="s1">
+                <h3 id="s1">Spülhilfskräfte - Spülküche</h3>
+                <p>Sichere Abwicklung der Spülstraße und Hygienevorschriften.</p>
+                <ul class="ul-clean">
+                  <li>Gewerbespülmaschinen, Vorspülen, Sortieren</li>
+                  <li>Flächenhygiene, Abfalltrennung</li>
+                  <li>Transport, Rücklaufsteuerung</li>
+                </ul>
+                <div style="margin-top:10px;">
+                  <span class="chip">HACCP</span>
+                  <span class="chip">6–8 Std</span>
+                  <span class="chip">Einweisung 30 Min</span>
+                </div>
+              </article>
+              <article class="service-card" aria-labelledby="s2">
+                <h3 id="s2">Servicehilfspersonal</h3>
+                <p>Front- und Back-of-House Unterstützung.</p>
+                <ul class="ul-clean">
+                  <li>Buffet/Essensausgabe</li>
+                  <li>Auffüllen, Abräumen</li>
+                  <li>Bestellungen aufnehmen</li>
+                </ul>
+                <div style="margin-top:10px;">
+                  <span class="chip">Gästekommunikation</span>
+                  <span class="chip">Kassennahe Prozesse</span>
+                  <span class="chip">Team</span>
+                </div>
+              </article>
+              <article class="service-card" aria-labelledby="s3">
+                <h3 id="s3">Thekenpersonal</h3>
+                <p>Getränkeausgabe und Kassenvorgänge.</p>
+                <ul class="ul-clean">
+                  <li>Zapfen und Ausgabe</li>
+                  <li>Kaffeeautomaten bedienen</li>
+                  <li>Kassieren, Bons prüfen</li>
+                </ul>
+                <div style="margin-top:10px;">
+                  <span class="chip">EC-Kasse</span>
+                  <span class="chip">Inventur</span>
+                  <span class="chip">Stoßzeiten</span>
+                </div>
+              </article>
+              <article class="service-card" aria-labelledby="s4">
+                <h3 id="s4">Café & Bar</h3>
+                <p>Siebträgerbasierte Heißgetränke, geschulte Zubereitung.</p>
+                <ul class="ul-clean">
+                  <li>Espresso, Cappuccino, Latte</li>
+                  <li>Milchschäumen, einfache Latte-Art</li>
+                  <li>Kassenbedienung & Theke</li>
+                </ul>
+                <div style="margin-top:10px;">
+                  <span class="chip">Siebträger</span>
+                  <span class="chip">Produktqualität</span>
+                  <span class="chip">Abstimmung Küche</span>
+                </div>
+              </article>
             </div>
-            
-            <div class="no-results" id="noResults" style="display: none;">
-                <h3>Keine Profile gefunden</h3>
-                <p>Passen Sie die Filter an oder kontaktieren Sie uns direkt – wir unterstützen kurzfristig.</p>
-                <a href="kontakt.html" class="btn btn-primary">Kontakt aufnehmen</a>
-            </div>
-            
-            <div class="load-more" id="loadMore">
-                <button class="btn btn-secondary" onclick="loadMoreProperties()">Weitere Profile laden</button>
+
+            <div style="margin-top:26px;">
+              <h3 style="margin:0 0 8px;">Service-Level und Rahmenbedingungen</h3>
+              <table class="table" aria-label="Service-Level Tabelle">
+                <thead>
+                  <tr><th>Parameter</th><th>Standard</th><th>Optional</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Vorlaufzeit</td><td>24–72 Stunden</td><td>Same-Day auf Anfrage</td></tr>
+                  <tr><td>Schichtlängen</td><td>6–8 Stunden</td><td>4–10 Stunden</td></tr>
+                  <tr><td>Briefing am Einsatzort</td><td>30 Minuten</td><td>Erweitertes Onboarding</td></tr>
+                  <tr><td>Zeiterfassung</td><td>digital oder Laufzettel</td><td>Schnittstelle</td></tr>
+                  <tr><td>Teamleitung</td><td>Ansprechpartner je Schicht</td><td>Lead vor Ort</td></tr>
+                </tbody>
+              </table>
             </div>
         </div>
     </section>
@@ -292,6 +324,5 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script src="js/properties.js"></script>
 </body>
 </html>
