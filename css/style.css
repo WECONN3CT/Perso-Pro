@@ -547,6 +547,11 @@ a:hover {
 .award-stars { color: #E67E22; font-size: 1rem; margin: 4px 0; }
 .award-note { font-size: 0.9rem; color: var(--color-charcoal); }
 
+/* Titelgröße der Flexibel-Karte an Schnelle Verfügbarkeit angleichen */
+.intro-awards .award-card.gold.small .award-brand {
+  font-size: 1.75rem;
+}
+
 @media (max-width: 1024px) {
   .intro-grid { grid-template-columns: 1fr; }
   .intro-awards { grid-template-columns: repeat(2, 1fr); }
