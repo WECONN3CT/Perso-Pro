@@ -661,13 +661,13 @@ a:hover {
   width: fit-content;
 }
 
-.hero-title .hero-word-sacramento {
-  font-family: 'Sacramento', cursive;
+.hero-title .hero-word-script {
+  font-family: 'Dancing Script', cursive;
   -webkit-text-fill-color: currentColor;
   background: none;
   color: #ffffff;
   letter-spacing: 0.01em;
-  font-weight: 400;
+  font-weight: 700;
   font-synthesis: none;
 }
 
