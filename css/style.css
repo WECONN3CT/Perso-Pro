@@ -371,15 +371,15 @@ a:hover {
   z-index: 950;
   height: 6px; /* dezenter, halb so hoch */
   margin: 0; /* nahtlos direkt unter dem Header */
-  background: rgba(20,184,166,0.06); /* sehr leichtes Türkis */
+  background: rgba(20,184,166,0.10); /* leicht sichtbarer Track */
   border-radius: 999px;
 }
 .scroll-progress .bar {
   height: 100%;
   width: 0%;
-  background: rgba(20,184,166,0.65); /* dezenter als Vollfarbe */
+  background: linear-gradient(90deg, var(--color-dark-orange) 0%, var(--color-orange) 50%, var(--color-light-orange) 100%);
   border-radius: inherit;
-  box-shadow: none;
+  box-shadow: 0 0 8px rgba(20,184,166,0.25);
   transition: width 90ms linear;
 }
 .hero-side-image { height: auto; }
