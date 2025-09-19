@@ -67,9 +67,48 @@
     el.appendChild(reveal);
 
     // Measure full width responsive
-    // GPU-smooth reveal via scaleX animation
-    reveal.classList.add('animate');
-    await new Promise((r) => setTimeout(r, 2500));
+    const fullWidth = () => text.getBoundingClientRect().width;
+    function speedForChar(ch) {
+      // sehr sanfte, enge Ranges für gleichmäßige Bewegung
+      if (/[aegosßöäü]/i.test(ch)) return randomBetween(20, 26);
+      if (/[mntuirl]/i.test(ch)) return randomBetween(26, 34);
+      return randomBetween(22, 30);
+    }
+
+    const widths = [];
+    const total = word.length;
+    let cumulative = 0;
+    for (let i = 0; i < total; i++) {
+      const chunk = 1 / total;
+      cumulative += chunk;
+      widths.push({ idx: i, fraction: cumulative, char: word[i], speed: speedForChar(word[i]) });
+    }
+
+    let currentIndex = 0;
+    await new Promise((resolve) => {
+      function step() {
+        const totalW = fullWidth();
+        if (currentIndex >= widths.length) { resolve(); return; }
+        const target = widths[currentIndex];
+        const targetPx = target.fraction * totalW;
+        const currentPx = reveal.offsetWidth;
+        const delta = targetPx - currentPx;
+        const dir = Math.sign(delta);
+        // Sehr weicher Progress: konstanter kleiner Schritt + sanftes Ease
+        const stepPx = Math.max(0.6, Math.min(Math.abs(delta), target.speed * 0.45));
+        const next = currentPx + dir * stepPx;
+        reveal.style.width = `${next}px`;
+
+        if (Math.abs(delta) < 0.8) {
+          currentIndex++;
+          const pause = /[aouäöüßg]/i.test(target.char) ? randomBetween(14, 28) : randomBetween(8, 18);
+          setTimeout(() => requestAnimationFrame(step), pause);
+        } else {
+          requestAnimationFrame(step);
+        }
+      }
+      setTimeout(() => requestAnimationFrame(step), 160);
+    });
   }
 
   function bootstrap() {
