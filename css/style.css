@@ -208,8 +208,8 @@ a:hover {
 .header-solid .logo h1 { color: var(--color-navy) !important; }
 .header-solid .nav-toggle span { background: var(--color-navy) !important; }
 
-/* Hero container top padding equals header height */
-.hero-section > .container { padding-top: 72px; }
+/* Hero unter transparentem Header starten: nach oben ziehen */
+.hero-section { margin-top: -72px; }
 
 .navigation {
   display: flex;
