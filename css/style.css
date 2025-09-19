@@ -566,28 +566,32 @@ a:hover {
   isolation: isolate;
 }
 
-/* Animated gold sheen overlay */
+/* Shimmer on hover like buttons */
 .award-card.gold::after {
   content: "";
   position: absolute;
   inset: -20% -68%;
-  background: linear-gradient(120deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.00) 40%,
-    rgba(255,255,255,0.38) 46%,
-    rgba(255,255,255,0.88) 49%,
-    rgba(255,255,255,0.38) 52%,
-    rgba(255,255,255,0.00) 60%,
-    rgba(255,255,255,0) 100%);
-  transform: translateX(-140%) rotate(12deg);
-  animation: goldSheen 9s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-  pointer-events: none;
   border-radius: inherit;
-  mix-blend-mode: soft-light;
-  will-change: transform, opacity;
+  pointer-events: none;
+  background-image: linear-gradient(130deg,
+    rgba(255,255,255,0) 45%,
+    rgba(255,255,255,0.55) 50%,
+    rgba(255,255,255,0) 55%
+  );
+  background-size: 200% 200%;
+  background-position: -150% 0;
+  opacity: 0;
+  z-index: 1;
+  mix-blend-mode: screen;
+  will-change: background-position, opacity;
+  transition: opacity 120ms ease;
+}
+.award-card.gold:hover::after {
+  opacity: 1;
+  animation: shimmer-sweep 0.9s ease-out both;
 }
 
-/* Darker moving band for realistic metal shading */
+/* Static subtle dark band for depth */
 .award-card.gold::before {
   content: "";
   position: absolute;
@@ -595,37 +599,17 @@ a:hover {
   background: linear-gradient(120deg,
     rgba(0,0,0,0) 0%,
     rgba(0,0,0,0.00) 42%,
-    rgba(0,0,0,0.20) 50%,
+    rgba(0,0,0,0.12) 50%,
     rgba(0,0,0,0.00) 58%,
     rgba(0,0,0,0) 100%);
-  transform: translateX(-150%) rotate(10deg);
-  animation: goldSheenDark 11s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-  animation-delay: 0.6s;
   pointer-events: none;
   border-radius: inherit;
   mix-blend-mode: multiply;
-  will-change: transform, opacity;
-}
-
-@keyframes goldSheen {
-  /* Bright on light side, fades on darker side */
-  0%   { transform: translateX(-140%) rotate(12deg); opacity: 0.65; }
-  35%  { opacity: 0.55; }
-  60%  { transform: translateX(140%) rotate(12deg); opacity: 0.22; }
-  100% { transform: translateX(140%) rotate(12deg); opacity: 0.15; }
-}
-
-@keyframes goldSheenDark {
-  /* Dark grows as sheen reaches darker side */
-  0%   { transform: translateX(-150%) rotate(10deg); opacity: 0.00; }
-  40%  { opacity: 0.12; }
-  70%  { transform: translateX(150%) rotate(10deg); opacity: 0.28; }
-  100% { transform: translateX(150%) rotate(10deg); opacity: 0.28; }
+  opacity: 0.25;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .award-card.gold::after,
-  .award-card.gold::before { animation: none; opacity: 0; }
+  .award-card.gold:hover::after { animation: none; opacity: 0; }
 }
 .award-card.white { background: var(--color-white); }
 .award-card.small { padding: var(--spacing-md); }
