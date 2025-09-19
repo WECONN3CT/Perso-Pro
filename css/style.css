@@ -78,6 +78,18 @@
   font-display: swap;
 }
 
+/* Optional: Photograph Signature (falls Datei vorhanden) */
+@font-face {
+  font-family: 'Photograph Signature';
+  src: url('../royalty_free/Photograph%20Signature.woff2') format('woff2'),
+       url('../royalty_free/Photograph%20Signature.woff') format('woff'),
+       url('../royalty_free/Photograph%20Signature.ttf') format('truetype'),
+       url('../royalty_free/Photograph%20Signature.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ===================================
    Reset and Base Styles
    =================================== */
@@ -674,7 +686,7 @@ a:hover {
 }
 
 .hero-title .hero-word-script {
-  font-family: 'Royalty Free', cursive;
+  font-family: 'Photograph Signature', 'Royalty Free', cursive;
   -webkit-text-fill-color: currentColor;
   background: none;
   color: var(--color-orange);
