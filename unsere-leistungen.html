@@ -55,6 +55,40 @@
             font-weight: 700;
         }
 
+        /* Ornamented header background */
+        .properties-header { position: relative; overflow: hidden; }
+        .properties-header::before,
+        .properties-header::after {
+          content: ""; position: absolute; inset: -20% -10% auto auto; pointer-events: none;
+          background: radial-gradient(40% 40% at 80% 20%, rgba(45,212,191,0.18) 0%, rgba(45,212,191,0) 70%);
+          filter: blur(12px);
+        }
+        .properties-header::after { inset: auto auto -30% -20%; background: radial-gradient(50% 50% at 20% 60%, rgba(20,184,166,0.16) 0%, rgba(20,184,166,0) 70%); }
+
+        /* Modern cards */
+        .leistungen-page .service-card {
+          border: 2px solid transparent;
+          background: linear-gradient(var(--color-white), var(--color-white)) padding-box,
+                      linear-gradient(135deg, var(--color-light-orange), var(--color-orange)) border-box;
+          transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .leistungen-page .service-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: var(--shadow-lg); }
+
+        .leistungen-page .service-card .svc-icon {
+          width: 44px; height: 44px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center;
+          background: rgba(20,184,166,0.12); color: var(--color-orange); margin-bottom: 10px; border: 1px solid rgba(20,184,166,0.25);
+        }
+
+        .leistungen-page .value { position: relative; }
+        .leistungen-page .value .value-icon { width: 36px; height: 36px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; background: rgba(20,184,166,0.1); color: var(--color-orange); border: 1px solid rgba(20,184,166,0.25); }
+
+        /* Section title accent line */
+        .leistungen-page h2 { position: relative; display: inline-block; padding-bottom: 8px; }
+        .leistungen-page h2::after {
+          content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; border-radius: 99px;
+          background: linear-gradient(90deg, var(--color-dark-orange), var(--color-light-orange));
+        }
+
         .leistungen-page .service-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
         .leistungen-page .service-card {
             grid-column: span 6;
@@ -154,16 +188,19 @@
         <div class="container">
             <div class="value-grid">
               <div class="value">
+                <div class="value-icon">✓</div>
                 <span class="badge">Zeitarbeit</span>
                 <h3>Flexible Abdeckung</h3>
                 <p>Schichten, Spitzen, Events − planbar von heute bis mehrere Wochen.</p>
               </div>
               <div class="value">
+                <div class="value-icon">★</div>
                 <span class="badge">Qualität</span>
                 <h3>Vorqualifizierte Profile</h3>
                 <p>Erprobte Aushilfen mit einheitlichem Briefing und Checklisten.</p>
               </div>
               <div class="value">
+                <div class="value-icon">⚖</div>
                 <span class="badge">Compliance</span>
                 <h3>Rechtssicher</h3>
                 <p>AÜG-konforme Prozesse, Arbeitsschutz und DSGVO-konforme Daten.</p>
@@ -179,6 +216,7 @@
             <p class="lead">Wir liefern einsatzbereites Personal für die folgenden Bereiche.</p>
             <div class="service-grid" style="margin-top:14px;">
               <article class="service-card" aria-labelledby="s1">
+                <div class="svc-icon">🧼</div>
                 <h3 id="s1">Spülhilfskräfte - Spülküche</h3>
                 <p>Sichere Abwicklung der Spülstraße und Hygienevorschriften.</p>
                 <ul class="ul-clean">
@@ -193,6 +231,7 @@
                 </div>
               </article>
               <article class="service-card" aria-labelledby="s2">
+                <div class="svc-icon">🍽</div>
                 <h3 id="s2">Servicehilfspersonal</h3>
                 <p>Front- und Back-of-House Unterstützung.</p>
                 <ul class="ul-clean">
@@ -207,6 +246,7 @@
                 </div>
               </article>
               <article class="service-card" aria-labelledby="s3">
+                <div class="svc-icon">🍺</div>
                 <h3 id="s3">Thekenpersonal</h3>
                 <p>Getränkeausgabe und Kassenvorgänge.</p>
                 <ul class="ul-clean">
@@ -221,6 +261,7 @@
                 </div>
               </article>
               <article class="service-card" aria-labelledby="s4">
+                <div class="svc-icon">☕</div>
                 <h3 id="s4">Café & Bar</h3>
                 <p>Siebträgerbasierte Heißgetränke, geschulte Zubereitung.</p>
                 <ul class="ul-clean">
