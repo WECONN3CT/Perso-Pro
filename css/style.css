@@ -570,13 +570,13 @@ a:hover {
 .award-card.gold::after {
   content: "";
   position: absolute;
-  inset: -18% -62%;
+  inset: -20% -68%;
   background: linear-gradient(120deg,
     rgba(255,255,255,0) 0%,
     rgba(255,255,255,0.00) 40%,
-    rgba(255,255,255,0.26) 46%,
-    rgba(255,255,255,0.78) 49%,
-    rgba(255,255,255,0.26) 52%,
+    rgba(255,255,255,0.38) 46%,
+    rgba(255,255,255,0.88) 49%,
+    rgba(255,255,255,0.38) 52%,
     rgba(255,255,255,0.00) 60%,
     rgba(255,255,255,0) 100%);
   transform: translateX(-140%) rotate(12deg);
@@ -595,7 +595,7 @@ a:hover {
   background: linear-gradient(120deg,
     rgba(0,0,0,0) 0%,
     rgba(0,0,0,0.00) 42%,
-    rgba(0,0,0,0.22) 50%,
+    rgba(0,0,0,0.30) 50%,
     rgba(0,0,0,0.00) 58%,
     rgba(0,0,0,0) 100%);
   transform: translateX(-150%) rotate(10deg);
@@ -608,17 +608,17 @@ a:hover {
 }
 
 @keyframes goldSheen {
-  0%   { transform: translateX(-140%) rotate(12deg); opacity: 0.22; }
-  30%  { opacity: 0.42; }
-  55%  { transform: translateX(140%) rotate(12deg); opacity: 0.26; }
-  100% { transform: translateX(140%) rotate(12deg); opacity: 0.22; }
+  0%   { transform: translateX(-140%) rotate(12deg); opacity: 0.30; }
+  30%  { opacity: 0.58; }
+  55%  { transform: translateX(140%) rotate(12deg); opacity: 0.34; }
+  100% { transform: translateX(140%) rotate(12deg); opacity: 0.30; }
 }
 
 @keyframes goldSheenDark {
-  0%   { transform: translateX(-150%) rotate(10deg); opacity: 0.10; }
-  50%  { opacity: 0.16; }
-  60%  { transform: translateX(150%) rotate(10deg); opacity: 0.10; }
-  100% { transform: translateX(150%) rotate(10deg); opacity: 0.10; }
+  0%   { transform: translateX(-150%) rotate(10deg); opacity: 0.14; }
+  50%  { opacity: 0.24; }
+  60%  { transform: translateX(150%) rotate(10deg); opacity: 0.14; }
+  100% { transform: translateX(150%) rotate(10deg); opacity: 0.14; }
 }
 
 @media (prefers-reduced-motion: reduce) {
