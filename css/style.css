@@ -703,6 +703,9 @@ a:hover {
   /* Platz nach oben, damit hohe Glyphen (z. B. ß, Akzente) nicht abgeschnitten werden */
   padding-top: 0.18em;
   margin-top: -0.18em;
+  /* Platz nach unten für Unterlängen (g, j, y) */
+  padding-bottom: 0.24em;
+  margin-bottom: -0.24em;
 }
 .hero-script .hw-text { display: inline-block; }
 .hero-script .hw-pen { position: absolute; left: 0; bottom: 0.05em; width: 10px; height: 10px; border-radius: 50%; background: currentColor; box-shadow: 0 2px 6px rgba(0,0,0,0.2); opacity: 0.95; transform: translateX(0); }
