@@ -531,11 +531,11 @@ a:hover {
 .award-card.gold {
   /* Subtle medal-like gold */
   /* palette for nuanced gold */
-  --gold-1: #f8eed2; /* highlight (desaturated) */
-  --gold-2: #e8d39a; /* light gold (desaturated) */
-  --gold-3: #d3b675; /* mid gold (desaturated) */
-  --gold-4: #b89047; /* deep gold (desaturated) */
-  --gold-5: #8f6e36; /* rich amber (desaturated) */
+  --gold-1: #fff1b8; /* highlight */
+  --gold-2: #f1cc6b; /* light gold */
+  --gold-3: #e0b34e; /* mid gold */
+  --gold-4: #c0882b; /* deep gold */
+  --gold-5: #9a6a1b; /* rich amber */
   background:
     /* soft top-left highlight */
     radial-gradient(120% 100% at 12% 0%, rgba(255,255,255,0.36) 0%, rgba(255,255,255,0.00) 42%),
@@ -559,7 +559,7 @@ a:hover {
     repeating-linear-gradient(-14deg, rgba(255,255,255,0.02) 0 1px, rgba(0,0,0,0.025) 1px 2px);
   background-blend-mode: soft-light, multiply, soft-light, overlay, normal, overlay, overlay;
   color: #1E1E1E;
-  border-color: #b8924a;
+  border-color: #c4942d;
   box-shadow: 0 6px 16px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.55), inset 0 -1px 0 rgba(0,0,0,0.12);
   position: relative;
   overflow: hidden; /* sheen in border-radius clip */
