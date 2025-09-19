@@ -809,7 +809,7 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(4, max-content);
   gap: clamp(2rem, 3.8vw, 4rem); /* breitere Abstände zwischen Elementen */
-  justify-content: space-between; /* erste/letzte Karte an Container-Rand */
+  justify-content: space-around; /* etwas nach innen rücken, damit rechts sichtbar */
   align-items: start;
   width: 100%;
 }
