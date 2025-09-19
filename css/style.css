@@ -69,10 +69,10 @@
 /* Local Royalty Free font */
 @font-face {
   font-family: 'Royalty Free';
-  src: url('../royalty_free/Royalty Free.woff2') format('woff2'),
-       url('../royalty_free/Royalty Free.woff') format('woff'),
-       url('../royalty_free/Royalty Free.ttf') format('truetype'),
-       url('../royalty_free/Royalty Free.otf') format('opentype');
+  src: url('../royalty_free/Royalty%20Free.woff2') format('woff2'),
+       url('../royalty_free/Royalty%20Free.woff') format('woff'),
+       url('../royalty_free/Royalty%20Free.ttf') format('truetype'),
+       url('../royalty_free/Royalty%20Free.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
