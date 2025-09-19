@@ -193,7 +193,9 @@ a:hover {
   box-shadow: none;
 }
 .header-transparent .nav-link,
-.header-transparent .logo h1 { color: var(--color-white); }
+.header-transparent .nav-link:hover,
+.header-transparent .nav-link.active,
+.header-transparent .logo h1 { color: var(--color-white) !important; }
 .header-transparent .nav-toggle span { background: var(--color-white); }
 
 /* Solid header on scroll */
