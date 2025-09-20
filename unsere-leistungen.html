@@ -314,6 +314,16 @@
       // Weitere +40% Breite (insgesamt 1.25 * 1.25 * 1.4 = 2.1875), nach rechts wachsend
       var newWidth = Math.min(Math.round(rect.width * 1.25 * 1.25 * 1.4), window.innerWidth);
       card.style.width = newWidth + 'px';
+
+      // Rechten türkisen Container auf gleiche Höhe und gleiche Top-Position setzen
+      var rightCard = document.querySelector('.lead-turquoise-card');
+      var section = document.querySelector('.properties-header');
+      if (rightCard && section) {
+        var figRect = card.getBoundingClientRect();
+        var secRect = section.getBoundingClientRect();
+        rightCard.style.top = Math.max(0, Math.round(figRect.top - secRect.top)) + 'px';
+        rightCard.style.height = Math.round(figRect.height) + 'px';
+      }
     });
     </script>
 
