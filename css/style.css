@@ -1435,10 +1435,10 @@ a:hover {
 }
 
 /* Slider arrows */
-.svc-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: 1px solid var(--color-medium-gray); width: 40px; height: 40px; border-radius: 999px; display: grid; place-items: center; cursor: pointer; box-shadow: var(--shadow-sm); color: var(--color-navy); font-size: 20px; }
-.svc-arrow.left { left: 8px; }
-.svc-arrow.right { right: 8px; }
-.services-sticky-right { position: relative; }
+.svc-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: 1px solid var(--color-medium-gray); width: 44px; height: 44px; border-radius: 999px; display: grid; place-items: center; cursor: pointer; box-shadow: var(--shadow-sm); color: var(--color-navy); font-size: 20px; z-index: 3; }
+.svc-arrow.left { left: 0; }
+.svc-arrow.right { right: 0; }
+.services-sticky { position: relative; }
 
 /* Reveal Animation */
 .reveal { opacity: 0; transform: translateY(16px); }
