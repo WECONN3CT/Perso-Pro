@@ -12,6 +12,9 @@
         .properties-header {
             background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-light-navy) 100%);
             padding: 3rem 0;
+            /* Hintergrund bis unter den Header hochziehen, Inhalte bleiben an Ort und Stelle */
+            margin-top: -72px; /* entspricht Headerhöhe */
+            padding-top: calc(3rem + 72px);
             color: var(--color-white);
             text-align: center;
         }
