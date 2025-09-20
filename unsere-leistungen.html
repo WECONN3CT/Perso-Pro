@@ -36,10 +36,10 @@
 
         /* Einzelner Bild-Container wie im Screenshot */
         .lead-image-card {
-          width: min(960px, 70%);
+          width: 100vw; /* volle Breite bis ganz rechts */
           align-self: flex-start; /* linksbündig innerhalb des flex-Containers */
           margin: clamp(12px, 2vh, 20px) 0 clamp(110px, 14vh, 220px); /* mehr Abstand zur CTA unten */
-          margin-left: calc((min(1200px, 100%) / 2 - 50vw) - 1rem); /* bündig am linken Rand (Container-Padding berücksichtigt) */
+          margin-left: calc(50% - 50vw); /* Full-Bleed: bündig am linken Rand */
           border-radius: 24px;
           overflow: hidden;
           border: 1px solid var(--color-medium-gray);
