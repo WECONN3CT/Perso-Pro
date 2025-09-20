@@ -16,10 +16,10 @@
             text-align: center;
         }
         
-        .about-header h1 {
-            color: var(--color-white);
-            margin-bottom: 1rem;
-        }
+        .about-header h1 { color: var(--color-white); margin-bottom: 1rem; }
+        .about-header .brand-split { display: inline-flex; gap: 0.15em; }
+        .about-header .brand-split .perso { color: #000; background: #fff; padding: 0 .2em; border-radius: .2em; }
+        .about-header .brand-split .pro { color: var(--color-orange); }
         
         .company-story {
             display: grid;
@@ -221,7 +221,7 @@
     <!-- About Header -->
     <section class="about-header">
         <div class="container">
-            <h1>Über PersoPro</h1>
+            <h1>Wir sind <span class="brand-split"><span class="perso">Perso</span><span class="pro">Pro</span></span></h1>
             <p>Ihr verlässlicher Partner für Personal in Gastronomie & Events</p>
         </div>
     </section>
