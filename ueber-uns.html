@@ -56,6 +56,21 @@
             gap: 2rem;
             margin: 3rem 0;
         }
+        /* Line reveal animation */
+        .values-anim { position: relative; }
+        .values-anim .reveal-line {
+            position: absolute; top: -16px; left: 0; height: 3px; width: 0;
+            background: linear-gradient(90deg, rgba(20,184,166,0.8), rgba(13,148,136,1));
+            border-radius: 3px; box-shadow: 0 0 10px rgba(20,184,166,.4);
+            transition: width 1.2s cubic-bezier(.22,1,.36,1);
+        }
+        .values-anim.revealed .reveal-line { width: 100%; }
+        .value-card { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+        .values-anim.revealed .value-card { opacity: 1; transform: translateY(0); }
+        .values-anim.revealed .value-card:nth-child(1) { transition-delay: .2s; }
+        .values-anim.revealed .value-card:nth-child(2) { transition-delay: .45s; }
+        .values-anim.revealed .value-card:nth-child(3) { transition-delay: .7s; }
+        .values-anim.revealed .value-card:nth-child(4) { transition-delay: .95s; }
         
         .value-card {
             text-align: center;
@@ -254,9 +269,10 @@
     </section>
 
     <!-- Values Section -->
-    <section class="section section-alternate">
+    <section class="section section-alternate values-anim" id="values">
         <div class="container">
             <h2 class="section-title">Unsere Werte</h2>
+            <div class="reveal-line" aria-hidden="true"></div>
             <div class="values-grid">
                 <div class="value-card">
                     <div class="value-icon">
@@ -514,6 +530,22 @@
         </div>
     </footer>
 
+    <script>
+      // Intersection reveal for values line and cards
+      (function(){
+        const section = document.querySelector('.values-anim');
+        if(!section) return;
+        const obs = new IntersectionObserver((entries)=>{
+          entries.forEach(e=>{
+            if(e.isIntersecting){
+              section.classList.add('revealed');
+              obs.disconnect();
+            }
+          })
+        },{threshold: .35});
+        obs.observe(section);
+      })();
+    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
