@@ -58,19 +58,37 @@
         }
         /* Line reveal animation */
         .values-anim { position: relative; }
+        .values-anim .values-grid { position: relative; }
         .values-anim .reveal-line {
-            position: absolute; top: -16px; left: 0; height: 3px; width: 0;
-            background: linear-gradient(90deg, rgba(20,184,166,0.8), rgba(13,148,136,1));
+            position: absolute; left: calc(50% - 50vw); height: 4px; width: 0; top: 0; /* via JS exakt auf Icon-Höhe */
+            background: linear-gradient(90deg, #14B8A6, #0D9488);
             border-radius: 3px; box-shadow: 0 0 10px rgba(20,184,166,.4);
-            transition: width 1.2s cubic-bezier(.22,1,.36,1);
+            transition: width 2.4s cubic-bezier(.22,1,.36,1);
+            z-index: 0; /* hinter den Icons */
         }
-        .values-anim.revealed .reveal-line { width: 100%; }
-        .value-card { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
-        .values-anim.revealed .value-card { opacity: 1; transform: translateY(0); }
-        .values-anim.revealed .value-card:nth-child(1) { transition-delay: .2s; }
-        .values-anim.revealed .value-card:nth-child(2) { transition-delay: .45s; }
-        .values-anim.revealed .value-card:nth-child(3) { transition-delay: .7s; }
-        .values-anim.revealed .value-card:nth-child(4) { transition-delay: .95s; }
+        .values-anim.revealed .reveal-line { /* Breite wird per JS animiert */ }
+        .value-card { position: relative; z-index: 1; /* Icons über der Linie */ }
+        /* Glass look for icons */
+        .value-card .value-icon {
+            opacity: .15;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.35);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.35);
+            color: #fff;
+            transition: opacity .6s ease, background .6s ease, box-shadow .6s ease, border-color .6s ease, transform .6s ease;
+        }
+        .value-card.hit .value-icon {
+            opacity: 1;
+            background: linear-gradient(180deg, rgba(20,184,166,0.65), rgba(13,148,136,0.85));
+            border-color: rgba(20,184,166,0.65);
+            box-shadow: 0 12px 28px rgba(13,148,136,0.25), inset 0 1px 0 rgba(255,255,255,0.45);
+            transform: translateZ(0);
+        }
+        /* Titel + Text erst nach Icon-Einblendung zeigen */
+        .value-card .value-title, .value-card p { opacity: 0; transform: translateY(6px); transition: opacity .45s ease, transform .45s ease; }
+        .value-card.hit .value-title, .value-card.hit p { opacity: 1; transform: translateY(0); transition-delay: .06s; }
         
         .value-card {
             text-align: center;
@@ -272,8 +290,8 @@
     <section class="section section-alternate values-anim" id="values">
         <div class="container">
             <h2 class="section-title">Unsere Werte</h2>
-            <div class="reveal-line" aria-hidden="true"></div>
             <div class="values-grid">
+              <div class="reveal-line" aria-hidden="true"></div>
                 <div class="value-card">
                     <div class="value-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -335,7 +353,7 @@
                         </svg>
                     </div>
                     <div class="team-member-info">
-                        <h3 class="team-member-name">Mehmet Barut</h3>
+                        <h3 class="team-member-name">Chanjayan Indirasenan</h3>
                         <p class="team-member-role">Geschäftsführer & Gründer</p>
                         <p class="team-member-description">Disposition & Teamkoordination – sorgt für reibungslose Abläufe von Planung bis Einsatz.</p>
                         <div class="team-member-contact">
@@ -364,7 +382,7 @@
                         </svg>
                     </div>
                     <div class="team-member-info">
-                        <h3 class="team-member-name">Sarah Müller</h3>
+                        <h3 class="team-member-name">Thanushea Indirasenan</h3>
                         <p class="team-member-role">Teamleitung Service</p>
                         <p class="team-member-description">Erfahrene Serviceleitung für Bankett, Buffet und Events – Qualitäts- und Gästefokus.</p>
                         <div class="team-member-contact">
@@ -393,7 +411,7 @@
                         </svg>
                     </div>
                     <div class="team-member-info">
-                        <h3 class="team-member-name">Thomas Wagner</h3>
+                        <h3 class="team-member-name">Max Mustermann</h3>
                         <p class="team-member-role">Gewerbeimmobilien-Experte</p>
                         <p class="team-member-description">
                             Experte für Gewerbeimmobilien mit langjähriger Erfahrung in der Vermittlung von Büro- und Ladenflächen. Herr Wagner ist Ihr Ansprechpartner für gewerbliche Objekte.
@@ -531,14 +549,46 @@
     </footer>
 
     <script>
-      // Intersection reveal for values line and cards
+      // Intersection reveal for values line and dynamic hit detection
       (function(){
         const section = document.querySelector('.values-anim');
         if(!section) return;
+        const grid = section.querySelector('.values-grid');
+        const line = section.querySelector('.reveal-line');
+        const cards = Array.from(section.querySelectorAll('.value-card'));
+
         const obs = new IntersectionObserver((entries)=>{
           entries.forEach(e=>{
             if(e.isIntersecting){
               section.classList.add('revealed');
+              // Positioniere die Linie exakt auf Höhe der Icon-Mitte (relativ innerhalb der values-grid)
+              const firstIcon = cards[0].querySelector('.value-icon');
+              if(firstIcon){
+                const iconRect = firstIcon.getBoundingClientRect();
+                const gridRect = grid.getBoundingClientRect();
+                const midY = (iconRect.top + iconRect.bottom) / 2; // Icon-Mitte in Viewport
+                const offset = midY - gridRect.top - (line.offsetHeight/2); // relative Position in Grid
+                line.style.top = offset + 'px';
+              }
+              // animate and progressively mark hits based on width
+              const pageWidth = window.innerWidth; // volle Breite der Seite
+              const hitOffset = 10; // px später auslösen, erst wenn Linie wirklich am Icon ist
+              const checkpoints = cards.map(c=>{
+                const icon = c.querySelector('.value-icon');
+                const r = icon.getBoundingClientRect();
+                return r.left + hitOffset; // linker Rand des Icons + kleine Reserve
+              });
+              let started = performance.now();
+              function tick(now){
+                const p = Math.min(1, (now - started) / 2400); // 2.4s animation
+                const w = pageWidth * p; // aktuelle Linienbreite relativ zum Viewport
+                line.style.width = w + 'px';
+                checkpoints.forEach((cp, idx)=>{
+                  if(w >= cp) cards[idx].classList.add('hit');
+                });
+                if(p < 1) requestAnimationFrame(tick);
+              }
+              requestAnimationFrame(tick);
               obs.disconnect();
             }
           })
