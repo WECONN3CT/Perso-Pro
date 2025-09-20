@@ -24,6 +24,15 @@
         }
         .properties-header h1 { color: var(--color-navy); margin-bottom: 0.75rem; margin-top: 0.5rem; }
         .properties-header p { color: var(--color-navy); opacity: 0.95; }
+
+        /* Header-Schrift (nur auf dieser Seite) in dunklem Türkis */
+        .leistungen-scope .header .logo h1,
+        .leistungen-scope .header .nav-link {
+          color: var(--color-dark-orange) !important;
+        }
+        .leistungen-scope .header .nav-link::after {
+          background: var(--color-dark-orange) !important;
+        }
         /* Inhalte der Section vertikal strecken, CTA an das untere Ende */
         .properties-header > .container { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: clamp(32px, 9vh, 128px); }
         .properties-header .cta-bar { margin-top: auto; margin-bottom: 0; position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%); }
@@ -204,9 +213,9 @@
         /* Überschreibe frühere Breite der Card in diesem Kontext */
         .ak-cta .contact-form-card { width: 100%; max-width: none; }
         @media (max-width: 768px){ .ak-cta .ak-cta-grid { grid-template-columns:1fr; } }
-    </style>
+</style>
 </head>
-<body>
+<body class="leistungen-scope">
     <!-- Header -->
     <header class="header">
         <div class="container">
