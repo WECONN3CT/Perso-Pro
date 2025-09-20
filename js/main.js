@@ -204,6 +204,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // (früher definiert)
 });
 
+// Slider arrows for services list
+document.addEventListener('DOMContentLoaded', () => {
+    const list = document.querySelector('.services-list');
+    const prev = document.getElementById('svcPrev');
+    const next = document.getElementById('svcNext');
+    if (!list || !prev || !next) return;
+    const getSlideWidth = () => list.clientWidth;
+    prev.addEventListener('click', () => {
+        list.scrollBy({ left: -getSlideWidth(), behavior: 'smooth' });
+    });
+    next.addEventListener('click', () => {
+        list.scrollBy({ left: getSlideWidth(), behavior: 'smooth' });
+    });
+});
+
 // ===================================
 // Mobile Navigation
 // ===================================
