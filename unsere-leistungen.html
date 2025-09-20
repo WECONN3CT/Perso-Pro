@@ -51,28 +51,7 @@
           display: block; width: 100%; height: 100%; object-fit: cover;
         }
 
-        /* Rechter Text-Container (schmaler, gleich hohe Optik) */
-        .lead-text-card {
-          width: min(680px, 46%);
-          margin: clamp(14px, 3vh, 22px) 0 clamp(64px, 10vh, 140px);
-          margin-left: auto; /* nach rechts schieben */
-          margin-right: calc((min(1200px, 100%) / 2 - 50vw) - 1rem); /* bündig am rechten Rand (Container-Padding berücksichtigt) */
-          border-radius: 24px;
-          border: 1px solid var(--color-medium-gray);
-          background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(250,253,255,1) 100%);
-          box-shadow: var(--shadow-md);
-          overflow: hidden;
-          display: flex;
-          align-items: center;
-        }
-        .lead-text-inner { padding: clamp(18px, 3vw, 36px); text-align: left; }
-        .lead-text-inner .eyebrow { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.85rem; font-weight: 700; color: var(--color-dark-gray); opacity: 0.9; display: block; margin-bottom: 8px; }
-        .lead-text-inner h3 { margin: 4px 0 12px; font-size: clamp(1.6rem, 3.2vw, 2.4rem); color: var(--color-navy); }
-        .lead-text-inner p { color: var(--color-charcoal); line-height: 1.65; }
-
-        @media (max-width: 900px) {
-          .lead-text-card { width: 100%; margin-right: 0; margin-left: 0; }
-        }
+        
 
         
         /* Inhalte der Section vertikal strecken, CTA an das untere Ende */
@@ -290,14 +269,7 @@
             <figure class="lead-image-card">
               <img src="images/team/heroleistungen.png" alt="Team – Leistungen" loading="lazy">
             </figure>
-            <aside class="lead-text-card" aria-labelledby="leadTextHeading">
-              <div class="lead-text-inner">
-                <span class="eyebrow">Personal präzise gedacht.</span>
-                <h3 id="leadTextHeading">Für Arbeitgeber</h3>
-                <p>Welches nächste Projekt auch immer bei Ihnen ansteht, gerne stärken wir Ihnen als Personalberatung den Rücken! Mit unserer über 20‑jährigen Expertise wissen wir, dass die Mitarbeiter:innen das Wichtigste für jedes Unternehmen sind. Wir unterstützen Sie bei der Personalsuche sowie in den Bereichen Personalberatung, Zeitarbeit und Arbeitnehmerüberlassung.</p>
-                <p>Damit ersparen wir Ihnen das sonst so kosten‑ und zeitaufwendige Personalrecruiting und verschaffen Ihnen einen klaren Vorsprung.</p>
-              </div>
-            </aside>
+            
             <div class="cta-bar">
               <div>
                 <strong>Akute Anfrage</strong><br />
