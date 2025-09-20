@@ -51,6 +51,23 @@
           display: block; width: 100%; height: 100%; object-fit: cover;
         }
 
+        /* Kleiner türkiser Container rechts neben dem Bild (Layout bleibt unverändert) */
+        .lead-turquoise-card {
+          position: absolute;
+          right: calc((min(1200px, 100%) / 2 - 50vw) - 1rem); /* bündig zum rechten Seitenrand, Padding berücksichtigt */
+          top: calc(clamp(12px, 5vh, 64px) + clamp(12px, 2vh, 20px));
+          width: clamp(220px, 20vw, 340px);
+          min-height: 140px;
+          background: var(--color-light-orange);
+          border: 1px solid rgba(20,184,166,0.35);
+          border-radius: 20px;
+          box-shadow: var(--shadow-md);
+          display: flex; align-items: center; justify-content: center;
+          color: var(--color-navy);
+          z-index: 2;
+          padding: 14px 18px;
+        }
+
         
 
         
@@ -269,6 +286,10 @@
             <figure class="lead-image-card">
               <img src="images/team/heroleistungen.png" alt="Team – Leistungen" loading="lazy">
             </figure>
+            <div class="lead-turquoise-card" aria-hidden="true">
+              <!-- bewusst minimaler Inhalt, nur visuelle Fläche -->
+              
+            </div>
             
             <div class="cta-bar">
               <div>
