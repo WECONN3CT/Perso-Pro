@@ -804,7 +804,7 @@ a:hover {
   border-radius: 999px;
   transform: scaleX(0);
   transform-origin: left center;
-  animation: hero-underline 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s infinite;
+  animation: hero-underline 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
 }
 
 @keyframes hero-underline {
