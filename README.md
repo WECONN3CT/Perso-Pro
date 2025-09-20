@@ -78,7 +78,7 @@ npx http-server
 Adresse  
 80539 München  
 Tel: +49 89 123 456 77  
-E-Mail: info@barut-immobilien.de
+E-Mail: info@persopro.de
 
 ## 📜 Lizenz
 © 2025 PersoPro. Alle Rechte vorbehalten.

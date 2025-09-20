@@ -19,26 +19,26 @@
 
 ## Team Mitglieder
 
-### Mehmet Barut (Geschäftsführer)
+### Chanjayan Indirasenan (Geschäftsführer)
 - Immobilienmakler seit 2008
 - Spezialist für Wohnimmobilien
 - Telefon: +49 89 123 456 78
-- Email: m.barut@barut-immobilien.de
+- Email: info@persopro.de
 
-### Sarah Müller (Maklerin)
+### Thanushea Indirasenan (Teamleitung Service)
 - Fokus auf Mietobjekte
 - Telefon: +49 89 123 456 79
-- Email: s.mueller@barut-immobilien.de
+- Email: info@persopro.de
 
-### Thomas Wagner (Makler)
+### Max Mustermann (Gewerbeimmobilien-Experte)
 - Gewerbeimmobilien-Experte  
 - Telefon: +49 89 123 456 80
-- Email: t.wagner@barut-immobilien.de
+- Email: info@persopro.de
 
 ## Kontaktdaten
 **Adresse:** Maximilianstraße 123, 80539 München
 **Telefon:** +49 89 123 456 77
-**Email:** info@barut-immobilien.de
+**Email:** info@persopro.de
 **Öffnungszeiten:**
 - Mo-Fr: 9:00 - 18:00 Uhr
 - Sa: 10:00 - 14:00 Uhr (nach Vereinbarung)
