@@ -162,6 +162,32 @@
         .leistungen-page .contact { background: linear-gradient(180deg, var(--color-light-navy), var(--color-navy)); color: var(--color-white); padding: 42px 0; text-align: center; }
         .leistungen-page .contact h3 { margin: 0 0 10px; color: var(--color-white); }
         .leistungen-page .contact p { margin: 0 0 18px; opacity: 0.95; }
+
+        /* --- Aus leistungen.md übernommene Sektionen (angepasst an Farbwelt) --- */
+        .ak-section { padding: 64px 0; }
+        .ak-section h2 { font-size: 2rem; color: var(--color-navy); text-align: center; margin: 0 0 10px; }
+        .ak-section p.lead { text-align: center; color: var(--color-dark-gray); margin: 0 auto 28px; max-width: 840px; }
+
+        .ak-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .ak-service-item { background: var(--color-white); border: 1px solid var(--color-medium-gray); border-radius: 12px; box-shadow: var(--shadow-sm); padding: 18px; }
+        .ak-service-item h3 { margin: 0 0 8px; color: var(--color-orange); font-size: 1.25rem; }
+        .ak-service-item p { color: var(--color-dark-gray); }
+
+        .ak-adv h3 { text-align: center; color: var(--color-dark-gray); margin: 6px 0 22px; }
+        .ak-adv .ak-adv-card { background: var(--color-light-gray); border: 1px solid var(--color-medium-gray); border-radius: 12px; padding: 18px; max-width: 880px; margin: 0 auto; }
+        .ak-adv .ak-adv-card h4 { margin: 0 0 6px; color: var(--color-orange); }
+
+        .ak-process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+        .ak-step { text-align: left; background: var(--color-white); border: 1px solid var(--color-medium-gray); border-radius: 12px; padding: 16px; box-shadow: var(--shadow-sm); }
+        .ak-step .nr { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:999px; background: var(--color-orange); color:#fff; font-weight:700; }
+        .ak-step h4 { margin: 10px 0 6px; color: var(--color-navy); }
+        .ak-step p { color: var(--color-dark-gray); }
+
+        .ak-cta { background: var(--color-light-gray); }
+        .ak-cta .ak-cta-grid { display:grid; grid-template-columns: 1fr 1fr; gap:24px; align-items:center; margin-top:18px; }
+        .ak-cta img { width:100%; border-radius:12px; box-shadow: var(--shadow-md); }
+        .ak-cta .ak-cta-box { background:#fff; border:1px solid var(--color-medium-gray); border-radius:12px; padding:18px; box-shadow: var(--shadow-sm); }
+        @media (max-width: 768px){ .ak-cta .ak-cta-grid { grid-template-columns:1fr; } }
     </style>
 </head>
 <body>
@@ -208,36 +234,28 @@
     </section>
 
     <!-- Value Props (from entwurf structure) -->
-    <section class="section section-alternate leistungen-page">
+    <section class="ak-section">
         <div class="container">
-            <div class="value-grid">
-              <div class="value">
-                <div class="value-icon">✓</div>
-                <span class="badge">Zeitarbeit</span>
-                <h3>Flexible Abdeckung</h3>
-                <p>Schichten, Spitzen, Events − planbar von heute bis mehrere Wochen.</p>
+            <h2>Service & Leistungen</h2>
+            <p class="lead">Sie möchten Spitzenzeiten abdecken, Personalengpässe kompensieren, offene Stellen besetzen oder Personallücken schließen?</p>
+            <div class="ak-services-grid">
+                <div class="ak-service-item">
+                    <h3>Personalüberlassung</h3>
+                    <p>Exklusiver Service: Für alle Fragen in Sachen Zeitarbeit steht Ihnen Ihr persönlicher Ansprechpartner stets zur Seite – Ihr persönlicher Personalscout, der Sie und die bei Ihnen eingesetzten Mitarbeiter direkt betreut!</p>
                 </div>
-              <div class="value">
-                <div class="value-icon">★</div>
-                <span class="badge">Qualität</span>
-                <h3>Vorqualifizierte Profile</h3>
-                <p>Erprobte Aushilfen mit einheitlichem Briefing und Checklisten.</p>
-                </div>
-              <div class="value">
-                <div class="value-icon">⚖</div>
-                <span class="badge">Compliance</span>
-                <h3>Rechtssicher</h3>
-                <p>AÜG-konforme Prozesse, Arbeitsschutz und DSGVO-konforme Daten.</p>
+                <div class="ak-service-item">
+                    <h3>Personalvermittlung</h3>
+                    <p>Wir übernehmen die professionelle Suche nach geeignetem Personal zur Festanstellung – entweder mit vorheriger Überlassung oder per Direktvermittlung.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Leistungen Liste (aus entwurf übernommen) -->
-    <section id="services" class="section leistungen-page">
+    <!-- Branchenüberblick / Leistungsportfolio -->
+    <section id="services" class="section leistungen-page ak-section">
         <div class="container">
-            <h2>Leistungsportfolio im Überblick</h2>
-            <p class="lead">Wir liefern einsatzbereites Personal für die folgenden Bereiche.</p>
+            <h2>Branchenüberblick</h2>
+            <p class="lead">In diesen Bereichen sind wir tätig – einsatzbereit, zuverlässig und planbar.</p>
             <div class="service-grid" style="margin-top:14px;">
               <article class="service-card" aria-labelledby="s1">
                 <div class="svc-icon">🧼</div>
@@ -305,12 +323,29 @@
         </div>
     </section>
 
-    <!-- Kontaktformular direkt unter dem Leistungsportfolio -->
-    <section class="section leistungen-page" aria-labelledby="contactFormTitle">
+    <!-- Ablauf / Prozess -->
+    <section class="ak-section">
         <div class="container">
-        <h2 id="contactFormTitle">Kontaktformular</h2>
+            <h2>So funktioniert's</h2>
+            <h3 class="ak-adv" style="text-align:center; color: var(--color-dark-gray); margin: 6px 0 22px;">Der Ablauf Ihrer Besetzung</h3>
+            <div class="ak-process-grid">
+                <div class="ak-step"><span class="nr">1</span><h4>Anforderungsprofil</h4><p>Kontaktaufnahme telefonisch oder per Formular. Wir klären alle relevanten Details und werden aktiv.</p></div>
+                <div class="ak-step"><span class="nr">2</span><h4>Prüfung</h4><p>Abgleich Ihrer Anforderungen mit den Fähigkeiten unseres Personals.</p></div>
+                <div class="ak-step"><span class="nr">3</span><h4>Feedback</h4><p>Rückmeldung zur Besetzung nach erster Vorauswahl passender Kräfte.</p></div>
+                <div class="ak-step"><span class="nr">4</span><h4>Matching</h4><p>Auswahl des Kandidaten aus unserer Vorauswahl.</p></div>
+                <div class="ak-step"><span class="nr">5</span><h4>Zusage</h4><p>Start des Wunsch‑Kandidaten zum nächstmöglichen Zeitpunkt.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontaktformular direkt unter dem Leistungsportfolio -->
+    <section class="section leistungen-page ak-cta" aria-labelledby="contactFormTitle">
+        <div class="container">
+        <h2 id="contactFormTitle">Jetzt starten – Personal anfragen</h2>
         <p class="lead">Teilen Sie uns Ihren Bedarf mit – wir melden uns schnell zurück.</p>
-        <div class="contact-form-card">
+        <div class="ak-cta-grid">
+          <img src="images/start/ihrexperte.png" alt="Kontakt" />
+          <div class="contact-form-card ak-cta-box">
           <form action="kontakt.html" method="GET" class="contact-form">
             <div>
               <label class="form-label" for="cf-name">Name*</label>
@@ -347,6 +382,7 @@
               <a class="btn btn-secondary" href="tel:+498912345677">Direkt anrufen</a>
             </div>
           </form>
+          </div>
         </div>
       </div>
     </section>
