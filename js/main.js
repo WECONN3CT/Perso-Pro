@@ -691,7 +691,8 @@ function initHeaderScrollState() {
     const header = document.querySelector('.header');
     if (!header) return;
     const update = () => {
-        const scrolled = (document.documentElement.scrollTop || document.body.scrollTop) > 8;
+        // später umschalten: erst nach 120px Scrollhöhe
+        const scrolled = (document.documentElement.scrollTop || document.body.scrollTop) > 120;
         if (scrolled) {
             header.classList.add('header-solid');
             header.classList.remove('header-transparent');
