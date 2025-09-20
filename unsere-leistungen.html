@@ -33,6 +33,41 @@
         .leistungen-scope .header .nav-link::after {
           background: var(--color-dark-orange) !important;
         }
+
+        /* Lead Cards (Bild links, Text rechts) */
+        .lead-duo {
+          width: min(1200px, calc(100% - 48px));
+          margin: clamp(14px, 3vh, 24px) auto 156px; /* Platz nach unten bis zur CTA */
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+        .lead-card {
+          display: grid;
+          grid-template-columns: 1.2fr 1fr; /* Bild etwas breiter */
+          background: #fff;
+          border-radius: 24px;
+          overflow: hidden;
+          box-shadow: var(--shadow-md);
+          border: 1px solid var(--color-medium-gray);
+          min-height: 300px;
+        }
+        .lead-card-media { position: relative; }
+        .lead-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .lead-card-content {
+          background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(250,253,255,1) 100%);
+          padding: clamp(16px, 3vw, 32px);
+          display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+          text-align: left;
+        }
+        .lead-card-content .eyebrow { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.85rem; font-weight: 700; color: var(--color-dark-gray); opacity: 0.9; }
+        .lead-card-content h3 { margin: 6px 0 10px; font-size: clamp(1.5rem, 3.2vw, 2.25rem); color: var(--color-navy); }
+        .lead-card-content p { color: var(--color-charcoal); line-height: 1.65; }
+        @media (max-width: 900px) {
+          .lead-card { grid-template-columns: 1fr; min-height: unset; }
+          .lead-card-media { height: 180px; }
+          .lead-duo { margin-bottom: 136px; }
+        }
         /* Inhalte der Section vertikal strecken, CTA an das untere Ende */
         .properties-header > .container { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: clamp(32px, 9vh, 128px); }
         .properties-header .cta-bar { margin-top: auto; margin-bottom: 0; position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%); }
@@ -245,6 +280,31 @@
         <div class="container">
             <h1>Unsere Leistungen</h1>
             <p>Personal für Küche, Service, Theke und Events – kurzfristig verfügbar</p>
+                <!-- Lead Duo Cards (unter Titel, über CTA) -->
+                <div class="lead-duo">
+                  <!-- Card 1 -->
+                  <article class="lead-card">
+                    <div class="lead-card-media">
+                      <img src="images/team/leistungenhero.png" alt="Team im Einsatz" loading="lazy">
+                    </div>
+                    <div class="lead-card-content">
+                      <span class="eyebrow">Personal präzise gedacht.</span>
+                      <h3>Für Arbeitgeber</h3>
+                      <p>Welches nächste Projekt auch immer bei Ihnen ansteht – wir stärken Ihnen als Personalberatung den Rücken. Mit über 20 Jahren Expertise finden und vermitteln wir passgenaue Mitarbeiter:innen, damit Ihr Betrieb die Spitzen sicher meistert.</p>
+                    </div>
+                  </article>
+                  <!-- Card 2 -->
+                  <article class="lead-card">
+                    <div class="lead-card-media">
+                      <img src="images/team/leistungenhero.png" alt="Mitarbeiter im Lager" loading="lazy">
+                    </div>
+                    <div class="lead-card-content">
+                      <span class="eyebrow">Schnell. Verlässlich. Passend.</span>
+                      <h3>Für Einsätze und Events</h3>
+                      <p>Ob Tagesgeschäft oder Großevent – wir besetzen Schichten, koordinieren Einsätze und sorgen für reibungslose Abläufe. Kurzfristig verfügbar und genau auf Ihren Bedarf zugeschnitten.</p>
+                    </div>
+                  </article>
+                </div>
             <div class="cta-bar">
               <div>
                 <strong>Akute Anfrage</strong><br />
