@@ -48,7 +48,6 @@
           aspect-ratio: 16 / 19.40625; /* weitere +15% Höhe gegenüber 16/16.875 */
           /* Reveal-Animation von links nach rechts */
           clip-path: inset(0 100% 0 0);
-          -webkit-clip-path: inset(0 100% 0 0);
           opacity: 0;
           transform: translateX(-24px);
           transition: clip-path 700ms ease, transform 700ms ease, opacity 700ms ease;
@@ -59,7 +58,6 @@
         /* sichtbarer Zustand nach Eintritt in den Viewport */
         .lead-image-card.is-visible {
           clip-path: inset(0 0 0 0);
-          -webkit-clip-path: inset(0 0 0 0);
           opacity: 1;
           transform: translateX(0);
         }
@@ -436,28 +434,15 @@
       }
 
       // Eintrittsanimation für Bildcontainer (von links nach rechts)
-      try {
-        var observer = new IntersectionObserver(function(entries){
-          entries.forEach(function(e){
-            if(e.isIntersecting){
-              card.classList.add('is-visible');
-              observer.disconnect();
-            }
-          });
-        }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
-        observer.observe(card);
-      } catch(err) {
-        // Fallback ohne IntersectionObserver-Unterstützung
-        function revealOnScroll(){
-          var rect = card.getBoundingClientRect();
-          if(rect.top < window.innerHeight * 0.9){
+      var observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
             card.classList.add('is-visible');
-            window.removeEventListener('scroll', revealOnScroll);
+            observer.disconnect();
           }
-        }
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll();
-      }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(card);
     });
     </script>
 
