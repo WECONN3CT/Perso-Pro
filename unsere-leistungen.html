@@ -20,12 +20,13 @@
             color: var(--color-white);
             text-align: center;
             display: flex; align-items: center; justify-content: flex-start; flex-direction: column;
+            position: relative; /* für absolute Positionierung des CTA */
         }
         .properties-header h1 { color: var(--color-white); margin-bottom: 0.75rem; margin-top: 0.5rem; }
         .properties-header p { opacity: 0.95; }
         /* Inhalte der Section vertikal strecken, CTA an das untere Ende */
         .properties-header > .container { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
-        .properties-header .cta-bar { margin-top: auto; margin-bottom: 0; }
+        .properties-header .cta-bar { margin-top: auto; margin-bottom: 0; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); }
 
         /* Scoped styles for Leistungen page sections */
         .leistungen-page .cta-bar {
