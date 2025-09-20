@@ -287,8 +287,8 @@
       // Höhe beibehalten
       var rect = card.getBoundingClientRect();
       card.style.height = rect.height + 'px';
-      // Breite erneut um 25% erhöhen (insgesamt jetzt 1.25 * 1.25 = 1.5625), nach rechts wachsend
-      var newWidth = Math.min(Math.round(rect.width * 1.25 * 1.25), window.innerWidth);
+      // Weitere +40% Breite (insgesamt 1.25 * 1.25 * 1.4 = 2.1875), nach rechts wachsend
+      var newWidth = Math.min(Math.round(rect.width * 1.25 * 1.25 * 1.4), window.innerWidth);
       card.style.width = newWidth + 'px';
     });
     </script>
