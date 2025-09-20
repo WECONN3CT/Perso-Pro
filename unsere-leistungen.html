@@ -73,7 +73,21 @@
         .lead-turquoise-card h3 { margin: 6px 0 14px; font-size: clamp(1.6rem, 3.2vw, 2.2rem); color: var(--color-navy); }
         .lead-turquoise-card p { color: var(--color-charcoal); line-height: 1.65; margin: 0 0 10px; }
 
-        
+        /* === Services CTA + Toggle Section (unter der Unsere Leistungen Section) === */
+        .services-cta { padding: clamp(36px, 6vw, 72px) 0; background: linear-gradient(180deg, #f9fbfd 0%, #ffffff 100%); }
+        .services-cta .grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(24px, 4vw, 48px); align-items: start; }
+        .svc-eyebrow { text-transform: uppercase; letter-spacing: 0.18em; color: var(--color-orange); font-weight: 800; font-size: .9rem; margin-bottom: 12px; }
+        .svc-title { margin: 0 0 18px; color: var(--color-navy); line-height: 1.15; font-size: clamp(1.8rem, 4.5vw, 2.8rem); }
+        .svc-btn { margin-top: 18px; display: inline-block; padding: 0.9rem 1.25rem; font-weight: 700; }
+        .svc-tabs { background: var(--color-orange); border-radius: 999px; padding: 6px; display: flex; gap: 6px; }
+        .svc-tab { flex: 1 1 50%; border: 0; border-radius: 999px; padding: 14px 16px; background: transparent; color: #ffffff; font-weight: 700; cursor: pointer; }
+        .svc-tab.is-active { background: #ffffff; color: var(--color-navy); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        .svc-panel { margin-top: 16px; }
+        .svc-panel h3 { margin: 10px 0 8px; color: var(--color-navy); font-size: clamp(1.4rem, 2.6vw, 2rem); }
+        .svc-panel p { color: var(--color-dark-gray); }
+        @media (max-width: 900px) {
+          .services-cta .grid { grid-template-columns: 1fr; }
+        }
 
         
         
@@ -315,7 +329,53 @@
         </div>
     </section>
 
-    
+    <!-- Services CTA / Toggle Section (Screenshot) -->
+    <section class="services-cta">
+      <div class="container">
+        <div class="grid">
+          <div>
+            <div class="svc-eyebrow">Service & Leistungen</div>
+            <h2 class="svc-title">Sie möchten Spitzenzeiten abdecken,<br>Personalengpässe kompensieren, offene Stellen besetzen oder Personallücken schließen?</h2>
+            <a href="#kontakt" class="btn btn-primary svc-btn">Zur Personalanfrage →</a>
+          </div>
+          <div>
+            <div class="svc-tabs" role="tablist" aria-label="Leistungsarten">
+              <button class="svc-tab is-active" id="tab-ueberlassung" role="tab" aria-controls="panel-ueberlassung" aria-selected="true">Personalüberlassung</button>
+              <button class="svc-tab" id="tab-vermittlung" role="tab" aria-controls="panel-vermittlung" aria-selected="false">Personalvermittlung</button>
+            </div>
+            <div class="svc-panel" id="panel-ueberlassung" role="tabpanel" aria-labelledby="tab-ueberlassung">
+              <h3>Personalüberlassung</h3>
+              <p>Exklusiver Service: Für alle Fragen in Sachen Zeitarbeit steht Ihnen Ihr persönlicher Ansprechpartner unseres Unternehmens stets zur Seite – Ihr persönlicher Personalscout, der Sie und die bei Ihnen eingesetzten Mitarbeiter direkt betreut!</p>
+            </div>
+            <div class="svc-panel" id="panel-vermittlung" role="tabpanel" aria-labelledby="tab-vermittlung" hidden>
+              <h3>Personalvermittlung</h3>
+              <p>Wir übernehmen die professionelle Suche nach geeignetem Personal zur Festanstellung – transparent, effizient und passgenau auf Ihren Bedarf abgestimmt.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      (function(){
+        const tabUe = document.getElementById('tab-ueberlassung');
+        const tabVm = document.getElementById('tab-vermittlung');
+        const panelUe = document.getElementById('panel-ueberlassung');
+        const panelVm = document.getElementById('panel-vermittlung');
+        if (!tabUe || !tabVm) return;
+        function activate(tab){
+          const isUe = tab === tabUe;
+          tabUe.classList.toggle('is-active', isUe);
+          tabVm.classList.toggle('is-active', !isUe);
+          tabUe.setAttribute('aria-selected', String(isUe));
+          tabVm.setAttribute('aria-selected', String(!isUe));
+          panelUe.hidden = !isUe;
+          panelVm.hidden = isUe;
+        }
+        tabUe.addEventListener('click', () => activate(tabUe));
+        tabVm.addEventListener('click', () => activate(tabVm));
+      })();
+    </script>
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -366,23 +426,7 @@
 
     
 
-    <!-- Value Props (from entwurf structure) -->
-    <section class="ak-section">
-        <div class="container">
-            <h2>Service & Leistungen</h2>
-            <p class="lead">Sie möchten Spitzenzeiten abdecken, Personalengpässe kompensieren, offene Stellen besetzen oder Personallücken schließen?</p>
-            <div class="ak-services-grid">
-                <div class="ak-service-item">
-                    <h3>Personalüberlassung</h3>
-                    <p>Exklusiver Service: Für alle Fragen in Sachen Zeitarbeit steht Ihnen Ihr persönlicher Ansprechpartner stets zur Seite – Ihr persönlicher Personalscout, der Sie und die bei Ihnen eingesetzten Mitarbeiter direkt betreut!</p>
-                </div>
-                <div class="ak-service-item">
-                    <h3>Personalvermittlung</h3>
-                    <p>Wir übernehmen die professionelle Suche nach geeignetem Personal zur Festanstellung – entweder mit vorheriger Überlassung oder per Direktvermittlung.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- Branchenüberblick / Leistungsportfolio -->
     <section id="services" class="section leistungen-page ak-section">
