@@ -280,6 +280,19 @@
         </div>
     </section>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var card = document.querySelector('.lead-image-card');
+      if (!card) return;
+      // Höhe beibehalten
+      var rect = card.getBoundingClientRect();
+      card.style.height = rect.height + 'px';
+      // Breite um 25% erhöhen, nach rechts wachsend
+      var newWidth = Math.min(Math.round(rect.width * 1.25), window.innerWidth);
+      card.style.width = newWidth + 'px';
+    });
+    </script>
+
     <!-- Value Props (from entwurf structure) -->
     <section class="ak-section">
         <div class="container">
