@@ -68,6 +68,10 @@
           padding: 14px 18px;
           transform: translateX(-35%); /* leicht weiter nach links verschoben */
         }
+        .lead-turquoise-inner { padding: clamp(18px, 3vw, 36px); text-align: left; max-width: 58ch; }
+        .lead-turquoise-card .eyebrow { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.85rem; font-weight: 700; color: var(--color-red); opacity: 0.95; display: block; margin-bottom: 10px; }
+        .lead-turquoise-card h3 { margin: 6px 0 14px; font-size: clamp(1.6rem, 3.2vw, 2.2rem); color: var(--color-navy); }
+        .lead-turquoise-card p { color: var(--color-charcoal); line-height: 1.65; margin: 0 0 10px; }
 
         
 
@@ -287,9 +291,14 @@
             <figure class="lead-image-card">
               <img src="images/team/heroleistungen.png" alt="Team – Leistungen" loading="lazy">
             </figure>
-            <div class="lead-turquoise-card" aria-hidden="true">
-              <!-- bewusst minimaler Inhalt, nur visuelle Fläche -->
-              
+            <div class="lead-turquoise-card" aria-labelledby="gastroLeadHeading">
+              <div class="lead-turquoise-inner">
+                <span class="eyebrow">Personal präzise gedacht.</span>
+                <h3 id="gastroLeadHeading">Für Arbeitgeber in der Gastronomie</h3>
+                <p>Welches nächste Projekt oder Event auch immer bei Ihnen ansteht – wir stärken Ihnen bei Personalengpässen den Rücken.</p>
+                <p>Mit über 20&nbsp;Jahren Erfahrung wissen wir, dass Mitarbeiter:innen das Herzstück jedes Gastronomie‑Betriebs sind. Wir unterstützen Sie kurzfristig und planbar bei der Personalsuche in Service, Theke und Küche.</p>
+                <p>Ob Zeitarbeit, Arbeitnehmerüberlassung oder direkte Vermittlung – wir besetzen Ihre Schichten schnell und passend, damit Ihr Tagesgeschäft und Ihre Veranstaltungen reibungslos laufen.</p>
+              </div>
             </div>
             
             <div class="cta-bar">
