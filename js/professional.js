@@ -95,19 +95,19 @@
         const delta = targetPx - currentPx;
         const dir = Math.sign(delta);
         // Sehr weicher Progress: konstanter kleiner Schritt + sanftes Ease
-        const stepPx = Math.max(0.6, Math.min(Math.abs(delta), target.speed * 0.45));
+        const stepPx = Math.max(0.5, Math.min(Math.abs(delta), target.speed * 0.36));
         const next = currentPx + dir * stepPx;
         reveal.style.width = `${next}px`;
 
         if (Math.abs(delta) < 0.8) {
           currentIndex++;
-          const pause = /[aouäöüßg]/i.test(target.char) ? randomBetween(14, 28) : randomBetween(8, 18);
+          const pause = /[aouäöüßg]/i.test(target.char) ? randomBetween(22, 40) : randomBetween(12, 26);
           setTimeout(() => requestAnimationFrame(step), pause);
         } else {
           requestAnimationFrame(step);
         }
       }
-      setTimeout(() => requestAnimationFrame(step), 160);
+      setTimeout(() => requestAnimationFrame(step), 240);
     });
   }
 
