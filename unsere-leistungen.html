@@ -11,8 +11,8 @@
         /* Page hero aligned with index design */
         .properties-header {
             background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-light-navy) 100%);
-            /* Höhe wie der Hero-Container (index.html: .hero-media mit AR 2100/1100 und max Breite) */
-            height: calc(min(2100px, 100vw - 32px) * (1100 / 2100));
+            /* größer als Hero-Container: +25% Höhe */
+            height: calc(min(2100px, 100vw - 32px) * (1100 / 2100) * 1.25);
             /* Hintergrund bis unter den Header hochziehen, Inhalte bleiben an Ort und Stelle */
             margin-top: -72px; /* entspricht Headerhöhe */
             padding: 0; /* keine zusätzliche Höhe über Padding erzeugen */
