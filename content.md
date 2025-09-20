@@ -19,13 +19,13 @@
 
 ## Team Mitglieder
 
-### Chanjayan Indirasenan (Geschäftsführer)
+### Thanushea Indirasenan (Geschäftsführer)
 - Immobilienmakler seit 2008
 - Spezialist für Wohnimmobilien
 - Telefon: +49 89 123 456 78
 - Email: info@persopro.de
 
-### Thanushea Indirasenan (Teamleitung Service)
+### Chanjayan Indirasenan (Teamleitung Service)
 - Fokus auf Mietobjekte
 - Telefon: +49 89 123 456 79
 - Email: info@persopro.de
