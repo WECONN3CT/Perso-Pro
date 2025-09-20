@@ -334,6 +334,30 @@
         rightCard.style.top = Math.max(0, Math.round(figRect.top - secRect.top)) + 'px';
         rightCard.style.height = Math.round(figRect.height) + 'px';
       }
+
+      // Bild-Fallback: versuche alternative Pfade, falls Bild nicht geladen wurde
+      var img = document.querySelector('.lead-image-card img');
+      if (img) {
+        var candidates = [
+          'images/team/heroleistungen.png',
+          'images/team/heroleistungen.jpg',
+          'images/team/leistungenhero.png',
+          'images/team/leistungenhero.jpg',
+          'images/leistungen/heroleistungen.png',
+          'images/leistungen/leistungenhero.png',
+          'images/leistungen/hero_leistungen.png'
+        ];
+        function tryNext(idx) {
+          if (idx >= candidates.length) return;
+          var test = new Image();
+          test.onload = function () { img.src = candidates[idx]; };
+          test.onerror = function () { tryNext(idx + 1); };
+          test.src = candidates[idx];
+        }
+        if (!img.complete || img.naturalWidth === 0) {
+          tryNext(0);
+        }
+      }
     });
     </script>
 
