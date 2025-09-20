@@ -34,6 +34,21 @@
           background: var(--color-dark-orange) !important;
         }
 
+        /* Einzelner Bild-Container wie im Screenshot */
+        .lead-image-card {
+          width: min(1100px, calc(100% - 48px));
+          align-self: flex-start; /* linksbündig innerhalb des flex-Containers */
+          margin: clamp(12px, 3vh, 24px) 0 clamp(72px, 12vh, 180px); /* Platz nach unten bis zur CTA */
+          border-radius: 24px;
+          overflow: hidden;
+          border: 1px solid var(--color-medium-gray);
+          box-shadow: var(--shadow-md);
+          background: #fff;
+        }
+        .lead-image-card img {
+          display: block; width: 100%; height: auto; object-fit: cover;
+        }
+
         
         /* Inhalte der Section vertikal strecken, CTA an das untere Ende */
         .properties-header > .container { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: clamp(32px, 9vh, 128px); }
@@ -215,7 +230,7 @@
         /* Überschreibe frühere Breite der Card in diesem Kontext */
         .ak-cta .contact-form-card { width: 100%; max-width: none; }
         @media (max-width: 768px){ .ak-cta .ak-cta-grid { grid-template-columns:1fr; } }
-</style>
+    </style>
 </head>
 <body class="leistungen-scope">
     <!-- Header -->
@@ -247,6 +262,9 @@
         <div class="container">
             <h1>Unsere Leistungen</h1>
             <p>Personal für Küche, Service, Theke und Events – kurzfristig verfügbar</p>
+            <figure class="lead-image-card">
+              <img src="images/team/leistungenhero.png" alt="Team – Leistungen" loading="lazy">
+            </figure>
             <div class="cta-bar">
               <div>
                 <strong>Akute Anfrage</strong><br />
