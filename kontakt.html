@@ -10,8 +10,14 @@
     <style>
         /* Additional styles for contact page */
         .contact-header {
-            background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-light-navy) 100%);
-            padding: 3rem 0;
+            /* Türkiser Hintergrund */
+            background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-light-orange) 100%);
+            /* Höher machen und großzügiger Abstand */
+            padding: 5rem 0;
+            /* Hinter den Sticky-Header ziehen, damit nahtlos abschließt */
+            margin-top: -72px;
+            padding-top: calc(5rem + 72px);
+            min-height: 340px;
             color: var(--color-white);
             text-align: center;
         }
@@ -205,7 +211,7 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="header header-transparent">
         <div class="container">
             <nav class="navigation">
                 <div class="nav-brand">
