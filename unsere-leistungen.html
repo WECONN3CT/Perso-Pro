@@ -26,20 +26,23 @@
         .properties-header p { opacity: 0.95; }
         /* Inhalte der Section vertikal strecken, CTA an das untere Ende */
         .properties-header > .container { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
-        .properties-header .cta-bar { margin-top: auto; margin-bottom: 0; position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); }
+        .properties-header .cta-bar { margin-top: auto; margin-bottom: 0; position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%); }
+        .properties-header .cta-bar > div:first-child { justify-self: start; text-align: left; }
+        .properties-header .cta-bar > div:last-child { justify-self: end; display: flex; gap: 12px; align-items: center; }
 
         /* Scoped styles for Leistungen page sections */
         .leistungen-page .cta-bar {
             display: grid;
             grid-template-columns: 1fr auto;
-            gap: 12px;
-            align-items: center;
+            gap: 40px; /* größerer Abstand zwischen Text und Buttons */
+            align-items: center; /* vertikal mittig */
             margin-top: 20px;
             padding: 0; /* Balken-Optik entfernen */
             background: transparent;
             border-radius: 0;
             box-shadow: none;
             border: none;
+            width: min(1200px, calc(100% - 48px));
         }
         .leistungen-page .cta-bar .cta-note { color: var(--color-orange); }
 
