@@ -1844,19 +1844,17 @@ a:hover {
   height: var(--ref-h, 128px);
   width: auto;
   object-fit: contain;
-  opacity: 0; /* Bild selbst ausblenden, dient nur als Fallback/Preload */
+  opacity: 0.001; /* nahezu unsichtbar, hält jedoch Layout-Höhe für Browser ohne mask */
 }
 
 /* Maskierte Ebene: Verlauf direkt im Logo (kein Kasten), edler Türkis-Gradient */
-.ref-logo {
-  --ref-h: 128px;
-}
+.ref-logo { --ref-h: 128px; position: relative; display: inline-block; }
 .ref-logo::before {
   content: "";
-  display: inline-block;
-  height: var(--ref-h, 128px);
-  width: auto;
-  aspect-ratio: auto; /* Größe übernimmt durch mask */
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   -webkit-mask-image: var(--logo);
           mask-image: var(--logo);
   -webkit-mask-repeat: no-repeat;
@@ -1866,10 +1864,10 @@ a:hover {
   -webkit-mask-size: contain;
           mask-size: contain;
   background:
-    radial-gradient(120% 200% at 50% -30%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.0) 44%),
+    radial-gradient(120% 200% at 50% -30%, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.0) 42%),
     linear-gradient(180deg, #46d1c3 0%, #2bbfae 42%, #10a99a 68%, #0a8e83 100%);
   filter:
-    drop-shadow(0 0.5px 0 rgba(255,255,255,0.25))
+    drop-shadow(0 0.5px 0 rgba(255,255,255,0.22))
     drop-shadow(0 1px 0 rgba(0,0,0,0.40))
     drop-shadow(0 14px 26px rgba(0,0,0,0.30));
 }
