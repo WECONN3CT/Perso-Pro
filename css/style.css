@@ -1826,7 +1826,7 @@ a:hover {
   background: #000; /* schwarzer Hintergrund */
   padding: 40px 0 56px;
 }
-.references .section-title { color:#fff; }
+.references .section-title { color:#fff; font-size: clamp(1.25rem, 2.4vw, 1.75rem); }
 .refs-marquee {
   overflow: hidden;
   mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
@@ -1840,7 +1840,7 @@ a:hover {
   animation: refs-scroll-rtl 26s linear infinite; /* Links → Rechts */
 }
 .refs-track img {
-  height: 56px; /* einheitliche Höhe */
+  height: 72px; /* größere, einheitliche Höhe */
   width: auto;
   object-fit: contain;
   image-rendering: -webkit-optimize-contrast;
