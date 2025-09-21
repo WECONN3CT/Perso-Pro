@@ -336,7 +336,7 @@ a:hover {
 .hero-refs {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 16px; /* etwas weiter runter (vom Inhalt weg, näher zum Seitenende) */
   width: 50%; /* linke Hälfte */
   padding: 10px 12px;
   box-sizing: border-box;
