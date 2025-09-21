@@ -1866,8 +1866,8 @@ a:hover {
           mask-position: center;
   -webkit-mask-size: contain;
           mask-size: contain;
-  background: linear-gradient(180deg, #4fd8c9 0%, #2cc6b6 40%, #14b8a6 58%, #0d9488 100%);
-  filter: drop-shadow(0 0.5px 0 rgba(255,255,255,0.16)) drop-shadow(0 1px 0 rgba(0,0,0,0.38)) drop-shadow(0 10px 20px rgba(0,0,0,0.26));
+  background: linear-gradient(180deg, #7ff0e5 0%, #55ded0 28%, #29cbbb 48%, #14b8a6 62%, #0d9488 82%, #06655d 100%);
+  filter: saturate(1.08) contrast(1.12) drop-shadow(0 0.5px 0 rgba(255,255,255,0.18)) drop-shadow(0 1px 0 rgba(0,0,0,0.42)) drop-shadow(0 12px 22px rgba(0,0,0,0.28));
   z-index: 1;
   pointer-events: none;
 }
