@@ -307,7 +307,7 @@ a:hover {
 }
 
 /* Invisible top trigger spacer for IntersectionObserver */
-.hero-trigger {}
+/* .hero-trigger entfernt: Vermeidet leere Regel */
 
 
 /* Full-width container for hero only */
@@ -754,7 +754,6 @@ a:hover {
 .hero-script .hw-text { display: inline-block; }
 .hero-script .hw-text { display: inline-block; }
 .hero-script .hw-pen { display: none; }
-}
 
 .hero-title .hero-word-script {
   font-family: 'Photograph Signature', cursive;
@@ -1541,6 +1540,7 @@ a:hover {
   margin-bottom: var(--spacing-md);
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2; /* Standard-Eigenschaft ergänzen */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1834,20 +1834,22 @@ a:hover {
 }
 .refs-track {
   display: flex;
-  gap: 56px;
+  gap: clamp(28px, 5vw, 64px); /* gleichmäßige Abstände */
   align-items: center;
   width: max-content;
-  animation: refs-scroll 22s linear infinite;
+  animation: refs-scroll-rtl 26s linear infinite; /* Links → Rechts */
 }
 .refs-track img {
-  height: 54px;
+  height: 56px; /* einheitliche Höhe */
   width: auto;
-  filter: brightness(0) saturate(100%) invert(53%) sepia(31%) saturate(747%) hue-rotate(126deg) brightness(90%) contrast(88%);
-  opacity: 0.9;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  filter: grayscale(100%) brightness(0) invert(1) sepia(1) saturate(7) hue-rotate(150deg) brightness(1.05) contrast(0.95);
+  opacity: 0.92;
 }
-@keyframes refs-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+@keyframes refs-scroll-rtl {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
 }
 
 /* ===================================
