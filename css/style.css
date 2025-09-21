@@ -1847,6 +1847,8 @@ a:hover {
   filter: grayscale(100%) brightness(0) invert(1) sepia(1) saturate(7) hue-rotate(150deg) brightness(1.05) contrast(0.95);
   opacity: 0.92;
 }
+/* Nur Logo 4.png größer skalieren */
+.refs-track img[src$="4.png"] { height: 160px; }
 @keyframes refs-scroll-rtl {
   from { transform: translateX(-50%); }
   to   { transform: translateX(0); }
