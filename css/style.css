@@ -183,11 +183,16 @@ a:hover {
   border-bottom: 1px solid var(--color-medium-gray);
   box-shadow: var(--shadow-sm);
   padding: 1rem 0;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   transition: background 420ms ease, border-color 420ms ease, box-shadow 420ms ease, color 420ms ease;
 }
+/* Erstes Element unter einem nicht-transparenten Header nach unten padden,
+   damit nichts überlappt (Index mit transparentem Header ausgenommen) */
+.header:not(.header-transparent) + * { padding-top: 72px; }
 
 /* Transparent header on top (initial) */
 .header-transparent {
