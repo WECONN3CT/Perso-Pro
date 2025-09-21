@@ -332,6 +332,18 @@ a:hover {
   grid-template-columns: 1.2fr 0.8fr;
   align-items: stretch; /* beide Spalten volle Höhe */
 }
+/* Referenzen unten links in der linken Hälfte der Hero-Section */
+.hero-refs {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50%; /* linke Hälfte */
+  padding: 10px 12px;
+  box-sizing: border-box;
+}
+.hero-refs .refs-marquee { mask-image: none; -webkit-mask-image: none; }
+.hero-refs .refs-track { gap: clamp(18px, 3vw, 40px); animation-duration: 24s; }
+.hero-refs .refs-track img { height: 84px; }
 
 .hero-video {
   position: absolute;
