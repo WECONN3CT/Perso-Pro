@@ -114,6 +114,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* Globale Absicherung gegen horizontales Scrollen auf Mobilgeräten */
+html, body { max-width: 100%; overflow-x: hidden; }
 
 /* ===================================
    Typography
@@ -258,6 +260,8 @@ a:hover {
   background: var(--color-navy);
   transition: var(--transition-default);
 }
+/* Wenn das Menü geöffnet ist, Bars in Navy für Kontrast auf weißem Hintergrund */
+.nav-toggle.active span { background: var(--color-navy) !important; }
 
 .nav-menu {
   display: flex;
@@ -882,11 +886,31 @@ a:hover {
   .hero-title::after { width: 100%; margin: 0.75rem 0 1rem; }
   .hero-subtitle { font-size: clamp(0.95rem, 2.8vw, 1.1rem); margin-bottom: 1.25rem; }
   .btn-hero { width: auto; max-width: 100%; padding: 0.85rem 1.25rem; }
+
+  /* Mobile Navigation: Sicherer Kontrast auf weißem Dropdown-Hintergrund */
+  .header-transparent .nav-menu { background: #fff; }
+  .header-transparent .nav-menu .nav-link { color: var(--color-navy) !important; }
+  .header-transparent .nav-menu .nav-link:hover,
+  .header-transparent .nav-menu .nav-link.active { color: var(--color-orange) !important; }
+  .nav-menu .nav-link { display: block; padding: 12px 4px; }
+  .nav-menu .nav-link::after { display: none; }
+
+  /* Referenzen-Leiste: kompakter und ohne Überstand */
+  .hero-refs { width: 86%; left: 8px; bottom: -10px; padding: 6px 8px; }
+  .hero-refs .refs-marquee {
+    -webkit-mask-image: linear-gradient(90deg, black 0, black calc(100% - 24px), transparent 100%);
+            mask-image: linear-gradient(90deg, black 0, black calc(100% - 24px), transparent 100%);
+  }
+  .hero-refs .refs-track { gap: clamp(12px, 4vw, 24px); }
+  .hero-refs .refs-track img { height: 60px; }
 }
 
 @media (max-width: 480px) {
   .hero-title { font-size: clamp(1.6rem, 8.5vw, 2rem); }
   .hero-title::after { width: 100%; }
+  /* Noch kompaktere Referenzen für sehr kleine Geräte */
+  .hero-refs { width: 92%; left: 6px; bottom: -8px; }
+  .hero-refs .refs-track img { height: 52px; }
 }
 
 /* Floors über Container Queries, ohne das 2100/1022-Verhältnis zu brechen */
