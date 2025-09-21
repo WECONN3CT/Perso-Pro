@@ -369,7 +369,7 @@ a:hover {
   margin-left: var(--spacing-xl);
   padding: 0 var(--spacing-xl);
   /* etwas höher positionieren */
-  padding-top: clamp(56px, 18vh, 220px);
+  padding-top: clamp(36px, 14vh, 200px);
   text-align: left;
 }
 
