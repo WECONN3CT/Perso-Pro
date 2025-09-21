@@ -1839,16 +1839,52 @@ a:hover {
   width: max-content;
   animation: refs-scroll-rtl 26s linear infinite; /* Links → Rechts */
 }
+/* Logo-Basisbild */
 .refs-track img {
   height: 128px; /* noch größer, einheitliche Höhe */
   width: auto;
   object-fit: contain;
   image-rendering: -webkit-optimize-contrast;
-  filter: grayscale(100%) brightness(0) invert(1) sepia(1) saturate(7) hue-rotate(150deg) brightness(1.05) contrast(0.95);
+  /* kräftigeres Türkis mit leichtem Glow in Kombination mit Shine-Layer */
+  filter: grayscale(100%) brightness(0) invert(1) sepia(1) saturate(12) hue-rotate(150deg) brightness(1.12) contrast(0.98);
   opacity: 0.92;
 }
 /* Nur Logo 4.png größer skalieren */
 .refs-track img[src$="4.png"] { height: 160px; }
+
+/* Edler Glanz-Effekt: Wrapper mit Shine-Overlay */
+.ref-logo {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  padding: 6px 10px; /* etwas Luft für den Glanzverlauf */
+  border-radius: 8px; /* subtile Rundung für Lichtkante */
+  isolation: isolate; /* stellt z-index stacking für ::after sicher */
+}
+
+.ref-logo::after {
+  content: "";
+  position: absolute;
+  inset: -15% -40%;
+  pointer-events: none;
+  background: linear-gradient(130deg,
+    rgba(255,255,255,0) 46%,
+    rgba(255,255,255,0.55) 50%,
+    rgba(255,255,255,0) 54%
+  );
+  mix-blend-mode: screen; /* additiver Glanz */
+  opacity: 0.0;
+  transform: translateX(-20%) rotate(0.001deg);
+  will-change: transform, opacity;
+  animation: ref-logo-shine 4.6s ease-in-out infinite;
+}
+
+@keyframes ref-logo-shine {
+  0%   { opacity: 0.0; transform: translateX(-32%) skewX(0.2deg); }
+  15%  { opacity: 0.85; }
+  35%  { opacity: 0.0; transform: translateX(32%) skewX(0.2deg); }
+  100% { opacity: 0.0; transform: translateX(32%) skewX(0.2deg); }
+}
 @keyframes refs-scroll-rtl {
   from { transform: translateX(-50%); }
   to   { transform: translateX(0); }
