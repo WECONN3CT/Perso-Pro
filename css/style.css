@@ -357,13 +357,15 @@ a:hover {
 .hero-media-overlay {
   position: absolute;
   inset: 0;
-  /* nur im unteren Bereich abdunkeln */
+  /* nur unten stark abdunkeln – flüssiger Übergang */
   background: linear-gradient(
     180deg,
     rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0) 60%,
-    rgba(21,43,66,0.35) 80%,
-    rgba(21,43,66,0.60) 100%
+    rgba(0,0,0,0) 58%,
+    rgba(0,0,0,0.15) 68%,
+    rgba(0,0,0,0.35) 76%,
+    rgba(0,0,0,0.60) 86%,
+    rgba(0,0,0,0.88) 100%
   );
   z-index: 1;
 }
