@@ -1840,28 +1840,32 @@ a:hover {
   animation: refs-scroll-rtl 26s linear infinite; /* Links → Rechts */
 }
 /* Logo-Basisbild: statischer, metallischer Türkis-Look (ohne Glanz-Animation) */
+/* Referenzen: Türkis-Gradient direkt im Logo (oben heller → unten dunkler), keine Box */
 .refs-track img {
-  height: 128px; /* noch größer, einheitliche Höhe */
+  height: var(--h, 128px);
   width: auto;
   object-fit: contain;
-  image-rendering: -webkit-optimize-contrast;
-  /* Farb-Mapping auf Türkis + leicht mehr Kontrast und subtile Kanten */
-  filter:
-    grayscale(1)
-    brightness(0)
-    invert(1)
-    sepia(1)
-    saturate(16)
-    hue-rotate(150deg)
-    brightness(1.06)
-    contrast(1.08)
-    drop-shadow(0 0.5px 0 rgba(255,255,255,0.22))
-    drop-shadow(0 1px 0 rgba(0,0,0,0.42))
-    drop-shadow(0 10px 22px rgba(0,0,0,0.32));
-  opacity: 0.96;
+  opacity: 0.001; /* Fallback-Höhe, eigentliche Farbe via ::before */
 }
-/* Nur Logo 4.png größer skalieren */
-.refs-track img[src$="4.png"] { height: 160px; }
+
+.ref-logo { position: relative; display: inline-block; }
+.ref-logo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  height: var(--h, 128px);
+  width: 100%;
+  -webkit-mask-image: var(--logo);
+          mask-image: var(--logo);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  background: linear-gradient(180deg, #4fd8c9 0%, #2cc6b6 40%, #14b8a6 58%, #0d9488 100%);
+  filter: drop-shadow(0 0.5px 0 rgba(255,255,255,0.16)) drop-shadow(0 1px 0 rgba(0,0,0,0.38)) drop-shadow(0 10px 20px rgba(0,0,0,0.26));
+}
 
 /* Wrapper für konsistente Ausrichtung ohne Animation */
 .ref-logo {
