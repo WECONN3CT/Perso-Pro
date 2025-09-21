@@ -216,8 +216,8 @@ a:hover {
 .header-solid .logo h1 { color: var(--color-navy) !important; }
 .header-solid .nav-toggle span { background: var(--color-navy) !important; }
 
-/* Hero normal positionieren (keine negative Anhebung) */
-.hero-section { margin-top: 0; }
+/* Hero leicht höher positionieren */
+.hero-section { margin-top: -24px; }
 
 .navigation {
   display: flex;
