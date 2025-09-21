@@ -1868,8 +1868,19 @@ a:hover {
   position: relative;
   display: inline-grid;
   place-items: center;
-  padding: 6px 10px;
-  border-radius: 8px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 42%, rgba(20,184,166,0.06) 100%),
+    radial-gradient(140% 120% at 8% -10%, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 60%);
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.35),
+    0 2px 8px rgba(0,0,0,0.26),
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -1px 0 rgba(0,0,0,0.22);
+  backdrop-filter: blur(5px) saturate(140%);
+  -webkit-backdrop-filter: blur(5px) saturate(140%);
 }
 @keyframes refs-scroll-rtl {
   from { transform: translateX(-50%); }
