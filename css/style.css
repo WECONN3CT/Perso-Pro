@@ -1846,6 +1846,9 @@ a:hover {
   width: auto;
   object-fit: contain;
   opacity: 0.001; /* Fallback-Höhe, eigentliche Farbe via ::before */
+  position: relative;
+  z-index: 0;
+  display: block;
 }
 
 .ref-logo { position: relative; display: inline-block; }
@@ -1865,6 +1868,8 @@ a:hover {
           mask-size: contain;
   background: linear-gradient(180deg, #4fd8c9 0%, #2cc6b6 40%, #14b8a6 58%, #0d9488 100%);
   filter: drop-shadow(0 0.5px 0 rgba(255,255,255,0.16)) drop-shadow(0 1px 0 rgba(0,0,0,0.38)) drop-shadow(0 10px 20px rgba(0,0,0,0.26));
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* Wrapper für konsistente Ausrichtung ohne Animation */
