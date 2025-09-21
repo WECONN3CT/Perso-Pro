@@ -338,7 +338,7 @@ a:hover {
   position: absolute;
   left: 0;
   bottom: -20px; /* weiter nach unten */
-  width: 50%; /* linke Hälfte */
+  width: 62%; /* etwas länger nach rechts */
   padding: 10px 12px;
   box-sizing: border-box;
   z-index: 5; /* über dem dunklen Overlay */
