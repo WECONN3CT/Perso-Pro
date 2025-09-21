@@ -881,11 +881,16 @@ a:hover {
   .hero-section > .container { padding: 0 12px; }
   .hero-media { display: block; }
   .hero-content { padding-top: clamp(20px, 8vh, 72px); margin-left: 12px; text-align: left; }
-  .hero-side-image { display: block; max-width: clamp(560px, 120vw, 840px); }
+  .hero-side-image { display: none !important; }
+  .hero-script { display: none; }
   .hero-title { font-size: clamp(1.8rem, 7.2vw, 2.4rem); letter-spacing: -0.015em; }
   .hero-title::after { width: 100%; margin: 0.75rem 0 1rem; }
   .hero-subtitle { font-size: clamp(0.95rem, 2.8vw, 1.1rem); margin-bottom: 1.25rem; }
   .btn-hero { width: auto; max-width: 100%; padding: 0.85rem 1.25rem; }
+
+  /* Buttons untereinander für klare Hierarchie */
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; }
 
   /* Mobile Navigation: Sicherer Kontrast auf weißem Dropdown-Hintergrund */
   .header-transparent .nav-menu { background: #fff; }
@@ -909,8 +914,7 @@ a:hover {
   .hero-title { font-size: clamp(1.6rem, 8.5vw, 2rem); }
   .hero-title::after { width: 100%; }
   /* Noch kompaktere Referenzen für sehr kleine Geräte */
-  .hero-refs { width: 92%; left: 6px; bottom: -8px; }
-  .hero-refs .refs-track img { height: 52px; }
+  .hero-refs { display: none; }
 }
 
 /* Floors über Container Queries, ohne das 2100/1022-Verhältnis zu brechen */
