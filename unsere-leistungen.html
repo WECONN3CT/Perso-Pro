@@ -223,6 +223,22 @@
         .leistungen-page .contact-input:focus { outline: none; border-color: var(--color-orange); box-shadow: 0 0 0 3px rgba(20,184,166,0.15); }
         .leistungen-page .contact-form .full { grid-column: span 2; }
         .leistungen-page .contact-actions { grid-column: span 2; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+        /* Buttons kompakter, sodass zwei in einer Zeile Platz haben */
+        .leistungen-page .contact-actions { flex-wrap: nowrap; gap: 10px; }
+        .leistungen-page .contact-actions .btn {
+          padding: 0.6rem 1rem;
+          min-width: 220px;
+          height: auto;
+          font-size: 1rem;
+          border-radius: 10px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+        @media (max-width: 600px) {
+          .leistungen-page .contact-actions { flex-wrap: wrap; }
+          .leistungen-page .contact-actions .btn { width: 100%; min-width: 0; }
+        }
         @media (max-width: 700px) { .leistungen-page .contact-form { grid-template-columns: 1fr; } .leistungen-page .contact-form .full, .leistungen-page .contact-actions { grid-column: span 1; } }
         @media (max-width: 768px) {
           .leistungen-page .contact-form-card { width: 100%; }
@@ -514,8 +530,8 @@
               <textarea id="cf-message" name="message" rows="8" class="contact-input" placeholder="Zeitraum, Ort, Schichtlänge …"></textarea>
                 </div>
             <div class="contact-actions">
-              <button type="submit" class="btn btn-primary" style="padding: 0.9rem 1.25rem; min-width: 420px; height: 84px; font-size: 1.6rem; border-radius: 12px;">Anfrage senden</button>
-              <a class="btn btn-secondary" href="tel:+498912345677" style="padding: 0.9rem 1.25rem; min-width: 420px; height: 84px; font-size: 1.6rem; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center;">Direkt anrufen</a>
+              <button type="submit" class="btn btn-primary">Anfrage senden</button>
+              <a class="btn btn-secondary" href="tel:+498912345677">Direkt anrufen</a>
             </div>
           </form>
           </div>
