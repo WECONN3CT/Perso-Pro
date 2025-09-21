@@ -76,7 +76,7 @@ npx http-server
 ## 📞 Kontakt
 **PersoPro**  
 Adresse  
-80539 München  
+Friedrich-Ebert-Straße 75-77, 42719 Solingen
 Tel: +49 89 123 456 77  
 E-Mail: info@persopro.de
 

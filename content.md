@@ -36,7 +36,7 @@
 - Email: info@persopro.de
 
 ## Kontaktdaten
-**Adresse:** Maximilianstraße 123, 80539 München
+**Adresse:** Friedrich-Ebert-Straße 75-77, 42719 Solingen
 **Telefon:** +49 89 123 456 77
 **Email:** info@persopro.de
 **Öffnungszeiten:**
