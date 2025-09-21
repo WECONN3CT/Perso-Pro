@@ -1696,7 +1696,8 @@ a:hover {
    =================================== */
 
 .footer {
-  background: var(--color-navy);
+  /* Dunkler Ton mit türkisem Stich wie gewünscht */
+  background: linear-gradient(180deg, rgba(20,184,166,0.06) 0%, rgba(20,184,166,0.04) 100%), #1f2f36;
   color: var(--color-white);
   padding: 3rem 0 2rem;
 }
