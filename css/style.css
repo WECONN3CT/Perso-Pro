@@ -1840,7 +1840,7 @@ a:hover {
   animation: refs-scroll-rtl 26s linear infinite; /* Links → Rechts */
 }
 .refs-track img {
-  height: 72px; /* größere, einheitliche Höhe */
+  height: 96px; /* noch größer, einheitliche Höhe */
   width: auto;
   object-fit: contain;
   image-rendering: -webkit-optimize-contrast;
