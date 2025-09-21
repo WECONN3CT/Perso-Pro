@@ -1839,40 +1839,29 @@ a:hover {
   width: max-content;
   animation: refs-scroll-rtl 26s linear infinite; /* Links → Rechts */
 }
-/* Logo-Basisbild unsichtbar für Layout; wir nutzen eine maskierte Ebene mit Verlauf */
+/* Logo-Basisbild: statischer, metallischer Türkis-Look (ohne Glanz-Animation) */
 .refs-track img {
-  height: var(--ref-h, 128px);
+  height: 128px; /* noch größer, einheitliche Höhe */
   width: auto;
   object-fit: contain;
-  opacity: 0; /* Bild selbst ausblenden, dient nur als Fallback/Preload */
-}
-
-/* Maskierte Ebene: Verlauf direkt im Logo (kein Kasten), edler Türkis-Gradient */
-.ref-logo {
-  --ref-h: 128px;
-}
-.ref-logo::before {
-  content: "";
-  display: inline-block;
-  height: var(--ref-h, 128px);
-  width: auto;
-  aspect-ratio: auto; /* Größe übernimmt durch mask */
-  -webkit-mask-image: var(--logo);
-          mask-image: var(--logo);
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-          mask-position: center;
-  -webkit-mask-size: contain;
-          mask-size: contain;
-  background:
-    radial-gradient(120% 200% at 50% -30%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.0) 44%),
-    linear-gradient(180deg, #46d1c3 0%, #2bbfae 42%, #10a99a 68%, #0a8e83 100%);
+  image-rendering: -webkit-optimize-contrast;
+  /* Farb-Mapping auf Türkis + leicht mehr Kontrast und subtile Kanten */
   filter:
-    drop-shadow(0 0.5px 0 rgba(255,255,255,0.25))
-    drop-shadow(0 1px 0 rgba(0,0,0,0.40))
-    drop-shadow(0 14px 26px rgba(0,0,0,0.30));
+    grayscale(1)
+    brightness(0)
+    invert(1)
+    sepia(1)
+    saturate(16)
+    hue-rotate(150deg)
+    brightness(1.06)
+    contrast(1.08)
+    drop-shadow(0 0.5px 0 rgba(255,255,255,0.22))
+    drop-shadow(0 1px 0 rgba(0,0,0,0.42))
+    drop-shadow(0 10px 22px rgba(0,0,0,0.32));
+  opacity: 0.96;
 }
+/* Nur Logo 4.png größer skalieren */
+.refs-track img[src$="4.png"] { height: 160px; }
 
 /* Wrapper für konsistente Ausrichtung ohne Animation */
 .ref-logo {
