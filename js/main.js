@@ -683,7 +683,7 @@ function initScrollProgress() {
     const header = document.querySelector('.header');
     let anchorY = 0;
     let lastFixed = null; // null = undef, true/false = Zustand
-    const headerHeight = () => (header ? Math.round(header.getBoundingClientRect().height) : 72);
+    const headerHeight = () => (header ? Math.ceil(header.getBoundingClientRect().height) : 72);
     const computeAnchor = () => {
         if (!container) return;
         const rect = container.getBoundingClientRect();
@@ -705,12 +705,12 @@ function initScrollProgress() {
         // Fix/Unfix über stabile Schwelle: Headerhöhe + scrollY >= anchorY
         const h = headerHeight();
         const headerBottom = window.pageYOffset + h;
-        const tolerance = 1; // 1px Hysterese gegen Flackern
+        const stickDelay = 8; // späteres Andocken (px)
         // Solange noch nicht fixiert, Anker laufend nachführen (bei nachladenden Inhalten)
         if (!lastFixed) {
             anchorY = window.pageYOffset + container.getBoundingClientRect().top;
         }
-        const shouldFix = headerBottom >= (anchorY - tolerance);
+        const shouldFix = headerBottom >= (anchorY + stickDelay);
         if (lastFixed !== shouldFix) {
             lastFixed = shouldFix;
             if (shouldFix) {
