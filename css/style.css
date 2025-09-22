@@ -237,8 +237,8 @@ a:hover {
 .header-solid .logo h1 { color: var(--color-navy) !important; }
 .header-solid .nav-toggle span { background: var(--color-navy) !important; }
 
-/* Hero bündig unter dem Header */
-.hero-section { margin-top: 0; }
+/* Hero leicht höher positionieren (dezenter) */
+.hero-section { margin-top: -12px; }
 
 .navigation {
   display: flex;
@@ -331,7 +331,7 @@ a:hover {
 
 .hero-section {
   background: var(--color-light-gray);
-  padding: 0;
+  padding: 1.25rem 0;
   position: relative;
   container-type: inline-size;
 }
@@ -350,11 +350,11 @@ a:hover {
 
 .hero-media {
   position: relative;
-  border-radius: 0 0 24px 24px;
+  border-radius: 24px;
   overflow: hidden;
   box-shadow: var(--shadow-xl);
-  width: 100%;
-  margin: 0;
+  width: min(2100px, calc(100% - 32px));
+  margin: 0 auto;
   height: auto;
   aspect-ratio: 2100 / 1100;
   min-height: 0;
@@ -362,8 +362,6 @@ a:hover {
   grid-template-columns: 1.2fr 0.8fr;
   align-items: stretch; /* beide Spalten volle Höhe */
   padding-bottom: 36px; /* mehr Raum unten, damit Referenzen tiefer sitzen */
-  /* bündig am Seitenrand anliegen */
-  border-top: none;
 }
 /* Referenzen unten links in der linken Hälfte der Hero-Section */
 .hero-refs {
@@ -931,10 +929,10 @@ a:hover {
 }
 
 @media (max-width: 768px) {
-  .hero-section { padding: 0; }
+  .hero-section { padding: 1rem 0; }
   /* Mobile fine-tuning for hero content */
   .hero-section > .container { padding: 0; }
-  .hero-media { display: block; width: 100vw; min-height: clamp(448px, 69vh, 672px); border-radius: 0 0 20px 20px; margin: 0; }
+  .hero-media { display: block; width: 100vw; min-height: clamp(448px, 69vh, 672px); border-radius: 0; margin: 0; }
   .hero-content { padding-top: clamp(20px, 8vh, 72px); margin-left: 12px; text-align: left; }
   .hero-side-image { display: none !important; }
   .hero-script { display: none; }
