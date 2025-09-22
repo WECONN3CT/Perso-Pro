@@ -683,11 +683,8 @@ function initScrollProgress() {
     const header = document.querySelector('.header');
     const applyTop = () => {
         if (!container) return;
-        const h = header ? Math.round(header.getBoundingClientRect().height) : 72;
-        // Sticky-Offset exakt auf Headerhöhe setzen
-        container.style.top = `${Math.max(0, h)}px`;
-        // Da die Leiste vor dem Header liegen soll
-        container.style.zIndex = '1100';
+        // nichts setzten, solange noch nicht fixed – Ausgangsposition bleibt unter Hero
+        container.dataset.headerHeight = String(header ? Math.round(header.getBoundingClientRect().height) : 72);
     };
     const update = () => {
         const doc = document.documentElement;
@@ -696,9 +693,26 @@ function initScrollProgress() {
         const scrollHeight = (doc.scrollHeight || body.scrollHeight) - window.innerHeight;
         const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
         bar.style.width = `${progress}%`;
-        // Immer sichtbar: unter Hero bereits anzeigen, Sticky übernimmt unter Header
-        container.style.visibility = 'visible';
-        container.style.opacity = '1';
+        // Schwelle: wenn Header-Unterkante die obere Kante der Leiste erreicht, Leiste fixieren
+        const hero = document.querySelector('.hero-section');
+        const h = header ? Math.round(header.getBoundingClientRect().height) : 72;
+        if (hero) {
+            const progressTop = container.getBoundingClientRect().top; // Position der Leiste im Viewport
+            const headerBottom = header.getBoundingClientRect().bottom; // Unterkante Header
+            if (progressTop <= headerBottom) {
+                // fixieren direkt unter dem Header
+                container.classList.add('is-fixed');
+                container.style.top = `${h}px`;
+                container.style.visibility = 'visible';
+                container.style.opacity = '1';
+            } else {
+                // normale Position beibehalten
+                container.classList.remove('is-fixed');
+                container.style.top = '0px';
+                container.style.visibility = 'visible';
+                container.style.opacity = '1';
+            }
+        }
     };
     applyTop();
     update();
