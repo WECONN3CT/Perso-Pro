@@ -937,7 +937,13 @@ a:hover {
   .hero-title::after { width: 100%; }
   .hero-media { width: 100vw; min-height: clamp(496px, 73.6vh, 720px); }
   /* Noch kompaktere Referenzen für sehr kleine Geräte */
-  .hero-refs { display: none; }
+  .hero-refs { display: block; width: 94%; left: 3%; bottom: -6px; padding: 4px 6px; }
+  .hero-refs .refs-marquee {
+    -webkit-mask-image: linear-gradient(90deg, black 0, black calc(100% - 20px), transparent 100%);
+            mask-image: linear-gradient(90deg, black 0, black calc(100% - 20px), transparent 100%);
+  }
+  .hero-refs .refs-track { gap: clamp(10px, 4vw, 20px); animation-duration: 22s; }
+  .hero-refs .refs-track img { height: 48px; }
 }
 
 /* Floors über Container Queries, ohne das 2100/1022-Verhältnis zu brechen */
