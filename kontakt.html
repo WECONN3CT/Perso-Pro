@@ -210,6 +210,7 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#content">Zum Inhalt springen</a>
     <!-- Header -->
     <header class="header header-transparent">
         <div class="container">
@@ -228,14 +229,14 @@
                     <li><a href="index.html" class="nav-link">HOME</a></li>
                     <li><a href="ueber-uns.html" class="nav-link">ÜBER UNS</a></li>
                     <li><a href="unsere-leistungen.html" class="nav-link">UNSERE LEISTUNGEN</a></li>
-                    <li><a href="kontakt.html" class="nav-link active">KONTAKT</a></li>
+                    <li><a href="kontakt.html" class="nav-link active" aria-current="page">KONTAKT</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Contact Header -->
-    <section class="contact-header">
+    <section class="contact-header" id="content">
         <div class="container">
             <h1>Kontakt</h1>
             <p>Wir sind für Sie da - persönlich, telefonisch oder digital</p>
@@ -284,29 +285,29 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label" for="firstName">Vorname *</label>
-                                <input type="text" id="firstName" name="firstName" class="form-input" required>
+                                <input type="text" id="firstName" name="firstName" class="form-input" required autocomplete="given-name" inputmode="text">
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="lastName">Nachname *</label>
-                                <input type="text" id="lastName" name="lastName" class="form-input" required>
+                                <input type="text" id="lastName" name="lastName" class="form-input" required autocomplete="family-name" inputmode="text">
                             </div>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label" for="email">E-Mail *</label>
-                                <input type="email" id="email" name="email" class="form-input" required>
+                                <input type="email" id="email" name="email" class="form-input" required autocomplete="email" inputmode="email">
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="phone">Telefon</label>
-                                <input type="tel" id="phone" name="phone" class="form-input">
+                                <input type="tel" id="phone" name="phone" class="form-input" autocomplete="tel" inputmode="tel">
                             </div>
                         </div>
                         
                         <div class="form-row full">
                             <div class="form-group">
                                 <label class="form-label" for="subject">Betreff *</label>
-                                <input type="text" id="subject" name="subject" class="form-input" required>
+                                <input type="text" id="subject" name="subject" class="form-input" required autocomplete="off">
                             </div>
                         </div>
                         
@@ -332,12 +333,13 @@
                         
                         <div class="form-row full">
                             <div class="form-group">
-                                <label style="display: flex; align-items: start; gap: 0.5rem; cursor: pointer;">
-                                    <input type="checkbox" name="privacy" required style="margin-top: 2px;">
-                                    <span style="font-size: 0.875rem; color: var(--color-dark-gray);">
-                                        Ich habe die <a href="datenschutz.html" target="_blank" style="color: var(--color-orange);">Datenschutzerklärung</a> gelesen und akzeptiere sie. *
+                                <label for="privacy" class="form-label">Datenschutz *</label>
+                                <div style="display:flex; align-items:start; gap:0.5rem;">
+                                    <input id="privacy" type="checkbox" name="privacy" required aria-describedby="privacy-help" style="margin-top: 2px;">
+                                    <span id="privacy-help" style="font-size: 0.875rem; color: var(--color-dark-gray);">
+                                        Ich habe die <a href="datenschutz.html" target="_blank" style="color: var(--color-orange);">Datenschutzerklärung</a> gelesen und akzeptiere sie.
                                     </span>
-                                </label>
+                                </div>
                             </div>
                         </div>
                         

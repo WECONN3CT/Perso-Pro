@@ -354,6 +354,7 @@
     </style>
 </head>
 <body class="leistungen-scope">
+    <a class="skip-link" href="#content">Zum Inhalt springen</a>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -371,7 +372,7 @@
                 <ul class="nav-menu">
                     <li><a href="index.html" class="nav-link">HOME</a></li>
                     <li><a href="ueber-uns.html" class="nav-link">ÜBER UNS</a></li>
-                    <li><a href="unsere-leistungen.html" class="nav-link active">UNSERE LEISTUNGEN</a></li>
+                    <li><a href="unsere-leistungen.html" class="nav-link active" aria-current="page">UNSERE LEISTUNGEN</a></li>
                     <li><a href="kontakt.html" class="nav-link">KONTAKT</a></li>
                 </ul>
             </nav>
@@ -379,7 +380,7 @@
     </header>
 
     <!-- Page Header -->
-    <section class="properties-header leistungen-page">
+    <section class="properties-header leistungen-page" id="content">
         <div class="container">
             <h1>Unsere Leistungen</h1>
             <p>Personal für Küche, Service, Theke und Events – kurzfristig verfügbar</p>
@@ -398,7 +399,7 @@
             
             <div class="cta-bar">
               <div>
-                <strong>Akute Anfrage ?</strong><br />
+                <strong>Akute Anfrage?</strong><br />
                 <span class="cta-note">Wir besetzen in der Regel innerhalb von 24–72 Stunden.</span>
               </div>
               <div>
@@ -460,23 +461,37 @@
     <script>
     document.addEventListener('DOMContentLoaded', function () {
       var card = document.querySelector('.lead-image-card');
-      if (!card) return;
-      // Höhe beibehalten
-      var rect = card.getBoundingClientRect();
-      card.style.height = Math.round(rect.height * 1.3915) + 'px';
-      // Weitere +40% Breite (insgesamt 1.25 * 1.25 * 1.4 = 2.1875), nach rechts wachsend
-      var newWidth = Math.min(Math.round(rect.width * 1.25 * 1.25 * 1.4), window.innerWidth);
-      card.style.width = newWidth + 'px';
-
-      // Rechten türkisen Container auf gleiche Höhe und gleiche Top-Position setzen
       var rightCard = document.querySelector('.lead-turquoise-card');
       var section = document.querySelector('.properties-header');
-      if (rightCard && section) {
-        var figRect = card.getBoundingClientRect();
-        var secRect = section.getBoundingClientRect();
-        rightCard.style.top = Math.max(0, Math.round(figRect.top - secRect.top)) + 'px';
-        rightCard.style.height = Math.round(figRect.height) + 'px';
+
+      function applyDesktopLayout() {
+        if (!card) return;
+        var rect = card.getBoundingClientRect();
+        card.style.height = Math.round(rect.height * 1.3915) + 'px';
+        var newWidth = Math.min(Math.round(rect.width * 1.25 * 1.25 * 1.4), window.innerWidth);
+        card.style.width = newWidth + 'px';
+        if (rightCard && section) {
+          var figRect = card.getBoundingClientRect();
+          var secRect = section.getBoundingClientRect();
+          rightCard.style.top = Math.max(0, Math.round(figRect.top - secRect.top)) + 'px';
+          rightCard.style.height = Math.round(figRect.height) + 'px';
+        }
       }
+
+      function resetMobileLayout() {
+        if (card) { card.style.height = ''; card.style.width = ''; }
+        if (rightCard) { rightCard.style.top = ''; rightCard.style.height = ''; }
+      }
+
+      function isDesktop() { return window.matchMedia('(min-width: 1024px)').matches; }
+      function updateLayout() { isDesktop() ? applyDesktopLayout() : resetMobileLayout(); }
+
+      updateLayout();
+      var resizeTimer;
+      window.addEventListener('resize', function(){
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateLayout, 150);
+      });
 
       // Bild-Fallback: versuche alternative Pfade, falls Bild nicht geladen wurde
       var img = document.querySelector('.lead-image-card img');
@@ -515,22 +530,22 @@
             
             <div class="service-grid" style="margin-top:14px;">
               <article class="service-card" aria-labelledby="s1">
-                <div class="svc-icon">💰</div>
+                <div class="svc-icon" aria-hidden="true">💰</div>
                 <h3 id="s1">Recruiting‑Aufwand sparen</h3>
                 <p>Sparen Sie kosten‑ und zeitaufwändiges Personalrecruiting – wir übernehmen Suche, Auswahl und Einsatzplanung.</p>
               </article>
               <article class="service-card" aria-labelledby="s2">
-                <div class="svc-icon">👥</div>
+                <div class="svc-icon" aria-hidden="true">👥</div>
                 <h3 id="s2">Fester Ansprechpartner</h3>
                 <p>Der komplette Vorgang wird von einem persönlichen Ansprechpartner betreut. Wir sind Ihr Sprachrohr – vom Briefing bis zum Feedback.</p>
               </article>
               <article class="service-card" aria-labelledby="s3">
-                <div class="svc-icon">👥➕</div>
+                <div class="svc-icon" aria-hidden="true">👥➕</div>
                 <h3 id="s3">Schnell aufstocken</h3>
                 <p>Bei hoher Auftragslage oder personellen Engpässen stocken wir Ihr Team kurzfristig und passgenau auf.</p>
               </article>
               <article class="service-card" aria-labelledby="s4">
-                <div class="svc-icon">🛡️</div>
+                <div class="svc-icon" aria-hidden="true">🛡️</div>
                 <h3 id="s4">Sicher & transparent</h3>
                 <p>Klare Prozesse, transparente Abrechnung und rechtliche Sicherheit – damit Sie sich voll auf Ihr Tagesgeschäft konzentrieren.</p>
               </article>
@@ -556,7 +571,7 @@
     </section>
 
     <!-- Kontaktformular direkt unter dem Leistungsportfolio -->
-    <section class="section leistungen-page ak-cta" aria-labelledby="contactFormTitle">
+    <section id="kontakt" class="section leistungen-page ak-cta" aria-labelledby="contactFormTitle">
         <div class="container">
         <h2 id="contactFormTitle">Jetzt starten – Personal anfragen</h2>
         <p class="lead">Teilen Sie uns Ihren Bedarf mit – wir melden uns schnell zurück.</p>

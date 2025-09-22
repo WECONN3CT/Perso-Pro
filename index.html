@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <a class="skip-link" href="#content">Zum Inhalt springen</a>
     <!-- Header -->
     <header class="header header-transparent">
         <div class="container">
@@ -31,7 +32,7 @@
                     <span></span>
                 </button>
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link active">HOME</a></li>
+                    <li><a href="index.html" class="nav-link active" aria-current="page">HOME</a></li>
                     <li><a href="ueber-uns.html" class="nav-link">ÜBER UNS</a></li>
                     <li><a href="unsere-leistungen.html" class="nav-link">UNSERE LEISTUNGEN</a></li>
                     <li><a href="kontakt.html" class="nav-link">KONTAKT</a></li>
@@ -41,10 +42,10 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section" id="content">
         <div class="container">
             <div class="hero-media">
-                <video class="hero-video" autoplay muted loop playsinline>
+                <video class="hero-video" autoplay muted loop playsinline poster="images/start/herotitel.png">
                     <source src="videos/herovideo.mp4" type="video/mp4">
                 </video>
                 <div class="hero-media-overlay"></div>
@@ -177,17 +178,17 @@
         <div class="container testimonials-container">
             <div class="testimonials-grid">
                 <figure class="testimonial">
-                    <img class="avatar" src="images/start/persohero.png" alt="Portrait" loading="lazy">
+                    <img class="avatar" src="images/start/persohero.png" alt="Chanjayan Indirasenan" loading="lazy" decoding="async" width="84" height="84">
                     <blockquote class="quote">“Meine Vision für PersoPro ist es, die erste Anlaufstelle für Unternehmen zu sein, die in der Gastronomie und darüber hinaus nach passgenauen Personallösungen suchen. Denn wir glauben fest daran: Gemeinsamer Erfolg hält lange und ist die Basis für nachhaltiges Wachstum.”</blockquote>
                     <figcaption class="author"><span class="name">Chanjayan Indirasenan</span><span class="role">Geschäftsführerin</span></figcaption>
                 </figure>
                 <figure class="testimonial">
-                    <img class="avatar" src="images/start/persohero.png" alt="Portrait" loading="lazy">
+                    <img class="avatar" src="images/start/persohero.png" alt="Thanushea Indirasenan" loading="lazy" decoding="async" width="84" height="84">
                     <blockquote class="quote">“Für mich ist die Arbeit mit Menschen mehr als nur ein Job – es ist eine Leidenschaft. Offene Kommunikation und gegenseitiges Vertrauen sind für mich die unverzichtbaren Stützpfeiler, auf denen unser gemeinsamer Erfolg bei PersoPro wächst.”</blockquote>
                     <figcaption class="author"><span class="name">Thanushea Indirasenan</span><span class="role">Personaldisponent</span></figcaption>
                 </figure>
                 <figure class="testimonial">
-                    <img class="avatar" src="images/start/persohero.png" alt="Portrait" loading="lazy">
+                    <img class="avatar" src="images/start/persohero.png" alt="Maria Stevens" loading="lazy" decoding="async" width="84" height="84">
                     <blockquote class="quote">“Eine solide Buchhaltung ist das Fundament für nachhaltiges Wachstum und eine vertrauensvolle Partnerschaft mit unseren Kunden.”</blockquote>
                     <figcaption class="author"><span class="name">Maria Stevens</span><span class="role">Finance</span></figcaption>
                 </figure>
@@ -293,7 +294,7 @@
                     <a href="ueber-uns.html" class="btn btn-secondary">Mehr über uns</a>
                 </div>
                 <div class="about-image">
-                    <img src="images/team/kantine.png" alt="Team im Einsatz in der Kantine" loading="lazy">
+                    <img src="images/team/kantine.png" alt="Team im Einsatz in der Kantine" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>

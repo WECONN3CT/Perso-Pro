@@ -117,6 +117,27 @@ body {
 /* Globale Absicherung gegen horizontales Scrollen auf Mobilgeräten */
 html, body { max-width: 100%; overflow-x: hidden; }
 
+/* Responsive Media Defaults */
+img, video { max-width: 100%; height: auto; }
+
+/* Skip Link (A11y) */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -1000px;
+  background: var(--color-white);
+  color: var(--color-navy);
+  padding: 10px 14px;
+  border: 2px solid var(--color-orange);
+  border-radius: 8px;
+  z-index: 2000;
+  box-shadow: var(--shadow-md);
+}
+.skip-link:focus {
+  top: 8px;
+  outline: none;
+}
+
 /* ===================================
    Typography
    =================================== */
@@ -1081,6 +1102,18 @@ a:hover {
 .btn-ghost:hover {
   color: var(--color-dark-orange);
   text-decoration: underline;
+}
+
+/* Accessible Focus Styles */
+.nav-link:focus-visible,
+.btn:focus-visible,
+.nav-toggle:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
 /* ===================================
@@ -2321,3 +2354,19 @@ a:hover {
 /* Fallback: Icon als Background laden, falls <img> durch CSP/CDN nicht geladen wird */
 .cc-fab { background-image: url('../images/start/cookieicon.png'); background-repeat: no-repeat; background-position: center; background-size: 28px 28px; }
 /* Aufmerksamkeitspuls entfernt – dezenter Button ohne Glow */
+
+/* ===================================
+   Form Errors (sichtbares Feedback)
+   =================================== */
+input.error, textarea.error, select.error,
+.form-input.error, .form-textarea.error,
+.contact-input.error {
+  border-color: var(--color-red) !important;
+  box-shadow: 0 0 0 3px rgba(220,53,69,0.12);
+}
+.field-error {
+  color: var(--color-red);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}

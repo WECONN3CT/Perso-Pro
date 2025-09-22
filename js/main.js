@@ -228,13 +228,21 @@ function initMobileNavigation() {
     const navMenu = document.querySelector('.nav-menu');
     
     if (navToggle && navMenu) {
+        // ARIA initialisieren
+        const menuId = navMenu.id || 'primary-navigation';
+        if (!navMenu.id) navMenu.id = menuId;
+        navToggle.setAttribute('aria-controls', menuId);
+        navToggle.setAttribute('aria-expanded', 'false');
+        navMenu.setAttribute('aria-hidden', 'true');
+
         navToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
             navToggle.classList.toggle('active');
             
             // Animate hamburger menu
             const spans = navToggle.querySelectorAll('span');
-            if (navToggle.classList.contains('active')) {
+            const isOpen = navToggle.classList.contains('active');
+            if (isOpen) {
                 spans[0].style.transform = 'rotate(45deg) translateY(8px)';
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translateY(-8px)';
@@ -243,6 +251,11 @@ function initMobileNavigation() {
                 spans[1].style.opacity = '1';
                 spans[2].style.transform = 'none';
             }
+
+            // ARIA + Scroll-Lock
+            navToggle.setAttribute('aria-expanded', String(isOpen));
+            navMenu.setAttribute('aria-hidden', String(!isOpen));
+            document.body.style.overflow = isOpen ? 'hidden' : '';
         });
         
         // Close menu when clicking outside
@@ -254,6 +267,9 @@ function initMobileNavigation() {
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
                 spans[2].style.transform = 'none';
+                navToggle.setAttribute('aria-expanded', 'false');
+                navMenu.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
             }
         });
         
@@ -263,7 +279,25 @@ function initMobileNavigation() {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navMenu.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
             });
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                const spans = navToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                navToggle.setAttribute('aria-expanded', 'false');
+                navMenu.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
         });
     }
 }
@@ -371,8 +405,14 @@ function showFieldError(field, message) {
     if (!errorElement || !errorElement.classList.contains('field-error')) {
         errorElement = document.createElement('span');
         errorElement.classList.add('field-error');
+        const refId = field.id || field.name || `field-${Math.random().toString(36).slice(2,7)}`;
+        errorElement.id = `${refId}-error`;
+        errorElement.setAttribute('role', 'alert');
+        errorElement.setAttribute('aria-live', 'polite');
         field.parentNode.insertBefore(errorElement, field.nextSibling);
     }
+    field.setAttribute('aria-invalid', 'true');
+    if (errorElement.id) field.setAttribute('aria-describedby', errorElement.id);
     errorElement.textContent = message;
     errorElement.style.color = '#DC3545';
     errorElement.style.fontSize = '0.875rem';
@@ -385,12 +425,17 @@ function clearFieldError(field) {
     if (errorElement && errorElement.classList.contains('field-error')) {
         errorElement.remove();
     }
+    field.removeAttribute('aria-invalid');
+    field.removeAttribute('aria-describedby');
 }
 
 function showSuccessMessage(form) {
     const successMessage = document.createElement('div');
     successMessage.classList.add('success-message');
     successMessage.textContent = 'Vielen Dank für Ihre Nachricht! Wir werden uns schnellstmöglich bei Ihnen melden.';
+    successMessage.setAttribute('role', 'status');
+    successMessage.setAttribute('aria-live', 'polite');
+    successMessage.tabIndex = -1;
     successMessage.style.cssText = `
         background: #28A745;
         color: white;
@@ -402,6 +447,7 @@ function showSuccessMessage(form) {
     `;
     
     form.appendChild(successMessage);
+    try { successMessage.focus({ preventScroll: true }); } catch(_) {}
     
     setTimeout(() => {
         successMessage.style.animation = 'slideOut 0.3s ease';

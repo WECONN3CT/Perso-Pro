@@ -62,6 +62,20 @@
     if (!m) return;
     m.classList.remove('cc-hidden');
     requestAnimationFrame(() => m.classList.add('cc-visible'));
+    // Fokusfalle aktivieren
+    try {
+      const focusable = m.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (first) first.focus({ preventScroll: true });
+      function trap(e){
+        if (e.key !== 'Tab') return;
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+      m._trap = trap;
+      m.addEventListener('keydown', trap);
+    } catch(_) {}
   }
 
   function closeModal() {
@@ -71,6 +85,8 @@
     const onEnd = () => {
       m.classList.add('cc-hidden');
       m.removeEventListener('transitionend', onEnd);
+      // Fokusfalle entfernen
+      if (m._trap) { m.removeEventListener('keydown', m._trap); m._trap = null; }
     };
     let fallback = setTimeout(onEnd, 400);
     m.addEventListener('transitionend', () => { clearTimeout(fallback); onEnd(); }, { once: true });

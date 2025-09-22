@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 async function loadProperties() {
     try {
-        const response = await fetch('data/profiles.json');
+        const response = await fetch('data/properties.json');
         const data = await response.json();
         // profiles: [{ id, title, role, wage, location, region, experience, shift, skills, images }]
         allProperties = data.profiles || [];
