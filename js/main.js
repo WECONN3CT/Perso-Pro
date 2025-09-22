@@ -604,11 +604,11 @@ style.textContent = `
     }
     
     .fade-in {
-        animation: fadeIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation: fadeIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
     
     .slide-in {
-        animation: slideIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation: slideIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 `;
 document.head.appendChild(style);
@@ -622,8 +622,17 @@ const observerOptions = {
 const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in', 'slide-in');
-            scrollObserver.unobserve(entry.target);
+            const target = entry.target;
+            // Prestate entfernen, danach animieren
+            target.style.opacity = '';
+            target.style.transform = '';
+            target.classList.add('fade-in', 'slide-in');
+            target.addEventListener('animationend', () => {
+                target.style.willChange = '';
+                target.style.backfaceVisibility = '';
+                target.style.transformStyle = '';
+            }, { once: true });
+            scrollObserver.unobserve(target);
         }
     });
 }, observerOptions);
@@ -631,10 +640,20 @@ const scrollObserver = new IntersectionObserver((entries) => {
 // Observe elements for scroll animations
 document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.service-card, .property-card, .about-preview, .leistungen-page .value, .leistungen-page .step, .leistungen-page .acc-item');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     animatedElements.forEach((el, i) => {
-        el.style.animationDelay = `${i * 100}ms`;
         el.style.willChange = 'transform, opacity';
-        scrollObserver.observe(el);
+        el.style.backfaceVisibility = 'hidden';
+        el.style.transformStyle = 'preserve-3d';
+        if (!prefersReduced) {
+            // initial unsichtbar, um Flash beim ersten Reveal zu vermeiden
+            el.style.opacity = '0';
+            el.style.transform = 'translate3d(0,12px,0)';
+            el.style.animationDelay = `${i * 100}ms`;
+            scrollObserver.observe(el);
+        } else {
+            el.classList.add('fade-in', 'slide-in');
+        }
     });
 });
 
