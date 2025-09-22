@@ -358,7 +358,23 @@ a:hover {
           mask-image: linear-gradient(90deg, black 0, black calc(100% - 36px), transparent 100%);
 }
 .hero-refs .refs-track { gap: clamp(18px, 3vw, 40px); animation-duration: 24s; }
-.hero-refs .refs-track img { height: 84px; }
+.hero-refs .refs-track img {
+  height: 84px;
+  /* edler & etwas dunkler/transparenter nur in der Hero-Section */
+  opacity: 0.88;
+  filter:
+    grayscale(1)
+    brightness(0)
+    invert(1)
+    sepia(1)
+    saturate(12)
+    hue-rotate(150deg)
+    brightness(0.96)
+    contrast(1.08)
+    drop-shadow(0 0.5px 0 rgba(255,255,255,0.12))
+    drop-shadow(0 1px 0 rgba(0,0,0,0.34))
+    drop-shadow(0 12px 22px rgba(0,0,0,0.28));
+}
 
 .hero-video {
   position: absolute;
