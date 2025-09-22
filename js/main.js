@@ -704,13 +704,19 @@ function initScrollProgress() {
         }
         // Fix/Unfix über stabile Schwelle: Headerhöhe + scrollY >= anchorY
         const h = headerHeight();
-        const shouldFix = (window.pageYOffset + h) >= anchorY;
+        const headerBottom = window.pageYOffset + h;
+        const tolerance = 1; // 1px Hysterese gegen Flackern
+        // Solange noch nicht fixiert, Anker laufend nachführen (bei nachladenden Inhalten)
+        if (!lastFixed) {
+            anchorY = window.pageYOffset + container.getBoundingClientRect().top;
+        }
+        const shouldFix = headerBottom >= (anchorY - tolerance);
         if (lastFixed !== shouldFix) {
             lastFixed = shouldFix;
             if (shouldFix) {
                 container.classList.add('is-fixed');
                 container.style.top = `${h}px`;
-            } else {
+            } else if (headerBottom < (anchorY - tolerance)) {
                 container.classList.remove('is-fixed');
                 container.style.top = '0px';
             }
