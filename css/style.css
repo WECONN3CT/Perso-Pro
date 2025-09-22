@@ -361,16 +361,17 @@ a:hover {
 .hero-refs .refs-track img {
   height: 84px;
   /* edler & etwas dunkler/transparenter nur in der Hero-Section */
-  opacity: 0.88;
+  opacity: 0.8;
+  mix-blend-mode: soft-light;
   filter:
     grayscale(1)
     brightness(0)
     invert(1)
     sepia(1)
-    saturate(12)
+    saturate(11)
     hue-rotate(150deg)
-    brightness(0.96)
-    contrast(1.08)
+    brightness(0.9)
+    contrast(1.06)
     drop-shadow(0 0.5px 0 rgba(255,255,255,0.12))
     drop-shadow(0 1px 0 rgba(0,0,0,0.34))
     drop-shadow(0 12px 22px rgba(0,0,0,0.28));
