@@ -696,17 +696,9 @@ function initScrollProgress() {
         const scrollHeight = (doc.scrollHeight || body.scrollHeight) - window.innerHeight;
         const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
         bar.style.width = `${progress}%`;
-        // Sichtbarkeit: show when top of page scrolled beyond hero top
-        const hero = document.querySelector('.hero-section');
-        let shouldShow = true;
-        if (hero) {
-            const heroBottom = hero.getBoundingClientRect().bottom;
-            // Sobald der Header die Hero-Unterkante erreicht (heroBottom <= Headerhöhe), zeigen
-            const h = header ? Math.round(header.getBoundingClientRect().height) : 72;
-            shouldShow = heroBottom <= h;
-        }
-        container.style.visibility = shouldShow ? 'visible' : 'hidden';
-        container.style.opacity = shouldShow ? '1' : '0';
+        // Immer sichtbar: unter Hero bereits anzeigen, Sticky übernimmt unter Header
+        container.style.visibility = 'visible';
+        container.style.opacity = '1';
     };
     applyTop();
     update();
