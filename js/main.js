@@ -692,7 +692,13 @@ function initScrollProgress() {
         const scrollTop = doc.scrollTop || body.scrollTop;
         const scrollHeight = (doc.scrollHeight || body.scrollHeight) - window.innerHeight;
         const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-        bar.style.width = `${progress}%`;
+        // RequestAnimationFrame, um Layout-Thrashing zu vermeiden
+        if (!update._raf) {
+            update._raf = requestAnimationFrame(() => {
+                bar.style.width = `${progress}%`;
+                update._raf = null;
+            });
+        }
         // Schwelle: wenn Header-Unterkante die obere Kante der Leiste erreicht, Leiste fixieren
         const hero = document.querySelector('.hero-section');
         const h = header ? Math.round(header.getBoundingClientRect().height) : 72;
