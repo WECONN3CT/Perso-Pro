@@ -704,7 +704,7 @@ function initScrollProgress() {
         }
         // Fix/Unfix über stabile Schwelle: Headerhöhe + scrollY >= anchorY
         const h = headerHeight();
-        const shouldFix = (window.pageYOffset + h) >= anchorY;
+        const shouldFix = (window.pageYOffset + h + 1) >= anchorY; // +1px Hysterese gegen Flackern
         if (lastFixed !== shouldFix) {
             lastFixed = shouldFix;
             if (shouldFix) {
@@ -712,7 +712,7 @@ function initScrollProgress() {
                 container.style.top = `${h}px`;
             } else {
                 container.classList.remove('is-fixed');
-                container.style.top = '0px';
+                container.style.top = '0px'; // flüssiger Übergang dank CSS-Transition
             }
         }
         container.style.visibility = 'visible';
