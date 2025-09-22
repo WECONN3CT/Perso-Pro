@@ -684,8 +684,8 @@ function initScrollProgress() {
     const applyTop = () => {
         if (!container) return;
         const h = header ? Math.round(header.getBoundingClientRect().height) : 72;
-        // -1px kompensiert evtl. Border/Shadow, damit keine sichtbare Lücke entsteht
-        container.style.top = `${Math.max(0, h - 1)}px`;
+        // exakt direkt unter dem Header anheften
+        container.style.top = `${Math.max(0, h)}px`;
     };
     const update = () => {
         const doc = document.documentElement;
