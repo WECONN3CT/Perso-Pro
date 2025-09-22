@@ -684,7 +684,7 @@ function initScrollProgress() {
     const applyTop = () => {
         if (!container) return;
         const h = header ? Math.round(header.getBoundingClientRect().height) : 72;
-        // exakt direkt unter dem Header anheften
+        // Sticky-Offset exakt auf Headerhöhe setzen, damit die Leiste beim Scrollen unter dem Header haftet
         container.style.top = `${Math.max(0, h)}px`;
     };
     const update = () => {
