@@ -445,13 +445,16 @@ a:hover {
 .hero-content .hero-title { margin-bottom: 0.75rem; }
 /* Scroll Progress Bar under header */
 .scroll-progress {
-  position: sticky;
-  top: 0; /* dynamisch per JS gesetzt */
-  z-index: 950;
+  position: fixed;
+  top: 0; /* dynamisch per JS überschrieben */
+  left: 0;
+  right: 0;
+  z-index: 980; /* unter Header (1000), über Inhalt */
   height: 8px; /* etwas dicker */
   margin: 0; /* nahtlos direkt unter dem Header */
   background: rgba(20,184,166,0.10); /* leicht sichtbarer Track */
   border-radius: 999px;
+  pointer-events: none; /* Interaktionen nicht blockieren */
 }
 .scroll-progress .bar {
   height: 100%;

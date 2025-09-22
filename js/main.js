@@ -694,6 +694,9 @@ function initScrollProgress() {
         const scrollHeight = (doc.scrollHeight || body.scrollHeight) - window.innerHeight;
         const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
         bar.style.width = `${progress}%`;
+        // Sicherstellen, dass die Leiste sichtbar bleibt
+        container.style.visibility = progress >= 0 ? 'visible' : 'visible';
+        container.style.opacity = '1';
     };
     applyTop();
     update();
