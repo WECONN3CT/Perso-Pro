@@ -289,6 +289,53 @@
         /* Überschreibe frühere Breite der Card in diesem Kontext */
         .ak-cta .contact-form-card { width: 100%; max-width: none; }
         @media (max-width: 768px){ .ak-cta .ak-cta-grid { grid-template-columns:1fr; } }
+
+        /* ==========================
+           Mobile Optimierungen (Hero der Leistungen-Seite)
+           ========================== */
+        @media (max-width: 768px) {
+          .properties-header {
+            height: auto;
+            min-height: clamp(560px, 82vh, 900px);
+            margin-top: 0;
+            padding: 0;
+            padding-top: 72px; /* Platz für fixed Header */
+            text-align: center;
+          }
+          .properties-header > .container {
+            height: auto;
+            display: block;
+            padding-top: 12px;
+          }
+          .lead-image-card {
+            width: 100%;
+            margin: 16px 0 20px 0;
+            margin-left: 0;
+            aspect-ratio: 16 / 10;
+            border-radius: 16px;
+          }
+          .lead-turquoise-card {
+            position: static;
+            right: auto; top: auto;
+            width: calc(100% - 24px);
+            transform: none;
+            margin: 0 auto 12px;
+          }
+          .lead-turquoise-inner { max-width: unset; text-align: left; }
+          .properties-header .cta-bar {
+            position: static;
+            left: auto; bottom: auto; transform: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            width: calc(100% - 24px);
+            margin: 18px auto 0;
+          }
+          .properties-header .cta-bar > div:last-child {
+            justify-self: stretch;
+            display: flex; flex-direction: column; gap: 10px;
+          }
+        }
     </style>
 </head>
 <body class="leistungen-scope">
