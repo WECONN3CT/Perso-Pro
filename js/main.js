@@ -681,49 +681,49 @@ function initScrollProgress() {
     if (!bar) return;
     const container = bar.parentElement;
     const header = document.querySelector('.header');
-    const applyTop = () => {
+    let anchorY = 0;
+    let lastFixed = null; // null = undef, true/false = Zustand
+    const headerHeight = () => (header ? Math.round(header.getBoundingClientRect().height) : 72);
+    const computeAnchor = () => {
         if (!container) return;
-        // nichts setzten, solange noch nicht fixed – Ausgangsposition bleibt unter Hero
-        container.dataset.headerHeight = String(header ? Math.round(header.getBoundingClientRect().height) : 72);
+        const rect = container.getBoundingClientRect();
+        anchorY = window.pageYOffset + rect.top; // absolute Dokumentposition der Leiste
     };
+    const applyTop = () => { /* Top wird beim Fixieren gesetzt */ };
     const update = () => {
         const doc = document.documentElement;
         const body = document.body;
         const scrollTop = doc.scrollTop || body.scrollTop;
         const scrollHeight = (doc.scrollHeight || body.scrollHeight) - window.innerHeight;
         const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-        // RequestAnimationFrame, um Layout-Thrashing zu vermeiden
         if (!update._raf) {
             update._raf = requestAnimationFrame(() => {
                 bar.style.width = `${progress}%`;
                 update._raf = null;
             });
         }
-        // Schwelle: wenn Header-Unterkante die obere Kante der Leiste erreicht, Leiste fixieren
-        const hero = document.querySelector('.hero-section');
-        const h = header ? Math.round(header.getBoundingClientRect().height) : 72;
-        if (hero) {
-            const progressTop = container.getBoundingClientRect().top; // Position der Leiste im Viewport
-            const headerBottom = header.getBoundingClientRect().bottom; // Unterkante Header
-            if (progressTop <= headerBottom) {
-                // fixieren direkt unter dem Header
+        // Fix/Unfix über stabile Schwelle: Headerhöhe + scrollY >= anchorY
+        const h = headerHeight();
+        const shouldFix = (window.pageYOffset + h) >= anchorY;
+        if (lastFixed !== shouldFix) {
+            lastFixed = shouldFix;
+            if (shouldFix) {
                 container.classList.add('is-fixed');
                 container.style.top = `${h}px`;
-                container.style.visibility = 'visible';
-                container.style.opacity = '1';
             } else {
-                // normale Position beibehalten
                 container.classList.remove('is-fixed');
                 container.style.top = '0px';
-                container.style.visibility = 'visible';
-                container.style.opacity = '1';
             }
         }
+        container.style.visibility = 'visible';
+        container.style.opacity = '1';
     };
+    computeAnchor();
     applyTop();
     update();
     window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', () => { applyTop(); update(); });
+    window.addEventListener('resize', () => { computeAnchor(); update(); });
+    window.addEventListener('orientationchange', () => { computeAnchor(); update(); });
 }
 
 // Switch header style based on scroll position
