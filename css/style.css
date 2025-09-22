@@ -350,7 +350,7 @@ a:hover {
 
 .hero-media {
   position: relative;
-  border-radius: 0;
+  border-radius: 0 0 24px 24px;
   overflow: hidden;
   box-shadow: var(--shadow-xl);
   width: 100%;
@@ -934,7 +934,7 @@ a:hover {
   .hero-section { padding: 0; }
   /* Mobile fine-tuning for hero content */
   .hero-section > .container { padding: 0; }
-  .hero-media { display: block; width: 100vw; min-height: clamp(448px, 69vh, 672px); border-radius: 0; margin: 0; }
+  .hero-media { display: block; width: 100vw; min-height: clamp(448px, 69vh, 672px); border-radius: 0 0 20px 20px; margin: 0; }
   .hero-content { padding-top: clamp(20px, 8vh, 72px); margin-left: 12px; text-align: left; }
   .hero-side-image { display: none !important; }
   .hero-script { display: none; }
