@@ -336,6 +336,21 @@
             display: flex; flex-direction: column; gap: 10px;
           }
         }
+
+        /* ==========================
+           Weitere Mobile-Aufräumarbeiten (nur Mobile)
+           ========================== */
+        @media (max-width: 768px) {
+          /* Hamburger-Menüleisten (Bars) in Türkis auf dieser Seite */
+          .leistungen-scope .nav-toggle span { background: var(--color-orange) !important; }
+
+          /* Karten-Layouts enger, damit nichts überlappt */
+          .leistungen-page .service-card { padding: 16px; }
+          .leistungen-page .service-card h3 { font-size: 1.15rem; }
+          .leistungen-page .service-card p { font-size: 0.975rem; }
+          .leistungen-page .value-grid { gap: 14px; }
+          .leistungen-page .steps { gap: 14px; }
+        }
     </style>
 </head>
 <body class="leistungen-scope">
