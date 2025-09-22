@@ -1538,10 +1538,12 @@ a:hover {
 @media (max-width: 1024px) {
   .services-sticky { grid-template-columns: 1fr; }
   .sticky-media { position: static; top: auto; margin-bottom: var(--spacing-2xl); align-self: auto; }
-  .services-list { height: auto; overflow: visible; scroll-snap-type: none; -webkit-mask-image: none; mask-image: none; display: grid; gap: var(--spacing-xl); }
+  .services-list { height: auto; overflow: visible; scroll-snap-type: none; -webkit-mask-image: none; mask-image: none; display: grid; gap: var(--spacing-xl); touch-action: auto; }
   .service-card { flex: auto; height: auto; }
   .sticky-media { height: auto; }
   .sticky-media img { height: auto; }
+  /* Pfeile auf Mobile ausblenden */
+  .svc-arrow { display: none !important; }
 }
 
 /* ===================================
