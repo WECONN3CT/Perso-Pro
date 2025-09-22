@@ -36,6 +36,14 @@ document.addEventListener('DOMContentLoaded', function() {
     initHeaderScrollState();
 
     // Docked-to-Hero behavior (removed)
+
+    // Hint Browser to use passive listeners globally where possible (no layout change)
+    try {
+        const opts = { passive: true };
+        window.addEventListener('touchstart', function(){}, opts);
+        window.addEventListener('touchmove', function(){}, opts);
+        window.addEventListener('wheel', function(){}, opts);
+    } catch (_) {}
 });
 
 // Smooth vertical snap progression on wheel for services list (desktop)
@@ -319,7 +327,8 @@ function initSmoothScrolling() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                const headerOffset = 80;
+                const header = document.querySelector('.header');
+                const headerOffset = header ? Math.round(header.getBoundingClientRect().height) : 72;
                 const elementPosition = targetSection.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                 
