@@ -2217,13 +2217,14 @@ textarea:focus-visible {
     padding: 18px 8px calc(18px + env(safe-area-inset-bottom));
     box-shadow: 0 12px 28px rgba(0,0,0,0.12);
     border-top: 1px solid rgba(0,0,0,0.06);
-    z-index: 1500;
+    z-index: 2000; /* über jedem Overlay */
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     opacity: 0;
     pointer-events: none;
     transition: opacity 200ms ease;
     will-change: opacity;
+    transform: translateZ(0); /* eigenes Layer, bessere Klick-Hit-Tests */
   }
   
   .nav-menu.active {
@@ -2288,6 +2289,7 @@ textarea:focus-visible {
     inset: 0;
     background: rgba(0,0,0,0.25); /* kein Blur, um Textschärfe zu wahren */
     z-index: 1400; /* unter dem Menü, über dem Rest */
+    pointer-events: none; /* niemals Klicks abfangen */
     display: block;
   }
   /* Sicherheit: Links immer klickbar */
