@@ -2220,15 +2220,14 @@ textarea:focus-visible {
     z-index: 1200;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    transform: translateY(-6px);
     opacity: 0;
     pointer-events: none;
-    transition: transform 240ms cubic-bezier(.22,1,.36,1), opacity 200ms ease;
+    transition: opacity 200ms ease;
+    will-change: opacity;
   }
   
   .nav-menu.active {
     display: flex;
-    transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
   }
@@ -2280,8 +2279,7 @@ textarea:focus-visible {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.25);
-    backdrop-filter: blur(2px);
+    background: rgba(0,0,0,0.25); /* kein Blur, um Textschärfe zu wahren */
     z-index: 1000;
     display: block;
   }
