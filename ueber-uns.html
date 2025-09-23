@@ -238,6 +238,26 @@
             /* Auf Mobil zusätzlich etwas mehr Luft oben */
             .about-header { padding-top: 10rem; }
         }
+
+        /* Smooth Fade: Türkiser Header -> Weiß (nur Über-uns) */
+        .about-scope .header {
+            background: transparent !important;
+            background-image: none !important;
+            border-bottom-color: transparent !important;
+            box-shadow: none !important;
+            position: fixed;
+        }
+        .about-scope .header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, #14B8A6 0%, #0D9488 100%);
+            opacity: 1;
+            transition: opacity 300ms ease;
+            pointer-events: none;
+        }
+        .about-scope .header-solid::before { opacity: 0; }
+        .about-scope .header .navigation { position: relative; z-index: 1; }
 </style>
 </head>
 <body class="about-scope">
@@ -306,7 +326,7 @@
                         </svg>
                     </div>
                     <h3 class="value-title">Vertrauen</h3>
-                    <p>Vertrauen ist die Basis unserer Arbeit. Wir behandeln Ihre Immobilie mit der gleichen Sorgfalt wie unsere eigene.</p>
+                    <p>Vertrauen ist die Basis unserer Arbeit. Wir begegnen unseren Kunden und Mitarbeitenden mit Respekt und Zuverlässigkeit.</p>
                 </div>
                 <div class="value-card">
                     <div class="value-icon">
@@ -348,7 +368,7 @@
         <div class="container">
             <h2 class="section-title">Unser Team</h2>
             <p class="text-center" style="max-width: 600px; margin: 0 auto 3rem; color: var(--color-dark-gray);">
-                Lernen Sie die Menschen kennen, die sich mit Leidenschaft und Expertise für Ihre Immobilienangelegenheiten einsetzen.
+                Lernen Sie die Menschen kennen, die sich mit Leidenschaft und Expertise für Ihren Personaleinsatz einsetzen.
             </p>
             <div class="team-grid">
                 <article class="team-member">
@@ -418,9 +438,9 @@
                     </div>
                     <div class="team-member-info">
                         <h3 class="team-member-name">Max Mustermann</h3>
-                        <p class="team-member-role">Gewerbeimmobilien-Experte</p>
+                        <p class="team-member-role">Disposition & Recruiting</p>
                         <p class="team-member-description">
-                            Experte für Gewerbeimmobilien mit langjähriger Erfahrung in der Vermittlung von Büro- und Ladenflächen. Herr Wagner ist Ihr Ansprechpartner für gewerbliche Objekte.
+                            Spezialist für Disposition und Recruiting in der Gastronomie und Eventlogistik. Plant Einsätze, koordiniert Teams und sorgt für einen reibungslosen Ablauf vor Ort.
                         </p>
                         <div class="team-member-contact">
                             <a href="tel:+4915147807376" class="team-contact-item">

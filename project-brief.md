@@ -13,17 +13,15 @@ Das komplette Design System ist in der beigefügten `design.json` Datei definier
 ## Seitenstruktur
 
 ### 1. index.html (Homepage)
-- Hero Section mit Hintergrundbild und CTA
-- Featured Properties (3-4 Immobilien-Cards)
+- Hero Section mit Hintergrundvideo und CTA
 - Über uns Preview
-- Services Übersicht
+- Leistungen/Rollen Übersicht (Küche, Service, Theke, Event)
 - Kontakt CTA
 
 ### 2. unsere-leistungen.html
-- Header mit Suchfilter (Typ, Preis, Ort)
-- Grid mit Immobilien-Cards
-- JavaScript Filter-Funktionalität
-- Pagination oder "Mehr laden" Button
+- Leistungen-Header mit CTA
+- Grid mit Leistungs-/Rollen-Cards
+- Optional: Tabs/Toggle (Kurzfristiger Einsatz vs. Langfristige Planung)
 
 ### 3. ueber-uns.html
 - Firmengeschichte
@@ -48,31 +46,11 @@ Das komplette Design System ist in der beigefügten `design.json` Datei definier
 - Accessibility (WCAG AA)
 
 ## Datenstruktur
-Erstelle eine `data/properties.json` mit ca. 8-10 Beispiel-Immobilien:
-```json
-{
-  "properties": [
-    {
-      "id": 1,
-      "title": "Moderne 3-Zimmer Wohnung",
-      "type": "Wohnung",
-      "price": 450000,
-      "location": "München Schwabing",
-      "size": 85,
-      "rooms": 3,
-      "images": ["img1.jpg", "img2.jpg"],
-      "description": "...",
-      "features": ["Balkon", "Aufzug", "Tiefgarage"]
-    }
-  ]
-}
-```
+Optional: `data/roles.json` für Rollen/Leistungen (z. B. Küche, Service, Theke, Event) inkl. Beschreibung und Icon.
 
 ## JavaScript Funktionalitäten
-- Immobilien-Filter (Typ, Preis, Ort)
 - Responsive Navigation (Mobile Menu)
 - Formular-Validierung
-- Image Gallery (Modal)
 - Smooth Scrolling
 
 ## Ordnerstruktur
@@ -108,7 +86,7 @@ Erstelle eine `data/properties.json` mit ca. 8-10 Beispiel-Immobilien:
 ## Content-Richtlinien
 - Professioneller Ton
 - Deutsche Sprache
-- Immobilien-spezifische Begriffe
+- Terminologie: Personalvermittlung, Zeitarbeit, Disposition, Einsätze, Solingen
 - Vertrauensbildende Elemente
 - Call-to-Actions strategisch platziert
 

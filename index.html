@@ -14,6 +14,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+      /* Smooth Fade: Header transparent -> weiß (nur Startseite) */
+      .home .header {
+        background: transparent !important;
+        background-image: none !important;
+        border-bottom-color: transparent !important;
+        box-shadow: none !important;
+        position: fixed;
+      }
+      .home .header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #ffffff;
+        opacity: 0;
+        transition: opacity 300ms ease;
+        pointer-events: none;
+      }
+      .home .header-solid::before { opacity: 1; }
+      .home .header .navigation { position: relative; z-index: 1; }
+    </style>
 </head>
 <body class="home">
     <a class="skip-link" href="#content">Zum Inhalt springen</a>
@@ -143,7 +164,7 @@
         </div>
     </section>
 
-    <!-- Stadthagen Intro Section -->
+    <!-- Intro Section -->
     <section id="ueber-uns" class="section section-intro">
         <div class="container">
             <div class="intro-grid">

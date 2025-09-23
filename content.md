@@ -20,8 +20,8 @@
 ## Team Mitglieder
 
 ### Thanushea Indirasenan (Geschäftsführer)
-- Immobilienmakler seit 2008
-- Spezialist für Wohnimmobilien
+- Personalvermittlung seit 2008
+- Spezialist für Gastronomie‑Personal & Eventlogistik
 - Telefon: +49 89 123 456 78
 - Email: info@persopro.de
 
@@ -30,8 +30,8 @@
 - Telefon: +49 89 123 456 79
 - Email: info@persopro.de
 
-### Max Mustermann (Gewerbeimmobilien-Experte)
-- Gewerbeimmobilien-Experte  
+### Max Mustermann (Disposition & Recruiting)
+- Disposition & Recruiting 
 - Telefon: +49 89 123 456 80
 - Email: info@persopro.de
 
@@ -43,7 +43,7 @@
 - Mo-Fr: 9:00 - 18:00 Uhr
 - Sa: 10:00 - 14:00 Uhr (nach Vereinbarung)
 
-## Beispiel Immobilien-Beschreibungen
+## Beispiel Einsätze / Rollen
 
 ### Beispiel-Profile
 **Profil:** "Küchenhilfe / Spülkraft"
