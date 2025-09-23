@@ -1391,6 +1391,10 @@ textarea:focus-visible {
 @media (max-width: 640px) {
   .why-grid { grid-template-columns: 1fr; }
   .why-thumb { width: 200px; height: 200px; }
+  /* Ueber-uns: Kreise exakt mittig über den Texten ausrichten */
+  .about-scope .why-item { display: flex; flex-direction: column; align-items: center; }
+  .about-scope .why-thumb { margin-left: auto; margin-right: auto; }
+  .about-scope .why-title, .about-scope .why-text { text-align: center; margin-left: auto; margin-right: auto; }
 }
 
 .testimonial .author .name {
