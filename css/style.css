@@ -2263,6 +2263,9 @@ textarea:focus-visible {
     width: 100%;
     max-width: 300px;
   }
+  /* Mobile: Verhindere Überlappung von Header und erster Hero-Section pro Seite */
+  .home .header + .hero-section { margin-top: 72px; }
+  .about-scope .header + .about-header { padding-top: calc(72px + 1.5rem); }
 }
 
 @media (max-width: 480px) {
