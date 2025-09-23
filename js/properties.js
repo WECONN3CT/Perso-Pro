@@ -284,7 +284,7 @@ function showPropertyDetails(propertyId) {
                     <a href="kontakt.html?property=${property.id}" class="btn btn-primary">
                         Anfrage senden
                     </a>
-                    <a href="tel:+498912345677" class="btn btn-secondary">
+                    <a href="tel:+4915147807376" class="btn btn-secondary">
                         Direkt anrufen
                     </a>
                 </div>
