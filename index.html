@@ -34,6 +34,13 @@
           pointer-events: none;
         }
         .home .header-solid::before { opacity: 0; }
+        /* Beim Scrollen: Header wirklich weiß (nicht transparent) */
+        .home .header-solid {
+          background: #ffffff !important;
+          background-image: none !important;
+          border-bottom-color: var(--color-medium-gray) !important;
+          box-shadow: var(--shadow-sm) !important;
+        }
         .home .header .navigation { position: relative; z-index: 1; }
       }
     </style>
