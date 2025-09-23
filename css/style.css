@@ -2212,9 +2212,9 @@ textarea:focus-visible {
     left: 0;
     right: 0;
     height: calc(100vh - var(--mobile-menu-top, 72px));
-    background: #ffffff;
+    background: rgba(248,249,250,0.96); /* helles Grau wie im Screenshot */
     flex-direction: column;
-    padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
+    padding: 18px 8px calc(18px + env(safe-area-inset-bottom));
     box-shadow: 0 12px 28px rgba(0,0,0,0.12);
     border-top: 1px solid rgba(0,0,0,0.06);
     z-index: 1200;
@@ -2259,8 +2259,11 @@ textarea:focus-visible {
   /* Bessere Touch-Ziele und Abstand im mobilen Menü */
   .nav-menu .nav-link { padding: 14px 6px; font-size: 1.05rem; }
   .nav-menu li { width: 100%; }
-  .nav-menu li + li { border-top: 1px solid rgba(0,0,0,0.06); }
-  .nav-menu .nav-link { display: block; width: 100%; }
+  .nav-menu li + li { border-top: 1px solid rgba(0,0,0,0.08); }
+  .nav-menu .nav-link { display: block; width: 100%; padding: 22px 24px; font-size: 1.125rem; }
+  .header .nav-menu .nav-link { color: var(--color-navy) !important; text-transform: uppercase; letter-spacing: 0.02em; font-weight: 700; }
+  .header .nav-menu .nav-link.active { color: var(--color-orange) !important; }
+  .header .nav-menu .nav-link:focus-visible { outline: 2px solid var(--color-orange); outline-offset: 2px; border-radius: 8px; }
   /* Einheitlicher Impressum-Stil: weiße Fläche, Navy-Links, Großbuchstaben */
   .header .nav-menu { background: #ffffff !important; }
   .header .nav-menu .nav-link { color: var(--color-navy) !important; text-transform: uppercase; letter-spacing: 0.02em; font-weight: 600; }
