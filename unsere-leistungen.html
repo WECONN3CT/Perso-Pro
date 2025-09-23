@@ -8,6 +8,27 @@
     <title>Leistungen - PersoPro</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
+        @media (max-width: 768px) {
+          /* Mobile Header-Übergang wie ueber-uns */
+          .leistungen-scope .header {
+            background: transparent !important;
+            background-image: none !important;
+            border-bottom-color: transparent !important;
+            box-shadow: none !important;
+            position: fixed;
+          }
+          .leistungen-scope .header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, #14B8A6 0%, #0D9488 100%);
+            opacity: 1;
+            transition: opacity 300ms ease;
+            pointer-events: none;
+          }
+          .leistungen-scope .header-solid::before { opacity: 0; }
+          .leistungen-scope .header .navigation { position: relative; z-index: 1; }
+        }
         /* Page hero aligned with index design */
         .properties-header {
             background: linear-gradient(180deg, rgba(45,212,191,0.08) 0%, rgba(20,184,166,0.06) 100%);
