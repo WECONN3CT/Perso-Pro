@@ -2291,11 +2291,12 @@ textarea:focus-visible {
 
   /* Mobile: Glasmorphism für festen Header-Zustand */
   .header-solid {
-    background: rgba(255,255,255,0.66) !important;
-    -webkit-backdrop-filter: saturate(160%) blur(12px);
-    backdrop-filter: saturate(160%) blur(12px);
-    border-bottom-color: rgba(0,0,0,0.08) !important;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06) !important;
+    background: var(--color-white) !important;
+    background-color: var(--color-white) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    border-bottom-color: var(--color-medium-gray) !important;
+    box-shadow: var(--shadow-sm) !important;
   }
 }
 
