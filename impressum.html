@@ -7,6 +7,18 @@
     <title>Impressum - PersoPro</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
+        @media (max-width: 768px) {
+            /* Mobile Header analog kontakt.html */
+            .header { position: fixed; }
+            .header::before { display: none; }
+            .header-solid {
+                background: #ffffff !important;
+                background-image: none !important;
+                border-bottom-color: var(--color-medium-gray) !important;
+                box-shadow: var(--shadow-sm) !important;
+            }
+            .header .navigation { position: relative; z-index: 1; }
+        }
         .legal-header {
             background: linear-gradient(135deg, var(--color-dark-orange) 0%, var(--color-orange) 100%);
             padding: 3rem 0;
@@ -62,12 +74,13 @@
 <body>
     <a class="skip-link" href="#content">Zum Inhalt springen</a>
     <!-- Header -->
-    <header class="header">
+    <header class="header header-transparent">
         <div class="container">
             <nav class="navigation">
                 <div class="nav-brand">
-                    <a href="index.html" class="logo">
-                        <h1>PersoPro</h1>
+                    <a href="index.html" class="logo" aria-label="PersoPro">
+                        <img class="logo-img logo-img-light" src="images/properties/logo_hell.png" alt="PersoPro Logo" onerror="this.onerror=null; this.src='images/properties/logo_hell.svg';">
+                        <img class="logo-img logo-img-dark" src="images/properties/logo_dunkel.png" alt="" aria-hidden="true" onerror="this.onerror=null; this.src='images/properties/logo_dunkel.svg';">
                     </a>
                 </div>
                 <button class="nav-toggle" aria-label="Navigation öffnen">
