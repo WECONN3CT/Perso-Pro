@@ -260,17 +260,7 @@ function initMobileNavigation() {
             header && header.classList.toggle('nav-open');
             
             // Animate hamburger menu
-            const spans = navToggle.querySelectorAll('span');
-            const isOpen = navToggle.classList.contains('active');
-            if (isOpen) {
-                spans[0].style.transform = 'rotate(45deg) translateY(8px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translateY(-8px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
+            // Styles werden rein via CSS gesteuert (cleaner)
 
             // ARIA + Scroll-Lock
             navToggle.setAttribute('aria-expanded', String(isOpen));

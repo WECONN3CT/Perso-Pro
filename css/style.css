@@ -2200,6 +2200,9 @@ textarea:focus-visible {
 @media (max-width: 768px) {
   .nav-toggle {
     display: flex;
+    position: relative;
+    width: 28px;
+    height: 20px;
   }
   
   .nav-menu {
@@ -2258,6 +2261,19 @@ textarea:focus-visible {
   .nav-menu .nav-link { padding: 14px 6px; font-size: 1.05rem; }
   .nav-menu li { width: 100%; }
   .nav-menu li + li { border-top: 1px solid rgba(0,0,0,0.06); }
+  .nav-menu .nav-link { display: block; width: 100%; }
+  /* Hamburger → X Animation (sauber und konsistent) */
+  .nav-toggle span {
+    position: absolute; left: 0; right: 0; height: 2px; border-radius: 2px;
+    top: 0; transform: none; opacity: 1;
+    transition: transform .24s cubic-bezier(.22,1,.36,1), opacity .18s ease, top .24s cubic-bezier(.22,1,.36,1);
+  }
+  .nav-toggle span:nth-child(1) { top: 3px; }
+  .nav-toggle span:nth-child(2) { top: 9px; }
+  .nav-toggle span:nth-child(3) { top: 15px; }
+  .nav-toggle.active span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+  .nav-toggle.active span:nth-child(2) { opacity: 0; }
+  .nav-toggle.active span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
   /* Dimmed Overlay hinter dem aufklappenden Menü */
   .header::after { content: ""; display: none; }
   .header.nav-open::after {
