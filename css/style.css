@@ -2288,13 +2288,9 @@ textarea:focus-visible {
   /* Dimmed Overlay hinter dem aufklappenden Menü */
   .header::after { content: ""; display: none; }
   .header.nav-open::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.25); /* kein Blur, um Textschärfe zu wahren */
-    z-index: 1400; /* unter dem Menü, über dem Rest */
-    pointer-events: none; /* niemals Klicks abfangen */
-    display: block;
+    /* Overlay auf Mobile komplett deaktivieren (keine Abdunkelung) */
+    content: none;
+    display: none !important;
   }
   /* Sicherheit: Links immer klickbar */
   .nav-menu a { pointer-events: auto; }
