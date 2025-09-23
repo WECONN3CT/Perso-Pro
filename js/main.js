@@ -247,6 +247,24 @@ function initMobileNavigation() {
         setMenuTop();
         window.addEventListener('resize', setMenuTop, { passive: true });
         window.addEventListener('orientationchange', setMenuTop);
+        
+        // Helper zum Öffnen/Schließen (einheitlich)
+        const openMenu = () => {
+            navMenu.classList.add('active');
+            navToggle.classList.add('active');
+            header && header.classList.add('nav-open');
+            navToggle.setAttribute('aria-expanded', 'true');
+            navMenu.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        };
+        const closeMenu = () => {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+            header && header.classList.remove('nav-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            navMenu.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        };
         // ARIA initialisieren
         const menuId = navMenu.id || 'primary-navigation';
         if (!navMenu.id) navMenu.id = menuId;
@@ -254,69 +272,37 @@ function initMobileNavigation() {
         navToggle.setAttribute('aria-expanded', 'false');
         navMenu.setAttribute('aria-hidden', 'true');
 
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-            header && header.classList.toggle('nav-open');
-            
-            // Animate hamburger menu
-            // Styles werden rein via CSS gesteuert (cleaner)
-
-            // ARIA + Scroll-Lock
-            navToggle.setAttribute('aria-expanded', String(isOpen));
-            navMenu.setAttribute('aria-hidden', String(!isOpen));
-            document.body.style.overflow = isOpen ? 'hidden' : '';
+        navToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (navMenu.classList.contains('active')) closeMenu(); else openMenu();
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!navToggle.contains(event.target) && !navMenu.contains(event.target)) {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                header && header.classList.remove('nav-open');
-                const spans = navToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-                navToggle.setAttribute('aria-expanded', 'false');
-                navMenu.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
+            // Bubble-Phase: wird nach dem Klick im Menü ausgelöst und durch stopPropagation im Menü unterdrückt
+            const target = event.target;
+            const insideMenu = !!(target && (target.closest && target.closest('.nav-menu')));
+            const insideToggle = !!(target && (target.closest && target.closest('.nav-toggle')));
+            if (!insideMenu && !insideToggle && navMenu.classList.contains('active')) {
+                closeMenu();
             }
         });
 
         // Verhindere, dass das Overlay Klicks auf Links blockiert
-        const onMenuClick = (e) => {
-            e.stopPropagation();
-        };
-        navMenu.addEventListener('click', onMenuClick);
+        navMenu.addEventListener('click', (e) => { e.stopPropagation(); });
         
         // Close menu when clicking on a link
         const navLinks = navMenu.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                header && header.classList.remove('nav-open');
-                navToggle.setAttribute('aria-expanded', 'false');
-                navMenu.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
-            });
+                // Navigation soll stattfinden; Menü danach schließen
+                setTimeout(closeMenu, 0);
+            }, { passive: true });
         });
 
         // Close on Escape
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                header && header.classList.remove('nav-open');
-                const spans = navToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-                navToggle.setAttribute('aria-expanded', 'false');
-                navMenu.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
-            }
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) closeMenu();
         });
     }
 }
