@@ -210,6 +210,13 @@
                 height: 300px;
             }
         }
+        /* Mobile-Optimierungen: Logo & Karten ohne Überlappung */
+        @media (max-width: 768px) {
+            .quick-contact { padding: 1.5rem 0; margin-bottom: 0; }
+            .quick-contact .section-title img { height: 200px; transform: none !important; }
+            .quick-contact-grid { transform: none; margin-top: 12px; }
+            .quick-contact-card { padding: 1.25rem; }
+        }
     </style>
 </head>
 <body class="contact-scope">
