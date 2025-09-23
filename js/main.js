@@ -235,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initMobileNavigation() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
+    const header = document.querySelector('.header');
     
     if (navToggle && navMenu) {
         // ARIA initialisieren
@@ -247,6 +248,7 @@ function initMobileNavigation() {
         navToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
             navToggle.classList.toggle('active');
+            header && header.classList.toggle('nav-open');
             
             // Animate hamburger menu
             const spans = navToggle.querySelectorAll('span');
@@ -272,6 +274,7 @@ function initMobileNavigation() {
             if (!navToggle.contains(event.target) && !navMenu.contains(event.target)) {
                 navMenu.classList.remove('active');
                 navToggle.classList.remove('active');
+                header && header.classList.remove('nav-open');
                 const spans = navToggle.querySelectorAll('span');
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
@@ -288,6 +291,7 @@ function initMobileNavigation() {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 navToggle.classList.remove('active');
+                header && header.classList.remove('nav-open');
                 navToggle.setAttribute('aria-expanded', 'false');
                 navMenu.setAttribute('aria-hidden', 'true');
                 document.body.style.overflow = '';
@@ -299,6 +303,7 @@ function initMobileNavigation() {
             if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
                 navToggle.classList.remove('active');
+                header && header.classList.remove('nav-open');
                 const spans = navToggle.querySelectorAll('span');
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
