@@ -9,24 +9,17 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
         @media (max-width: 768px) {
-            /* Mobile Header-Übergang wie ueber-uns */
+            /* Mobile Header: sofort weiß beim Scrollen */
             .contact-scope .header {
-                background: transparent !important;
-                background-image: none !important;
-                border-bottom-color: transparent !important;
-                box-shadow: none !important;
                 position: fixed;
             }
-            .contact-scope .header::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(180deg, #14B8A6 0%, #0D9488 100%);
-                opacity: 1;
-                transition: opacity 300ms ease;
-                pointer-events: none;
+            .contact-scope .header::before { display: none; }
+            .contact-scope .header-solid {
+                background: #ffffff !important;
+                background-image: none !important;
+                border-bottom-color: var(--color-medium-gray) !important;
+                box-shadow: var(--shadow-sm) !important;
             }
-            .contact-scope .header-solid::before { opacity: 0; }
             .contact-scope .header .navigation { position: relative; z-index: 1; }
         }
         /* Additional styles for contact page */
@@ -230,8 +223,9 @@
             .map-container {
                 height: 300px;
             }
-            /* Header-Kollision vermeiden: Abstand oberhalb Schnellkontakt */
-            .quick-contact { margin-top: 72px; }
+            /* Header-Kollisionen vermeiden */
+            .contact-header { margin-top: 0; padding-top: calc(5rem + 72px); }
+            .quick-contact { margin-top: 0; }
         }
         /* Mobile-Optimierungen: Logo & Karten ohne Überlappung */
         @media (max-width: 768px) {
