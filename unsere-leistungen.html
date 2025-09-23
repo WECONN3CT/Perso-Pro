@@ -27,6 +27,13 @@
             pointer-events: none;
           }
           .leistungen-scope .header-solid::before { opacity: 0; }
+          /* Beim Scrollen wirklich weiß färben (überlagert transparent-Regel) */
+          .leistungen-scope .header.header-solid {
+            background: #ffffff !important;
+            background-image: none !important;
+            border-bottom-color: var(--color-medium-gray) !important;
+            box-shadow: var(--shadow-sm) !important;
+          }
           .leistungen-scope .header .navigation { position: relative; z-index: 1; }
         }
         /* Page hero aligned with index design */
