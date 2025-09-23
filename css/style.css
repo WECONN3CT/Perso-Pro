@@ -2217,7 +2217,7 @@ textarea:focus-visible {
     padding: 18px 8px calc(18px + env(safe-area-inset-bottom));
     box-shadow: 0 12px 28px rgba(0,0,0,0.12);
     border-top: 1px solid rgba(0,0,0,0.06);
-    z-index: 1200;
+    z-index: 1500;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     opacity: 0;
@@ -2287,9 +2287,11 @@ textarea:focus-visible {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.25); /* kein Blur, um Textschärfe zu wahren */
-    z-index: 1000;
+    z-index: 1400; /* unter dem Menü, über dem Rest */
     display: block;
   }
+  /* Sicherheit: Links immer klickbar */
+  .nav-menu a { pointer-events: auto; }
   
   .footer-social {
     justify-content: center;

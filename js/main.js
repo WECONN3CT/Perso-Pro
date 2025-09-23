@@ -283,6 +283,12 @@ function initMobileNavigation() {
                 document.body.style.overflow = '';
             }
         });
+
+        // Verhindere, dass das Overlay Klicks auf Links blockiert
+        const onMenuClick = (e) => {
+            e.stopPropagation();
+        };
+        navMenu.addEventListener('click', onMenuClick);
         
         // Close menu when clicking on a link
         const navLinks = navMenu.querySelectorAll('.nav-link');
