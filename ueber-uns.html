@@ -12,7 +12,8 @@
         .about-header {
             /* Gleicher Hintergrund wie "Unsere Mission" (weiß, ohne Verlauf) */
             background: var(--color-white);
-            padding: 4.5rem 0; /* etwas mehr Abstand nach oben/unten */
+            padding-top: 10rem; /* weiter nach unten gerückt */
+            padding-bottom: 4.5rem;
             color: var(--color-navy);
             text-align: center;
         }
@@ -234,18 +235,21 @@
             .team-grid {
                 grid-template-columns: 1fr;
             }
+            /* Auf Mobil zusätzlich etwas mehr Luft oben */
+            .about-header { padding-top: 10rem; }
         }
 </style>
 </head>
-<body>
+<body class="about-scope">
     <a class="skip-link" href="#content">Zum Inhalt springen</a>
     <!-- Header -->
     <header class="header" style="background: linear-gradient(180deg, #14B8A6 0%, #0D9488 100%); border-bottom: 1px solid #0D9488; box-shadow: 0 3px 10px rgba(13,148,136,0.22);">
         <div class="container">
             <nav class="navigation">
                 <div class="nav-brand">
-                    <a href="index.html" class="logo">
-                        <h1>PersoPro</h1>
+                    <a href="index.html" class="logo" aria-label="PersoPro">
+                        <img class="logo-img logo-img-light" src="images/properties/logo_hell.png" alt="PersoPro Logo" onerror="this.onerror=null; this.src='images/properties/logo_hell.svg';">
+                        <img class="logo-img logo-img-dark" src="images/properties/logo_dunkel.png" alt="" aria-hidden="true" onerror="this.onerror=null; this.src='images/properties/logo_dunkel.svg';">
                     </a>
                 </div>
                 <button class="nav-toggle" aria-label="Navigation öffnen">
@@ -289,7 +293,7 @@
     </section>
 
     <!-- Values Section -->
-    <section class="section section-alternate values-anim" id="values">
+    <section class="section section-alternate values-anim" id="values" style="overflow: clip; contain: layout paint;">
         <div class="container">
             <h2 class="section-title">Unsere Werte</h2>
             <div class="values-grid">

@@ -92,8 +92,8 @@
         
         
         /* Inhalte der Section vertikal strecken, CTA an das untere Ende */
-        .properties-header > .container { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: clamp(12px, 5vh, 64px); }
-        .properties-header .cta-bar { margin-top: auto; margin-bottom: 0; position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%); }
+        .properties-header > .container { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: clamp(48px, 10vh, 144px); }
+        .properties-header .cta-bar { margin-top: auto; margin-bottom: 0; position: absolute; left: 50%; bottom: clamp(36px, 6vh, 72px); transform: translateX(-50%); }
         .properties-header .cta-bar > div:first-child { justify-self: start; text-align: left; }
         .properties-header .cta-bar > div:last-child { justify-self: end; display: flex; gap: 12px; align-items: center; }
 
@@ -223,6 +223,7 @@
         .leistungen-page .contact-input:focus { outline: none; border-color: var(--color-orange); box-shadow: 0 0 0 3px rgba(20,184,166,0.15); }
         .leistungen-page .contact-form .full { grid-column: span 2; }
         .leistungen-page .contact-actions { grid-column: span 2; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+        .leistungen-page .contact-form input, .leistungen-page .contact-form select, .leistungen-page .contact-form textarea { width: 100%; min-width: 0; }
         /* Buttons kompakter, sodass zwei in einer Zeile Platz haben */
         .leistungen-page .contact-actions { flex-wrap: nowrap; gap: 10px; }
         .leistungen-page .contact-actions .btn {
@@ -299,7 +300,7 @@
             min-height: clamp(560px, 82vh, 900px);
             margin-top: 0;
             padding: 0;
-            padding-top: 72px; /* Platz für fixed Header */
+            padding-top: 96px; /* Platz für fixed Header + zusätzlicher Abstand */
             text-align: center;
           }
           .properties-header > .container {
@@ -329,7 +330,7 @@
             grid-template-columns: 1fr;
             gap: 16px;
             width: calc(100% - 24px);
-            margin: 18px auto 0;
+            margin: 28px auto 0;
           }
           .properties-header .cta-bar > div:last-child {
             justify-self: stretch;
@@ -360,8 +361,8 @@
         <div class="container">
             <nav class="navigation">
                 <div class="nav-brand">
-                    <a href="index.html" class="logo">
-                        <h1>PersoPro</h1>
+                    <a href="index.html" class="logo" aria-label="PersoPro">
+                        <img class="logo-img logo-img-dark" src="images/properties/logo_dunkel.png" alt="PersoPro Logo" onerror="this.onerror=null; this.src='images/properties/logo_dunkel.svg';">
                     </a>
                 </div>
                 <button class="nav-toggle" aria-label="Navigation öffnen">

@@ -15,15 +15,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="home">
     <a class="skip-link" href="#content">Zum Inhalt springen</a>
     <!-- Header -->
     <header class="header header-transparent">
         <div class="container">
             <nav class="navigation">
                 <div class="nav-brand">
-                    <a href="index.html" class="logo">
-                        <h1>PersoPro</h1>
+                    <a href="index.html" class="logo" aria-label="PersoPro">
+                        <img class="logo-img logo-img-light" src="images/properties/logo_hell.png" alt="PersoPro Logo" onerror="this.onerror=null; this.src='images/properties/logo_hell.svg';">
+                        <img class="logo-img logo-img-dark" src="images/properties/logo_dunkel.png" alt="" aria-hidden="true" onerror="this.onerror=null; this.src='images/properties/logo_dunkel.svg';">
                     </a>
                 </div>
                 <button class="nav-toggle" aria-label="Navigation öffnen">
@@ -44,8 +45,8 @@
     <!-- Hero Section -->
     <section class="hero-section" id="content">
         <div class="container">
-            <div class="hero-media">
-                <video class="hero-video" autoplay muted loop playsinline poster="images/start/herotitel.png">
+                <div class="hero-media" role="img" aria-label="PersoPro – Personallösungen in Aktion">
+                <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="images/start/herotitel.png">
                     <source src="videos/herovideo.mp4" type="video/mp4">
                 </video>
                 <div class="hero-media-overlay"></div>
@@ -279,12 +280,12 @@
                     <p class="about-text">Vom Tagesgeschäft bis zum Großevent: Wir besetzen Schichten, koordinieren Einsätze und sorgen für reibungslose Abläufe – damit Sie sich auf Ihr Kerngeschäft konzentrieren.</p>
                     <div class="about-stats">
                         <div class="stat">
-                            <h3 class="stat-number">15+</h3>
-                            <p class="stat-label">Jahre Erfahrung</p>
+                            <h3 class="stat-number">80+</h3>
+                            <p class="stat-label">Profis im Einsatz</p>
                         </div>
                         <div class="stat">
-                            <h3 class="stat-number">500+</h3>
-                            <p class="stat-label">Erfolgreiche Einsätze</p>
+                            <h3 class="stat-number">25+</h3>
+                            <p class="stat-label">Tägliche Aufträge</p>
                         </div>
                         <div class="stat">
                             <h3 class="stat-number">98%</h3>

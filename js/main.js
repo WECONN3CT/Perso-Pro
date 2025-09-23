@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateSlideWidth = () => { slideWidth = list.clientWidth; };
     updateSlideWidth();
     window.addEventListener('resize', updateSlideWidth);
+    window.addEventListener('orientationchange', updateSlideWidth);
     window.addEventListener('load', () => { updateSlideWidth(); imageMap.forEach(preload); });
     let lockedIndex = 0;
     // Initiale Quellen sicherstellen
@@ -330,7 +331,7 @@ function initSmoothScrolling() {
                 const header = document.querySelector('.header');
                 const headerOffset = header ? Math.round(header.getBoundingClientRect().height) : 72;
                 const elementPosition = targetSection.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                const offsetPosition = Math.max(0, elementPosition + window.pageYOffset - headerOffset);
                 
                 window.scrollTo({
                     top: offsetPosition,
@@ -810,18 +811,35 @@ function initScrollProgress() {
 function initHeaderScrollState() {
     const header = document.querySelector('.header');
     if (!header) return;
+    // Vermeide visuelle Flacker an der Umschalt-Schwelle über Hysterese und rAF
+    let lastSolid = null; // null = ungesetzt, true/false = Zustand
+    let ticking = false;
+    // Fixiere Header-Hhe fr3 den gesamten Umschaltbereich, um Layoutsprngen auszuschlie3en
+    const headerHeight = Math.round(header.getBoundingClientRect().height);
+    header.style.minHeight = headerHeight + 'px';
     const update = () => {
-        // später umschalten: erst nach 120px Scrollhöhe
-        const scrolled = (document.documentElement.scrollTop || document.body.scrollTop) > 120;
-        if (scrolled) {
-            header.classList.add('header-solid');
-            header.classList.remove('header-transparent');
-        } else {
-            header.classList.add('header-transparent');
-            header.classList.remove('header-solid');
-        }
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            const y = (document.documentElement.scrollTop || document.body.scrollTop) | 0;
+            const enter = 132; // Einblend-Schwelle
+            const leave = 108; // Ausblend-Schwelle (Hysterese)
+            const wantSolid = lastSolid === null ? (y > 120) : (lastSolid ? y > leave : y > enter);
+            if (wantSolid !== lastSolid) {
+                lastSolid = wantSolid;
+                if (wantSolid) {
+                    header.classList.add('header-solid');
+                    header.classList.remove('header-transparent');
+                } else {
+                    header.classList.add('header-transparent');
+                    header.classList.remove('header-solid');
+                }
+            }
+            ticking = false;
+        });
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('orientationchange', update);
 }
 // (removed) Docked-to-Hero Behavior

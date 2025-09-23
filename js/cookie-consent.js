@@ -100,6 +100,7 @@
     requestAnimationFrame(() => {
       b.classList.add('cc-visible');
     });
+    try { document.body.classList.add('cc-has-banner'); } catch(_) {}
   }
 
   function hideBanner() {
@@ -110,6 +111,7 @@
     const onEnd = () => {
       b.classList.add('cc-hidden');
       b.removeEventListener('transitionend', onEnd);
+      try { document.body.classList.remove('cc-has-banner'); } catch(_) {}
     };
     // Fallback, falls transitionend nicht feuert
     let fallback = setTimeout(onEnd, 600);
@@ -187,6 +189,10 @@
       showBanner();
       const fab = document.getElementById('cc-fab');
       if (fab) fab.classList.add('cc-attention');
+    }
+    // Sicherheitszustand: Falls kein Banner sichtbar, Klasse entfernen
+    if (!document.getElementById('cc-banner')?.classList.contains('cc-visible')) {
+      try { document.body.classList.remove('cc-has-banner'); } catch(_) {}
     }
   }
 
