@@ -238,6 +238,15 @@ function initMobileNavigation() {
     const header = document.querySelector('.header');
     
     if (navToggle && navMenu) {
+        // Korrigiere dynamische Top-Position des mobilen Menüs anhand Headerhöhe
+        const setMenuTop = () => {
+            const headerRect = (document.querySelector('.header') || {}).getBoundingClientRect?.();
+            const h = headerRect ? Math.round(headerRect.height) : 72;
+            navMenu.style.setProperty('--mobile-menu-top', h + 'px');
+        };
+        setMenuTop();
+        window.addEventListener('resize', setMenuTop, { passive: true });
+        window.addEventListener('orientationchange', setMenuTop);
         // ARIA initialisieren
         const menuId = navMenu.id || 'primary-navigation';
         if (!navMenu.id) navMenu.id = menuId;
