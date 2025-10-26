@@ -386,9 +386,34 @@ function initFormValidation() {
             });
             
             if (isValid) {
-                // Show success message
+                const action = (form.getAttribute('action') || '').toLowerCase();
+                if (action.includes('formspree.io')) {
+                    const formData = new FormData(form);
+                    fetch(form.action, {
+                        method: (form.getAttribute('method') || 'POST').toUpperCase(),
+                        headers: { 'Accept': 'application/json' },
+                        body: formData
+                    }).then(async (res) => {
+                        if (res.ok) {
+                            showSuccessMessage(form);
+                            form.reset();
+                        } else {
+                            // Try to read JSON error for debugging; fall back to generic
+                            try {
+                                const data = await res.json();
+                                const msg = (data && data.errors && data.errors.map(e => e.message).join(', ')) || 'Senden fehlgeschlagen.';
+                                alert(msg);
+                            } catch (_) {
+                                alert('Senden fehlgeschlagen. Bitte versuchen Sie es später erneut.');
+                            }
+                        }
+                    }).catch(() => {
+                        alert('Senden fehlgeschlagen. Bitte überprüfen Sie Ihre Verbindung.');
+                    });
+                    return;
+                }
+                // Otherwise, keep existing inline success behavior
                 showSuccessMessage(form);
-                // Reset form
                 form.reset();
             }
         });
