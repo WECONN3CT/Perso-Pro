@@ -380,6 +380,33 @@
           .leistungen-page .value-grid { gap: 14px; }
           .leistungen-page .steps { gap: 14px; }
         }
+
+        /* ==========================
+           Hero-Section ab 1536px fixieren und zentrieren
+           ========================== */
+        @media (min-width: 1536px) {
+          .properties-header {
+            max-width: 1536px;
+            margin-left: auto;
+            margin-right: auto;
+            /* Höhe fixieren - nicht mehr mit Viewport wachsen */
+            height: calc(1536px * (1100 / 2100) * 1.37426796875);
+          }
+          
+          /* Container innerhalb bleibt fluid bis zur Hero-Section-Breite */
+          .properties-header > .container {
+            max-width: 100%;
+          }
+          
+          /* Bild und Karte bleiben innerhalb der fixierten Breite */
+          .lead-image-card {
+            margin-left: calc((min(1200px, 100%) / 2 - 768px) - 1rem);
+          }
+          
+          .lead-turquoise-card {
+            right: calc((min(1200px, 100%) / 2 - 768px) - 1rem);
+          }
+        }
     </style>
 </head>
 <body class="leistungen-scope">
